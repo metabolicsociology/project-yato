@@ -158,7 +158,7 @@ var envLocations = [
                 id: 'spring-ikegami-01',
                 type: 'spring',
                 title: 'Myōzōji Temple Spring',
-                description: 'Originating from the foothills of Mount Ogusu, this natural spring flows through the grounds of a local Nichiren sect temple, where it irrigates the garden and sustains a koi pond. The temple is one of the 32 Nichiren sect temples in Yokosuka city, where the order's founder, Nichiren Shōnin, is said to have stopped during his journey from Chiba to Kamakura.',
+                description: 'Originating from the foothills of Mount Ogusu, this natural spring flows through the grounds of a local Nichiren sect temple, where it irrigates the garden and sustains a koi pond. The temple is one of the 32 Nichiren sect temples in Yokosuka city, where the order′s founder, Nichiren Shōnin, is said to have stopped during his journey from Chiba to Kamakura.',
                 coordinates: [139.65580, 35.27510],
                 color: '#4A90D9'
     },
