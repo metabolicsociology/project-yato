@@ -190,7 +190,7 @@ var envLocations = [
                 id: 'satoyama-01',
                 type: 'satoyama',
                 title: 'Nagasaka Greenspace around Sawayama Pond',
-                description: `Originally constructed by the City of Yokosuka in 1936 as an agricultural water supply, Sawayama Pond fell into disuse during the postwar period but now serves as the ecological centerpiece of a vital satoyama area. Since 2012, collaborative restoration efforts between the municipality and a local nonprofit organization have revived the surrounding abandoned rice paddies. Today, the pond and its adjacent wetlands support a diverse ecosystem comprising marsh, woodland, and bamboo vegetation, alongside various wildlife species, including grasshoppers, butterflies, dragonflies, owls, falcons, and frogs (City of Yokosuka, Nagasaka Green Space Satoyama Liaison Office website).`,
+                description: `Originally constructed by the City of Yokosuka in 1936 as an agricultural water supply, Sawayama Pond fell into disuse during the postwar period but now serves as the ecological centerpiece of a vital satoyama area. Since 2012, collaborative restoration efforts between the municipality and a local nonprofit organization have revived the surrounding abandoned rice paddies. Today, the pond and its adjacent wetlands support a diverse ecosystem comprising marsh, woodland, and bamboo vegetation, alongside various wildlife species, including grasshoppers, butterflies, dragonflies, owls, falcons, and frogs (City of Yokosuka, Nagasaka Greenspace Satoyama Liaison Office website).`,
                 coordinates: [139.6337, 35.23751],
                 color: '#4A7C59'
     },
@@ -206,7 +206,7 @@ var envLocations = [
                 id: 'ironworks-01',
                 type: 'heritage-water',
                 title: 'Former Arsenal Waterway',
-                description: `This natural spring serves as the source of the historic waterway that originally supplied process water to the Yokosuka Arsenal. Originating at the foot of Obaradai Hill—the current site of the National Defense Academy—the water system was planned and engineered by French engineer François Léonce Verny, who directed the construction that successfully delivered water to the Yokosuka Arsenal (later the Yokosuka Naval Shipyard) in 1876. In 1908, the Yokosuka Waterworks integrated this infrastructure into the municipal network to provide public water utility services. Today, while the water undergoes modern filtration and treatment, it remains an active resource available for public consumption.`,
+                description: `This natural spring serves as the source of the historic waterway that originally supplied process water to the Yokosuka Naval Arsenal. Originating at the foot of Obaradai Hill—the current site of the National Defense Academy—the water system was planned and engineered by French engineer François Léonce Verny, who directed the construction that successfully delivered water to the Naval Arsenal (later the Yokosuka Naval Shipyard) in 1876. In 1908, the Yokosuka Waterworks integrated this infrastructure into the municipal network to provide public water utility services. Today, while the water undergoes modern filtration and treatment, it remains an active resource available for public consumption.`,
                 coordinates: [139.72311, 35.26279],
                 color: '#8B6914'
     }
