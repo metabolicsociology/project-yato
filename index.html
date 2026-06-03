@@ -33,6 +33,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Karma', serif;
+            cursor: grab;
         }
 
         a,
@@ -444,7 +445,6 @@
         map.keyboard.disable();
         map.doubleClickZoom.disable();
         map.touchZoomRotate.disable();
-        map.scrollZoom.disable(); 
         
         // Forgotten Forge
         new mapboxgl.Marker({ color: '#C05A40' })
@@ -1052,6 +1052,58 @@
             // ────────────────────────────────────────────────────────────────────────
     </script>
                 </div>  <!-- closes env-toggle -->   
+
+    <script>
+      // ── Click-drag to scroll ─────────────────────────────────────────────────
+      // Lets users left-click and drag up/down to scroll the page.
+      (function () {
+        let isDragging = false;
+        let startY = 0;
+        let startScrollY = 0;
+    
+        document.addEventListener('mousedown', function (e) {
+          // Only trigger on left-click (button 0)
+          // Ignore clicks on interactive elements (links, buttons, checkboxes, map canvas)
+          const tag = e.target.tagName.toLowerCase();
+          const isInteractive =
+            tag === 'a' || tag === 'button' || tag === 'input' ||
+            tag === 'label' || tag === 'select' || tag === 'textarea' ||
+            e.target.closest('a, button, input, label, .mapboxgl-canvas-container');
+    
+          if (e.button !== 0 || isInteractive) return;
+    
+          isDragging = true;
+          startY = e.clientY;
+          startScrollY = window.scrollY;
+    
+          document.body.style.cursor = 'grabbing';
+          document.body.style.userSelect = 'none'; // prevent text selection while dragging
+          e.preventDefault();
+        });
+    
+        document.addEventListener('mousemove', function (e) {
+          if (!isDragging) return;
+          const delta = startY - e.clientY;       // drag up = scroll down
+          window.scrollTo(0, startScrollY + delta);
+        });
+    
+        document.addEventListener('mouseup', function () {
+          if (!isDragging) return;
+          isDragging = false;
+          document.body.style.cursor = '';
+          document.body.style.userSelect = '';
+        });
+    
+        // Also cancel if mouse leaves the window
+        document.addEventListener('mouseleave', function () {
+          if (!isDragging) return;
+          isDragging = false;
+          document.body.style.cursor = '';
+          document.body.style.userSelect = '';
+        });
+      })();
+    </script>
+    
 </body>
 
 </html>
