@@ -1035,7 +1035,7 @@
                                                                     el.addEventListener('click', function(e) {
                                                                                                     e.stopPropagation();
                                                                                                         if (popup.isOpen()) {
-                                                                                                            popup.remove();
+                                                                                                          popup.remove();
                                                                                                             activePopup = null;
                                                                                                         } else {
                                                                                                             if (activePopup) activePopup.remove();  // close any other open popup
@@ -1081,13 +1081,13 @@
           e.preventDefault();
         });
     
-        document.addEventListener('mousemove', function (e) {
+        window.addEventListener('mousemove', function (e) {
           if (!isDragging) return;
           const delta = startY - e.clientY;       // drag up = scroll down
           window.scrollTo(0, startScrollY + delta);
         });
     
-        document.addEventListener('mouseup', function () {
+        window.addEventListener('mouseup', function () {
           if (!isDragging) return;
           isDragging = false;
           document.body.style.cursor = '';
@@ -1095,11 +1095,12 @@
         });
     
         // Also cancel if mouse leaves the window
-        document.addEventListener('mouseleave', function () {
-          if (!isDragging) return;
-          isDragging = false;
-          document.body.style.cursor = '';
-          document.body.style.userSelect = '';
+        window.addEventListener('mouseout', function (e) {
+            if (!isDragging) return;
+            if (e.relatedTarget !== null) return; // still inside window
+            isDragging = false;
+            document.body.style.cursor = '';
+            document.body.style.userSelect = '';
         });
       })();
     </script>
