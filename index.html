@@ -1068,7 +1068,7 @@
           const isInteractive =
             tag === 'a' || tag === 'button' || tag === 'input' ||
             tag === 'label' || tag === 'select' || tag === 'textarea' ||
-            e.target.closest('a, button, input, label, .mapboxgl-canvas-container');
+            e.target.closest('a, button, input, label');
     
           if (e.button !== 0 || isInteractive) return;
     
