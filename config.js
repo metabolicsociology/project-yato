@@ -158,6 +158,25 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
+        },
+        {
+            id: 'house-of-electricity',
+            alignment: 'left',
+            hidden: false,
+            title: 'House of Electricity',
+            markerColor: '#C05A40', 
+            description: `A cinema was established in front of the Funakoshi Elementary School in the early 1900s - the first experience of modern entertainment for many. The cinema itself moved from here, up the hills on the east, then towards the south on Naka-dōri shopping street where it took the name Funakoshi-kan. Unfortunately, Funakoshi-kan was burned down by a fire that erupted in 1920 then again, after having been rebuilt, in the Great Kanto Earthquake of 1923 (Ishii 1987a, 128). One old man recalls his first cinema experience at the Funakoshi-kan - which he called "denki jyōsetsu-kan (electricity permanent housing)," a term no longer used in Japanese. What he saw was a silent cinema which, in Japan, had a person known as "benshi" speak the words in place of the actors - a similar role named "takemoto" already existed for the Japanese kabuki theater. The silent cinema opened with a group of musicians playing music in front of the screen and continued to play in the background after the movie started. There was an intermission when a Japanese comedy skit "manzai" was staged, after which he fell asleep from the warm air inside the theater. He recalls how the air outside the theater seemed cool and fresh after spending time in the theater (City of Yokosuka 1981, 156-8).`,
+            location: {
+                center: [139.62672, 35.30027],
+                zoom: 16,
+                pitch: 50,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
         }
     ]
 };
