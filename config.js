@@ -122,14 +122,33 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             onChapterExit: []
         },
         {
-            id: 'cannons-calvary-children',
+            id: 'field-returned',
             alignment: 'left',
             hidden: false,
-            title: 'Cannons, Cavalry, and Children',
+            title: 'A Field Returned',
             markerColor: '#C05A40', 
-            description: `Around 1880, the Imperial Army requisitioned farmland and flattened the surrounding slopes to clear a drill ground for the Heavy Artillery Regiment. Cannons were installed; cavalry stables followed. Children caught tadpoles, crabs, and shrimps in the small river that ran through the grounds. By the 1910s, weekends had been quietly reclaimed — the drill ground became a baseball field, eventually formalized where Tsurukubo Elementary School now stands (Ishii 1987b, 84). The sport arrived with its English terminology intact: strike, safe, out. The children had less than a decade with those words. When wartime language policy reached the baseball diamond, the terms were reversed into Japanese — seikyū, anzen, hike — and the foreign syllables disappeared from the field along with everything else that had briefly seemed ordinary.`,
+            description: `Today, Iriyamazu Park is home to the Yokosuka Arena — a gymnasium, pool, training room, baseball field, and tennis courts. A monument at the northern edge of the park marks its previous incarnation as military property, before the Former Naval Cities Conversion Act of 1950. But even back in the 1880s, when this land was cleared as a drill ground for the Heavy Artillery Regiment and the Sairaiji Temple to the west was converted into a public school, children were already catching tadpoles, crabs, and shrimp in the small river that ran through the grounds. By the 1910s, baseball had swept the country, and on weekends the drill ground quietly became a sandlot — the military looking the other way as children took over the field. Before long, a formal baseball diamond was established at the corner of the grounds. The military's tolerance was short-lived, but the current baseball field stands as a revival of that brief, exuberant prewar chapter.`,
             location: {
                 center: [139.66571, 35.26835],
+                zoom: 16,
+                pitch: 50,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+        }
+        {
+            id: 'where-camphors-grow',
+            alignment: 'left',
+            hidden: false,
+            title: 'Where Camphors Grow',
+            markerColor: '#C05A40', 
+            description: `In 1895, the then-mayor declared that planting trees and education were both pillars of nation-building, and gifted seeds of camphor trees to several elementary schools across the prefecture — Hemi Elementary among them (Ishii 1987a, 192). Those seeds, now approximately 130 years later, have grown into four large camphor trees that still stand on the school grounds. Children know the camphor tree from the anime My Neighbor Totoro (1988) — it is the enormous tree where Totoro lives. For elders who remember the war, the camphor tree is remembered for its resilience: it kept growing even after everything else had been bombed to ruins (Ishii 1987a, 192). The highest mountain on the Miura Peninsula, directly south of Hemi Elementary, is called Ōkusu ("Large Camphor") Mountain — a name taken from a legendary large camphor tree said to have stood at the peak.`,
+            location: {
+                center: [139.64993, 35.28314],
                 zoom: 16,
                 pitch: 50,
                 bearing: 10
