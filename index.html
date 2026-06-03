@@ -476,6 +476,11 @@
             .setLngLat([139.64993, 35.28314])
             .addTo(map);
 
+        // House of Electricity
+        new mapboxgl.Marker({ color: '#C05A40' })
+            .setLngLat([139.62672, 35.30027])
+            .addTo(map);
+
         // Create a inset map if enabled in config.js
         if (config.inset) {
             map.addControl(
