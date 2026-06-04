@@ -236,7 +236,7 @@ var envLocations = [
                 type: 'spring',
                 title: 'Hemi Yato Spring',
                 description: `As one of several natural seeps along the Hemi Yato valley floor, this spring water is funneled via pipe into a covered storage tank at the edge of an open lot. Maintenance of the water source is managed independently by a neighboring resident (Yokosuka Water and Environment Study Group 2015, 12).`,
-                coordinates: [139.6555, 35.27601],
+                coordinates: [139.64836, 35.27655],
                 color: '#4A90D9'
     },
     {
