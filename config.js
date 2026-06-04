@@ -190,7 +190,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             alignment: 'left',
             hidden: false,
             title: 'A Reservoir of Absence',
-            markerColor: '#C05A40', 
+            markerColor: '#0097a7', 
             description: `<p style="margin-bottom: 1.5em;">Water was a precious resource across Yokosuka. A survey from 1865 records twelve reservoirs in the area now called Chūō — spanning from Shioiri in the west to what is today Kenritsu-Daigaku station, once known as Yasuura station, in the east. Two stood close to the Yokosuka Iron Works: the Shioiri-seki reservoir (here) and the Tato-no-seki reservoir.</p>
                           <p style="margin-bottom: 1.5em;">The Iron Works acquired the hill above the Shioiri-seki reservoir from Hajimazan Chōgen-ji temple — which still stands south of Shioiri station — in order to control the water supply for their own industrial use. A wooden pipe was installed to carry water down into the works. Both fell into disuse after the completion of the Hashirimizu waterway in 1876. The reservoir itself, approximately 1,000 square meters, was buried when the road in front of the temple was repaved around 1930. Postwar searches of the area turned up nothing — no reservoir, no pipes. The Wakamatsu tunnel, bored through the same hill in 1947, now connects the back of Shioiri station toward the yato of Shioiri-chō without any indication that the hill once held water, or that the water once held a purpose. What was buried was not only the reservoir but the legibility of what had been there.</p>`,
             location: {
@@ -210,7 +210,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             alignment: 'left',
             hidden: false,
             title: 'The Giving Reservoir, the Taking Road',
-            markerColor: '#C05A40', 
+            markerColor: '#0097a7', 
             description: `<p style="margin-bottom: 1.5em;">One of twelve reservoirs identified in the 1865 survey, the Tato-no-seki reservoir was a vital water source for the Sakamoto-chō community that already existed here before the Yokosuka Iron Works broke ground. It was, in fact, the reservoir that held the community together: water for the vegetable farms, for the sake brewing the area became known for — some even believe the name Sakamoto derives from the sake produced here — and for the lotus pond where koi were farmed and children swam in summer (City of Yokosuka 1981a, 32–33).</p>
                           <p style="margin-bottom: 1.5em;">Later, when the Heavy Artillery Regiment established its drill ground on the hilltop, the manure from military horses was collected and used as fertilizer. Those same horses drew carts along the slope, carrying heavy artillery, people, and goods across the mountain path toward the shore. Many died from the effort. Records tell us that people pitied the thin, overworked animals, driven past their limits on the steep climb. To commemorate them, a row of twenty-seven batō-kannon — horse-headed Buddhas — was erected in 1934 on the side of the slope, just where the road bends around the hill. Across that road, inside the yato leading toward the Sakamoto Tunnel, is where the Tato-no-seki reservoir is thought to have once stood (Ishii 1987a, 246).</p>`,
             location: {
