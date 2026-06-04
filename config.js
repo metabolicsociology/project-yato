@@ -184,7 +184,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
-        },
+            },
             {
             id: 'reservoir-absence',
             alignment: 'left',
@@ -204,7 +204,27 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
-        }
+            },
+            {
+            id: 'giving-taking',
+            alignment: 'left',
+            hidden: false,
+            title: 'The Giving Reservoir, the Taking Road',
+            markerColor: '#C05A40', 
+            description: `<p style="margin-bottom: 1.5em;">One of twelve reservoirs identified in the 1865 survey, the Tato-no-seki reservoir was a vital water source for the Sakamoto-chō community that already existed here before the Yokosuka Iron Works broke ground. It was, in fact, the reservoir that held the community together: water for the vegetable farms, for the sake brewing the area became known for — some even believe the name Sakamoto derives from the sake produced here — and for the lotus pond where koi were farmed and children swam in summer (City of Yokosuka 1981a, 32–33).</p>
+                          <p style="margin-bottom: 1.5em;">Later, when the Heavy Artillery Regiment established its drill ground on the hilltop, the manure from military horses was collected and used as fertilizer. Those same horses drew carts along the slope, carrying heavy artillery, people, and goods across the mountain path toward the shore. Many died from the effort. Records tell us that people pitied the thin, overworked animals, driven past their limits on the steep climb. To commemorate them, a row of twenty-seven batō-kannon — horse-headed Buddhas — was erected in 1934 on the side of the slope, just where the road bends around the hill. Across that road, inside the yato leading toward the Sakamoto Tunnel, is where the Tato-no-seki reservoir is thought to have once stood (Ishii 1987a, 246).</p>`,
+            location: {
+                center: [139.6555, 35.27601],
+                zoom: 16,
+                pitch: 50,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            }            
     ]
 };
 
@@ -216,7 +236,7 @@ var envLocations = [
                 type: 'spring',
                 title: 'Hemi Yato Spring',
                 description: `As one of several natural seeps along the Hemi Yato valley floor, this spring water is funneled via pipe into a covered storage tank at the edge of an open lot. Maintenance of the water source is managed independently by a neighboring resident (Yokosuka Water and Environment Study Group 2015, 12).`,
-                coordinates: [139.64836, 35.27655],
+                coordinates: [139.6555, 35.27601],
                 color: '#4A90D9'
     },
     {
