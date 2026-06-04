@@ -486,6 +486,11 @@
             .setLngLat([139.66196, 35.28006])
             .addTo(map);
 
+        // The Giving Reservoir, the Taking Road
+        new mapboxgl.Marker({ color: '#C05A40' })
+            .setLngLat([139.6555, 35.27601])
+            .addTo(map);
+        
         // Create a inset map if enabled in config.js
         if (config.inset) {
             map.addControl(
