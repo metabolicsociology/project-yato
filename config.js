@@ -106,12 +106,14 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             onChapterExit: []
         },
         {
-            id: 'bricks-blossoms',
+            id: 'strata-slope',
             alignment: 'left',
             hidden: false,
-            title: 'Bricks and Blossoms',
+            title: 'Strata of the Slope',
             markerColor: '#C05A40', 
-            description: `The name Yasaka is written with the kanji for eight — a figure for the twin hills that climb from Shioiri toward the ridge. At the junction where the two paths converge stood a place known as Kappa Mountain: not for the water spirit of Japanese legend, but for the kappa, the raincoat, and the military facility here that serviced the heavy-duty gear of the regiment stationed on these slopes. The Heavy Artillery Regiment planted cherry trees on the grounds. The red brick gate at the regimental entrance still stands as the entrance to Sakura Elementary School, which takes its name from the blossoms that the regiment planted (City of Yokosuka, 1981, 34-7).`,
+            description: `<p style="margin-bottom: 1.5em;">Yasaka is the name of a pathway that branched off from the Uraga Road into the yato communities lying behind it — Kamaga yato (Shioirichō 4-chōme) and Ushigoroshi yato (Shioirichō 5-chōme) — tucked behind the Neno Shrine, which faces the uphill slope rising from Shioiri toward Sakamoto Park. The west ridge of that slope was known as Kappa Mountain: not for the water spirit of Japanese legend, but for the kappa, the raincoat, and the military facility here that serviced the heavy-duty gear of the regiment stationed on these slopes.</p>
+                          <p style="margin-bottom: 1.5em;">The Heavy Artillery Regiment planted cherry trees on the grounds, and the red-brick gate that once marked the regimental entrance still stands today as the entrance to Sakura Elementary School — its name taken directly from the blossoms the regiment left behind (City of Yokosuka, 1981, 34–7).</p>
+                          <p style="margin-bottom: 1.5em;">Yet Yasaka's history runs far deeper than the army's. As one of the communities that predated the Iron Works, it carries a much older stratigraphy. The Yasaka Fudōson, a small temple nestled just below Kappa Mountain, attests to this — even if no one can say precisely when it was built. So does the Tato-no-seki reservoir, which once supplied water to the community, and the Dairokuten Shrine, said to have been erected in 1246 (Ishii 1998a, 248-9).</p>`,
             location: {
                 center: [139.65711, 35.27337],
                 zoom: 16,
