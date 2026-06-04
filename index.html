@@ -481,6 +481,11 @@
             .setLngLat([139.62672, 35.30027])
             .addTo(map);
 
+        // Reservoir of Absence
+        new mapboxgl.Marker({ color: '#C05A40' })
+            .setLngLat([139.66196, 35.28006])
+            .addTo(map);
+
         // Create a inset map if enabled in config.js
         if (config.inset) {
             map.addControl(
