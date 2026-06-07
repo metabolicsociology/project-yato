@@ -297,6 +297,91 @@
                             color: #888;
                             padding: 2px 6px;
             }
+
+        /* ===== STORY PIN MARKERS ===== */
+        .story-pin {
+            width: 28px;
+            height: 28px;
+            background-color: #C05A40;
+            border: 3px solid #fff;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .story-pin:hover {
+            transform: rotate(-45deg) scale(1.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .story-pin.active {
+            background-color: #0E5735;
+        }
+
+        /* ===== STORY PANEL (floating sidebar) ===== */
+        #story-panel {
+            position: fixed;
+            top: 0;
+            left: -420px;
+            width: 380px;
+            height: 100vh;
+            background: #fff;
+            z-index: 100;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #story-panel.open {
+            left: 0;
+        }
+        #story-panel-header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 12px 16px 8px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+            background: var(--dark-green);
+        }
+        #story-panel-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+            line-height: 1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        #story-panel-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        #story-panel-content {
+            padding: 20px 24px 24px;
+            overflow-y: auto;
+            flex: 1;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        #story-panel-content h3 {
+            color: var(--dark-green);
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        #story-panel-content img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 14px;
+        }
+        /* Hide old scroll-based story elements */
+        #features, .step {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -439,57 +524,95 @@
             projection: config.projection
         });
 
-        // Allow scroll-to-zoom only (like Google Maps); disable other interactions
-        map.dragPan.disable();
-        map.dragRotate.disable();
-        map.keyboard.disable();
-        map.doubleClickZoom.disable();
-        map.touchZoomRotate.disable();
-        
-        // Forgotten Forge
-        new mapboxgl.Marker({ color: '#C05A40' })
-            .setLngLat([139.66177, 35.28141])
-            .addTo(map);
+        // All map interactions enabled: drag, zoom, rotate, keyboard
 
-        // A Name Without a Bridge
-        new mapboxgl.Marker({ color: '#C05A40' })
-            .setLngLat([139.65199, 35.28358])
-            .addTo(map);
+        // ---- Story pin markers (click to open story panel) ----
+        var chapterMarkers = [
+            { id: 'forgotten-forge',    lngLat: [139.66177, 35.28141], label: 'The Forgotten Forge' },
+            { id: 'name-without-bridge',lngLat: [139.65199, 35.28358], label: 'A Name Without a Bridge' },
+            { id: 'circling-timeline',  lngLat: [139.63633, 35.28879], label: 'The Circling Timeline' },
+            { id: 'strata-slope',       lngLat: [139.65711, 35.27337], label: 'Strata of the Slope' },
+            { id: 'field-returned',     lngLat: [139.66571, 35.26835], label: 'A Field Returned' },
+            { id: 'camphors',           lngLat: [139.64993, 35.28314], label: 'Where Camphor Grows' },
+            { id: 'electricity',        lngLat: [139.62672, 35.30027], label: 'House of Electricity' },
+            { id: 'reservoir-absence',  lngLat: [139.66196, 35.28006], label: 'The Reservoir Absence' },
+            { id: 'giving-taking',      lngLat: [139.6555,  35.27601], label: 'Giving and Taking' }
+        ];
 
-        // The Circling Timeline
-        new mapboxgl.Marker({ color: '#C05A40' })
-            .setLngLat([139.63633, 35.28879])
-            .addTo(map);
+        function openStoryPanel(chapterId) {
+            var chapter = config.chapters.find(function(c) { return c.id === chapterId; });
+            if (!chapter) return;
+            // Fly map to chapter location
+            map[chapter.mapAnimation || 'flyTo'](chapter.location);
+            // Apply chapter layer visibility changes
+            if (chapter.onChapterEnter && chapter.onChapterEnter.length > 0) {
+                chapter.onChapterEnter.forEach(setLayerOpacity);
+            }
+            // Populate story panel
+            var panelContent = document.getElementById('story-panel-content');
+            panelContent.innerHTML = '';
+            if (chapter.title) {
+                var h3 = document.createElement('h3');
+                h3.innerText = chapter.title;
+                panelContent.appendChild(h3);
+            }
+            if (chapter.image) {
+                var img = document.createElement('img');
+                img.src = chapter.image;
+                panelContent.appendChild(img);
+            }
+            if (chapter.description) {
+                var desc = document.createElement('div');
+                desc.innerHTML = chapter.description;
+                panelContent.appendChild(desc);
+            }
+            // Mark active pin
+            document.querySelectorAll('.story-pin').forEach(function(el) {
+                el.classList.remove('active');
+            });
+            var panel = document.getElementById('story-panel');
+            panel.dataset.activeChapter = chapterId;
+            panel.classList.add('open');
+            var activePin = document.querySelector('.story-pin[data-chapter="' + chapterId + '"]');
+            if (activePin) activePin.classList.add('active');
+        }
 
-        // Strata of the Slope
-        new mapboxgl.Marker({ color: '#C05A40' })
-            .setLngLat([139.65711, 35.27337])
-            .addTo(map);
+        function closeStoryPanel() {
+            var panel = document.getElementById('story-panel');
+            var chapterId = panel.dataset.activeChapter;
+            if (chapterId) {
+                var chapter = config.chapters.find(function(c) { return c.id === chapterId; });
+                if (chapter && chapter.onChapterExit && chapter.onChapterExit.length > 0) {
+                    chapter.onChapterExit.forEach(setLayerOpacity);
+                }
+            }
+            panel.classList.remove('open');
+            panel.dataset.activeChapter = '';
+            document.querySelectorAll('.story-pin').forEach(function(el) {
+                el.classList.remove('active');
+            });
+        }
 
-        // A Field Returned
-        new mapboxgl.Marker({ color: '#C05A40' })
-            .setLngLat([139.66571, 35.26835])
-            .addTo(map);
+        // Create clickable story-pin markers
+        chapterMarkers.forEach(function(cm) {
+            var el = document.createElement('div');
+            el.className = 'story-pin';
+            el.setAttribute('data-chapter', cm.id);
+            el.title = cm.label;
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var panel = document.getElementById('story-panel');
+                if (panel.dataset.activeChapter === cm.id && panel.classList.contains('open')) {
+                    closeStoryPanel();
+                } else {
+                    openStoryPanel(cm.id);
+                }
+            });
+            new mapboxgl.Marker({ element: el })
+                .setLngLat(cm.lngLat)
+                .addTo(map);
+        });
 
-        // Where Camphor Grows
-        new mapboxgl.Marker({ color: '#C05A40' })
-            .setLngLat([139.64993, 35.28314])
-            .addTo(map);
-
-        // House of Electricity
-        new mapboxgl.Marker({ color: '#C05A40' })
-            .setLngLat([139.62672, 35.30027])
-            .addTo(map);
-
-        // Reservoir of Absence
-        new mapboxgl.Marker({ color: '#0097a7' })
-            .setLngLat([139.66196, 35.28006])
-            .addTo(map);
-
-        // The Giving Reservoir, the Taking Road
-        new mapboxgl.Marker({ color: '#0097a7' })
-            .setLngLat([139.6555, 35.27601])
-            .addTo(map);
         
         // Create a inset map if enabled in config.js
         if (config.inset) {
@@ -504,11 +627,7 @@
             marker.setLngLat(config.chapters[0].location.center).addTo(map);
         }
 
-        // instantiate the scrollama
-        var scroller = scrollama();
-
-
-        map.on("load", function () {
+                map.on("load", function () {
             if (config.use3dTerrain) {
                             map.addSource('mapbox-dem', {
                                 'type': 'raster-dem',
@@ -878,58 +997,10 @@
                 body.style.display = isHidden ? 'block' : 'none';
                 arrow.textContent = isHidden ? '▾' : '▴';
             }
-            // setup the instance, pass callback functions
-            scroller
-                .setup({
-                    step: '.step',
-                    offset: 0.5,
-                    progress: true
-                })
-                .onStepEnter(async response => {
-                    var current_chapter = config.chapters.findIndex(chap => chap.id === response.element.id);
-                    var chapter = config.chapters[current_chapter];
 
-                    response.element.classList.add('active');
-                    map[chapter.mapAnimation || 'flyTo'](chapter.location);
-
-                    if (config.showMarkers) {
-                        marker.setLngLat(chapter.location.center);
-                    }
-                    if (chapter.onChapterEnter.length > 0) {
-                        chapter.onChapterEnter.forEach(setLayerOpacity);
-                    }
-                    if (chapter.callback) {
-                        window[chapter.callback]();
-                    }
-                    if (chapter.rotateAnimation) {
-                        map.once('moveend', () => {
-                            const rotateNumber = map.getBearing();
-                            map.rotateTo(rotateNumber + 180, {
-                                duration: 30000, easing: function (t) {
-                                    return t;
-                                }
-                            });
-                        });
-                    }
-                    if (config.auto) {
-                        var next_chapter = (current_chapter + 1) % config.chapters.length;
-                        map.once('moveend', () => {
-                            document.querySelectorAll('[data-scrollama-index="' + next_chapter.toString() + '"]')[0].scrollIntoView();
-                        });
-                    }
-                })
-                .onStepExit(response => {
-                    var chapter = config.chapters.find(chap => chap.id === response.element.id);
-                    response.element.classList.remove('active');
-                    if (chapter.onChapterExit.length > 0) {
-                        chapter.onChapterExit.forEach(setLayerOpacity);
-                    }
-                });
-
-
-            if (config.auto) {
-                document.querySelectorAll('[data-scrollama-index="0"]')[0].scrollIntoView();
-            }
+        // Pin-click storytelling mode active.
+        // Map is fully interactive — users can freely pan, zoom, and rotate.
+        // Click any story pin to open its story panel.
 
     </script>
 
@@ -1149,6 +1220,15 @@
       })();
     </script>
     
+
+    <!-- Floating story panel (pin-click mode) -->
+    <div id="story-panel">
+        <div id="story-panel-header">
+            <button id="story-panel-close" onclick="closeStoryPanel()" title="Close">&times;</button>
+        </div>
+        <div id="story-panel-content"></div>
+    </div>
+
 </body>
 
 </html>
