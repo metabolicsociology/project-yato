@@ -395,6 +395,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            overflow-y: auto;
             z-index: 50 !important;
             pointer-events: all !important;
             transition: opacity 0.5s ease, visibility 0.5s ease;
@@ -407,12 +408,13 @@
         /* Header becomes centered splash content */
         #header {
             position: relative !important;
-            min-height: 100vh !important;
+            min-height: 100vh;
+            max-height: none;
             display: flex !important;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            overflow-y: auto;
+            padding-top: 60px;
         }
         /* Explore Map button */
         #explore-map-btn {
