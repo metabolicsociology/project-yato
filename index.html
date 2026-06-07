@@ -837,6 +837,27 @@
                   layout: { visibility: 'none' },
                   paint: { 'line-color': '#8AAA40', 'line-width': 1.5 }
                 });
+
+                // 谷戸地域
+                map.addSource('yato-list', {
+                  type: 'geojson',
+                  data: 'https://metabolicsociology.github.io/project-yato/yato-chiiki.geojson'
+                });
+                map.addLayer({
+                  id: 'yato-list-fill',
+                  type: 'fill',
+                  source: 'yato-list',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#E6EE9C', 'fill-opacity': 0.2 }
+                });
+                map.addLayer({
+                  id: 'yato-list-line',
+                  type: 'line',
+                  source: 'yato-list',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#E6EE9C', 'line-width': 1.5 }
+                });
+            
      });  // end map.on("load")
         
     function envToggle(ids, on) {
@@ -916,7 +937,15 @@
     <b class="env-toggle-header" onclick="toggleEnvPanel()">Environmental Layers <span id="env-arrow" style="font-size:1.4em;color:#FFD700;margin-left:4px;text-shadow: 0 0 1px #222, 0 0 1px #222;">▾</span></b>
     <div id="env-toggle-body">
 
-  <label class="env-row">
+    <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+        'yato-chiiki-fill','yato-chiiki-line'
+          ], this.checked)">
+    <span class="env-dot" style="background:#C05A40; border-radius:0;"></span>
+    Yato communities
+    </label>
+        
+    <label class="env-row">
     <input type="checkbox" onchange="envToggle([
       'protected-all-fill','protected-all-line',
       'protected-sub-fill','protected-sub-line'
