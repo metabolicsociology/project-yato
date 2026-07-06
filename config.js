@@ -246,6 +246,26 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             onChapterEnter: [],
             onChapterExit: []
             },   
+            {
+            id: 'soba',
+            alignment: 'left',
+            hidden: false,
+            title: `A Grave for the Soba Tradesmen`,
+            markerColor: '#0097a7', 
+            description: `<p style="margin-bottom: 1.5em;">Hand-crafted soba noodles take years to master, and in prewar Japan the artisans who trained in the craft moved from town to town, joining a loose network of fellow tradesmen wherever work called them. Some of that itinerant trade settled in Yokosuka, where soba makers arrived to keep the servicemen and women of the Imperial Japanese Navy fed.</p>
+                          <p style="margin-bottom: 1.5em;">At Seitoku-ji Temple, a commemorative plaque marks their memory - erected before World War II by Yokomori Jyunzō, founder of the restaurant Tachibana Shokudō, together with his fellow tradesmen. Tachibana Shokudō opened its doors in 1908 and remains open today - no longer a soba shop but a shokudō serving a broader variety of dishes, carrying the name forward even as the noodle trade it once served has faded into memory.</p>`,
+            location: {
+                center: [139.67458, 35.2716],
+                zoom: 18,
+                pitch: 45,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
     ]
 };
 
