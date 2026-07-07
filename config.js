@@ -256,8 +256,29 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                           <p style="margin-bottom: 1.5em;">At Seitoku-ji Temple, a commemorative plaque marks their memory - erected before World War II by Yokomori Jyunzō, founder of the restaurant Tachibana Shokudō, together with his fellow tradesmen (Ishii 1987b, 114). Tachibana Shokudō opened its doors in 1908 and remains open today - no longer a soba shop but a shokudō serving a broader variety of dishes, carrying the name forward even as the noodle trade it once served has faded into memory.</p>`,
             location: {
                 center: [139.67458, 35.2716],
-                zoom: 18,
+                zoom: 16,
                 pitch: 45,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
+            {
+            id: 'springs-to-studios',
+            alignment: 'left',
+            hidden: false,
+            title: `From Springs to Studios`,
+            markerColor: '#0097a7', 
+            description: `<p style="margin-bottom: 1.5em;">This stretch along the Takakuma River was once known as the Onsen Yato — the "hot springs valley" — named for the natural springs that welled up from beneath the ground. A hot springs facility and a bathhouse had opened here during the Meiji era (1868–1912), drawing on those waters through a network of pipes. The 1923 Great Kanto Earthquake shifted the underlying geological formation and destroyed the pipes, and the businesses that had flourished on them never recovered. Residents recalled that people continued to find small openings where hot spring water still surfaced, enough to gather for personal use, while the river itself remained clean enough to catch eel and Japanese dace (City of Yokosuka, "Onsen Yato and Mineral Springs").</p>
+                          <p style="margin-bottom: 1.5em;">In 2018, the Yokosuka Art Valley Hiraku opened at the far end of the valley, inviting artists to live and work amid the yato's nature and its community of residents. Exhibitions and workshops are held there on an ad-hoc basis.</p>
+                          <p style="margin-bottom: 1.5em;">The springs no longer surface here, but the valley continues to draw people toward it — once for what welled up from the ground, now for what wells up from within them.</p>`,
+            location: {
+                center: [139.63274, 35.28358],
+                zoom: 16,
+                pitch: 40,
                 bearing: 10
             },
             mapAnimation: 'flyTo',
