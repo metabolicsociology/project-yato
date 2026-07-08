@@ -1105,6 +1105,20 @@
                     layout: { visibility: 'none' },
                     paint: { 'line-color': '#8FE0FF', 'line-width': 2 }
                 });
+
+                // Rivers
+                map.addSource('rivers', {
+                    type: 'geojson',
+                    data: 'https://metabolicsociology.github.io/project-yato/assets/rivers.geojson'
+                });
+                map.addLayer({
+                    id: 'rivers-line',
+                    type: 'line',
+                    source: 'rivers',
+                    filter: ['in', ['geometry-type'], ['literal', ['LineString', 'MultiLineString']]],
+                    layout: { visibility: 'none' },
+                    paint: { 'line-color': '#2E86AB', 'line-width': 2 }
+                });
             
      });  // end map.on("load")
         
@@ -1171,6 +1185,12 @@
     ], this.checked)">
     <span class="env-dot" style="background:#8FE0FF"></span>
     West Uraga Road
+    </label>
+
+    <label class="env-row">
+        <input type="checkbox" onchange="envToggle(['rivers-line'], this.checked)">
+        <span class="env-dot" style="background:#2E86AB"></span>
+        Rivers
     </label>
         
     <label class="env-row">
