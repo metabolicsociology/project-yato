@@ -297,10 +297,10 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                           <p style="margin-bottom: 1.5em;">A different Spouse Bridge crosses the Hirasaku River further south, in the Hirasaku district, but the name there marks a different kind of pairing — two bridges built by human hands on either side of a reclamation-era water gate, spanning a single river rather than joining two.</p>
                           <p style="margin-bottom: 1.5em;">At Hirasaku, it was engineers who paired two bridges over one river. Here, it was the river itself that paired two currents into one — and only afterward did anyone think to build a bridge to mark the joining.</p>`,
             location: {
-                center: [139.63274, 35.28358],
-                zoom: 16,
-                pitch: 50,
-                bearing: 10
+                center: [139.62777, 35.31685],
+                zoom: 18,
+                pitch: 60,
+                bearing: -20
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
