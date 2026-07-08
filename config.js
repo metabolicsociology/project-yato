@@ -287,6 +287,27 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             onChapterEnter: [],
             onChapterExit: []
             },
+            {
+            id: 'confluence',
+            alignment: 'left',
+            hidden: false,
+            title: `A Confluence Called Spouse`,
+            markerColor: '#0097a7', 
+            description: `<p style="margin-bottom: 1.5em;">A bridge already stood at this crossing during the early Meiji period (1868–1912), but the stone bridge spanning the Takatori River today dates to 1933. It takes its name — Meoto-bashi, the "Spouse Bridge" — from the point just upstream where the river's male and female branches join into one current <a href="https://www.sano-k.net/town/town025/">(Sano Kōmuten website)</a>.</p>
+                          <p style="margin-bottom: 1.5em;">A different Spouse Bridge crosses the Hirasaku River further south, in the Hirasaku district, but the name there marks a different kind of pairing — two bridges built by human hands on either side of a reclamation-era water gate, spanning a single river rather than joining two.</p>
+                          <p style="margin-bottom: 1.5em;">At Hirasaku, it was engineers who paired two bridges over one river. Here, it was the river itself that paired two currents into one — and only afterward did anyone think to build a bridge to mark the joining.</p>`,
+            location: {
+                center: [139.63274, 35.28358],
+                zoom: 16,
+                pitch: 50,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
     ]
 };
 
