@@ -339,7 +339,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                           <p style="margin-bottom: 1.5em;">The bridge's name honored a visit by the Meiji Emperor - which he did on several occasions since 1871 (Ishii 1987a, 24). The name is drawn from omiyuki (imperial outing), the general term for his travels beyond the palace. Yet the well is thought to be older than the occasion that named it, having served the local community well before the Meiji era. It may originally have belonged to the Grand Suwa Shrine, situated across the Uraga Road to the east of the hospital, said to have been brought to this site and enshrined for veneration by a descendant of the Miura clan in 1380.</p>
                           <p style="margin-bottom: 1.5em;">The bridge is gone, and the Emperor's visit survives now only in the corner posts that once framed it. The well, disused and unmarked, still holds the older claim — a village drawing its water long before any emperor ever passed through.</p>`,
             location: {
-                center: [139.6023, 35.30615],
+                center: [139.66136, 35.28082],
                 zoom: 16,
                 pitch: 40,
                 bearing: 10
