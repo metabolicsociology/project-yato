@@ -302,7 +302,7 @@
         .story-pin {
             width: 28px;
             height: 28px;
-            background-color: #C05A40;
+            background-color: var(--pin-color, #C05A40); 
             border: 3px solid #fff;
             border-radius: 50% 50% 50% 0;
             transform: rotate(-45deg);
@@ -608,21 +608,16 @@
         // All map interactions enabled: drag, zoom, rotate, keyboard
 
         // ---- Story pin markers (click to open story panel) ----
-        var chapterMarkers = [
-            { id: 'forgotten-forge',    lngLat: [139.66177, 35.28141], label: 'The Forgotten Forge' },
-            { id: 'name-without-bridge',lngLat: [139.65199, 35.28358], label: 'A Name Without a Bridge' },
-            { id: 'circling-timeline',  lngLat: [139.63633, 35.28879], label: 'The Circling Timeline' },
-            { id: 'strata-slope',       lngLat: [139.65711, 35.27337], label: 'Strata of the Slope' },
-            { id: 'field-returned',     lngLat: [139.66571, 35.26835], label: 'A Field Returned' },
-            { id: 'camphors',           lngLat: [139.64993, 35.28314], label: 'Where Camphor Grows' },
-            { id: 'electricity',        lngLat: [139.62672, 35.30027], label: 'House of Electricity' },
-            { id: 'reservoir-absence',  lngLat: [139.66196, 35.28006], label: 'The Reservoir Absence' },
-            { id: 'giving-taking',      lngLat: [139.6555,  35.27601], label: 'Giving and Taking' },
-            { id: 'underfoot',          lngLat: [139.67106,  35.27755], label: `Named for What's Underfoot` },
-            { id: 'soba',               lngLat: [139.67458,  35.2716], label: `A Grave for the Soba Tradesmen` },
-            { id: 'springs-to-studios', lngLat: [139.63274,  35.28358], label: `From Springs to Studios` },
-            { id: 'confluence',         lngLat: [139.62777,  35.31685], label: `A Confluence Called Spouse` }
-        ];
+        var chapterMarkers = config.chapters
+          .filter(function(c) { return c.id !== 'intro'; }) // intro has no map pin
+          .map(function(c) {
+            return {
+              id: c.id,
+              lngLat: c.location.center,
+              label: c.title,
+              markerColor: c.markerColor
+            };
+          });
 
         function openStoryPanel(chapterId) {
             var chapter = config.chapters.find(function(c) { return c.id === chapterId; });
@@ -703,6 +698,7 @@
         chapterMarkers.forEach(function(cm) {
             var el = document.createElement('div');
             el.className = 'story-pin';
+            el.style.setProperty('--pin-color', cm.markerColor || '#C05A40');
             el.setAttribute('data-chapter', cm.id);
             el.title = cm.label;
             el.addEventListener('click', function(e) {
