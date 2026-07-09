@@ -191,7 +191,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             hidden: false,
             title: 'A Reservoir of Absence',
             markerColor: '#0097a7', 
-            description: `<p style="margin-bottom: 1.5em;">Water was a precious resource across Yokosuka. A survey from 1865 records twelve reservoirs in the area now called Chūō — spanning from Shioiri in the west to what is today Kenritsu-Daigaku station, once known as Yasuura station, in the east. Two stood close to the Yokosuka Iron Works: the Shioiri-seki reservoir (here) and <a href="#giving-taking" onclick="openStoryPanel('giving-taking'); return false;">the Tato-no-seki reservoir</a>.</p>
+            description: `<p style="margin-bottom: 1.5em;">Water was a precious resource across Yokosuka. A survey from 1865 records twelve reservoirs in the area now called Chūō — spanning from Shioiri in the west to what is today Kenritsu-Daigaku station, once known as Yasuura station, in the east. Two stood close to the Yokosuka Iron Works: the Shioiri-seki reservoir (here) and <a href="#second-life" onclick="openStoryPanel('second-life'); return false;">the Sakamoto reservoir</a>.</p>
                           <p style="margin-bottom: 1.5em;">The Iron Works acquired the hill above the Shioiri-seki reservoir from Hajimazan Chōgen-ji temple — which still stands south of Shioiri station — in order to control the water supply for their own industrial use. A wooden pipe was installed to carry water down into the works. Both fell into disuse after the completion of the Hashirimizu waterway in 1876. The reservoir itself, approximately 1,000 square meters, was buried when the road in front of the temple was repaved around 1930. Postwar searches of the area turned up nothing — no reservoir, no pipes. The Wakamatsu tunnel, bored through the same hill in 1947, now connects the back of Shioiri station toward the yato of Shioiri-chō without any indication that the hill once held water, or that the water once held a purpose. What was buried was not only the reservoir but the legibility of what had been there.</p>`,
             location: {
                 center: [139.66196, 35.28006],
@@ -206,10 +206,10 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             onChapterExit: []
             },
             {
-            id: 'giving-taking',
+            id: 'second-life',
             alignment: 'left',
             hidden: false,
-            title: 'The Giving Reservoir, the Taking Road',
+            title: 'The Reservoir's Second Life',
             markerColor: '#0097a7', 
             description: `<p style="margin-bottom: 1.5em;">One of twelve reservoirs identified in the 1865 survey, the Sakamoto reservoir was a vital water source for the Sakamoto-chō community that already existed here before the Yokosuka Iron Works broke ground. It was, in fact, the reservoir that held the community together: water for the vegetable farms, for the sake brewing the area became known for — some even believe the name Sakamoto derives from the sake produced here — and for the lotus pond where koi were farmed and children swam in summer (City of Yokosuka 1981a, 32–33).</p>
                           <p style="margin-bottom: 1.5em;">The Sakamoto reservoir is thought to have once stood inside the yato leading toward the Sakamoto Tunnel (Ishii 1987a, 248). The tunnel itself was built in 1919 and completed in 1921 by the Yokosuka Waterworks, carrying water from the reservoir to the Heavy Artillery Regiment stationed above. The reservoir has since been filled in, and the water that once ran through the tunnel is long gone — but the tunnel remains, carrying vehicles and pedestrians instead.</p>`,
