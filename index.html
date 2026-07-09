@@ -1123,12 +1123,6 @@
                 ids.forEach(function(id) {
                     map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
                 });
-                if (on) {
-                    map.fitBounds(
-                        [[139.55, 35.20], [139.78, 35.40]],
-                        { padding: 40, duration: 1000 }
-                    );
-                }
             }
     function toggleEnvPanel() {
       const body = document.getElementById('env-toggle-body');
