@@ -206,13 +206,14 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             onChapterExit: []
             },
             {
-            id: 'second-life',
+            id: 'water-tunnel',
             alignment: 'left',
             hidden: false,
-            title: 'The Reservoir's Second Life',
+            title: 'The Water Stopped, the Tunnel Didn't',
             markerColor: '#0097a7', 
-            description: `<p style="margin-bottom: 1.5em;">One of twelve reservoirs identified in the 1865 survey, the Sakamoto reservoir was a vital water source for the Sakamoto-chō community that already existed here before the Yokosuka Iron Works broke ground. It was, in fact, the reservoir that held the community together: water for the vegetable farms, for the sake brewing the area became known for — some even believe the name Sakamoto derives from the sake produced here — and for the lotus pond where koi were farmed and children swam in summer (City of Yokosuka 1981a, 32–33).</p>
-                          <p style="margin-bottom: 1.5em;">The Sakamoto reservoir is thought to have once stood inside the yato leading toward the Sakamoto Tunnel (Ishii 1987a, 248). The tunnel itself was built in 1919 and completed in 1921 by the Yokosuka Waterworks, carrying water from the reservoir to the Heavy Artillery Regiment stationed above. The reservoir has since been filled in, and the water that once ran through the tunnel is long gone — but the tunnel remains, carrying vehicles and pedestrians instead.</p>`,
+            description: `<p style="margin-bottom: 1.5em;">The Sakamoto reservoir is thought to have once stood inside the yato leading toward the Sakamoto Tunnel (Ishii 1987a, 248). The tunnel itself was completed in 1921 by the Yokosuka Waterworks, carrying water from the water purification plant that the Imperial Navy built in Hemi in 1919 to the Heavy Artillery Regiment stationed in Sakamoto. The reservoir has since been filled in, and the plant stopped drawing water in 2007 before its formal decommissioning in 2014 <a href="https://routemuseum.jp/theme/navy/b16/" target="_blank" rel="noopener noreferrer">(Yokosuka Route Museum website)</a>.</p>
+                          <p style="margin-bottom: 1.5em;">But the plant's slow-sand filtration ponds and Secession-style entrances — their arched doorways still capped with the exaggerated keystone reliefs of Taisho-era design — have since been registered as a national tangible cultural property, preserved as one of the city's few surviving pieces of naval waterworks architecture <a href="https://online.bunka.go.jp/db/heritages/detail/142001" target="_blank" rel="noopener noreferrer">(Agency for Cultural Affairs, Cultural Heritage Online)</a>. The tunnel it once fed has no such protection. A resident's complaint filed with the city in 2025 described both the Sakamoto and neighboring Wakamatsu tunnels as showing their age — cracked walls, water seeping through — after what he took to be roughly a century of use. The city's inspectors agreed the cracks were real, if not yet urgent, and noted that the Sakamoto Tunnel, 104 years old, had last been reinforced in 1985 <a href="https://www.city.yokosuka.kanagawa.jp/voicebank/9255.html" target="_blank" rel="noopener noreferrer">(City of Yokosuka, Voice Bank 2025)</a>.</p>
+                          <p style="margin-bottom: 1.5em;">One structure stands still, admired and untouched; the other keeps moving, patched only when it must be — carrying vehicles and pedestrians instead.</p>`,
             location: {
                 center: [139.6555, 35.27601],
                 zoom: 16,
