@@ -510,9 +510,6 @@
         }
 
         var story = document.getElementById('story');
-        var features = document.createElement('div');
-        features.setAttribute('id', 'features');
-
         var header = document.createElement('div');
 
         if (config.title) {
@@ -538,45 +535,6 @@
             header.setAttribute('id', 'header');
             story.appendChild(header);
         }
-
-        config.chapters.forEach((record, idx) => {
-            var container = document.createElement('div');
-            var chapter = document.createElement('div');
-
-            if (record.title) {
-                var title = document.createElement('h3');
-                title.innerText = record.title;
-                chapter.appendChild(title);
-            }
-
-            if (record.image) {
-                var image = new Image();
-                image.src = record.image;
-                chapter.appendChild(image);
-            }
-
-            if (record.description) {
-                var story = document.createElement('p');
-                story.innerHTML = record.description;
-                chapter.appendChild(story);
-            }
-
-            container.setAttribute('id', record.id);
-            container.classList.add('step');
-            if (idx === 0) {
-                container.classList.add('active');
-            }
-
-            chapter.classList.add(config.theme);
-            container.appendChild(chapter);
-            container.classList.add(alignments[record.alignment] || 'centered');
-            if (record.hidden) {
-                container.classList.add('hidden');
-            }
-            features.appendChild(container);
-        });
-
-        story.appendChild(features);
 
         var footer = document.createElement('div');
 
