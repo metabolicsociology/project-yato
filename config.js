@@ -408,6 +408,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                 pitch: 50,
                 bearing: 10
             },
+        },    
     ]
 };
 
