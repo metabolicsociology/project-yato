@@ -44,8 +44,8 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
-        },
-        {
+            },
+            {
             id: 'forgotten-forge',
             alignment: 'left',
             hidden: false,
@@ -64,8 +64,8 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
-        },
-        {
+            },
+            {
             id: 'name-without-bridge',
             alignment: 'right',
             hidden: false,
@@ -83,8 +83,8 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterExit: [],
             onChapterEnter: []
-        },
-        {
+            },
+            {
             id: 'circling-timeline',
             alignment: 'left',
             hidden: false,
@@ -104,8 +104,8 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
-        },
-        {
+            },
+            {
             id: 'strata-slope',
             alignment: 'left',
             hidden: false,
@@ -125,8 +125,8 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
-        },
-        {
+            },
+            {
             id: 'field-returned',
             alignment: 'left',
             hidden: false,
@@ -392,6 +392,21 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
+            },
+            {
+            id: 'coast',
+            alignment: 'left',
+            hidden: false,
+            title: 'A Coast without a Shore',
+            markerColor: '#C05A40', 
+            description: `<p style="margin-bottom: 1.5em;">The Tato-no-seki reservoir was one of twelve recorded in the 1865 survey, alongside the <a href="#reservoir-absence" onclick="openStoryPanel('reservoir-absence'); return false;">Shioiri-seki </a> and <a href="#water-tunnel" onclick="openStoryPanel('water-tunnel'); return false;">Sakamoto</a> reservoirs. Before the <a href="#ironworks-01" onclick="openStoryPanel('ironworks-01'); return false;">Hashirimizu waterway</a> opened in 1876, it was one of the sources the Yokosuka Iron Works drew upon to keep its furnaces running.</p>
+                          <p style="margin-bottom: 1.5em;">Tato is remembered for something older than the reservoir, though. The area gave its name to a distinct style of Jōmon-era pottery — Tato-shiki (Tato-style), dated to roughly 7,000–6,000 BCE and thought to predate both the Natsushima and <a href="#underfoot" onclick="openStoryPanel('underfoot'); return false;">Hirasaka</a> styles. Its discovery was accidental: in 1923, a serviceman from the Heavy Artillery Regiment training nearby stumbled onto fragments in the ground. Only after the reservoir had run dry and permission was granted to excavate did the shards reveal what made them distinct — a pattern pressed into the clay with seashells, fitting for a coastline that once lapped at this very spot (Ishii 1987a, 260). The land below today's Keikyu line was ocean then, its edge known as the Tato Coast.</p>
+                          <p style="margin-bottom: 1.5em;">Reclamation of that coast, extending inland to what is now Route 16, began in 1911. Fierce tides and winds made it one of the more dangerous projects in a long chain of land reclamation stretching back to 1865, when the ground beneath the Iron Works itself was first pulled from the sea — and it was not finished until 1923, the same year the pottery surfaced (Ishii 1987b, 172-4). The reclaimed area took the name Yasuura-chō, and the station now known as Kenritsu Daigaku was, until 2004, called Yasuura Station — renamed for the newly built Kanagawa University of Health Services next door. Some say the new name did more than mark a university; it also let the area quietly step out from under its old reputation as a red-light district.</p>`,
+            location: {
+                center: [139.65711, 35.27337],
+                zoom: 16,
+                pitch: 50,
+                bearing: 10
             },
     ]
 };
