@@ -336,6 +336,12 @@
             flex-direction: column;
             overflow: hidden;
         }
+                @media (max-width: 600px) {
+                                #story-panel {
+                                                    width: 100vw;
+                                                    left: -100vw;
+                                }
+                }
         #story-panel.open {
             left: 0;
         }
