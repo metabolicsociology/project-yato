@@ -182,7 +182,6 @@
         }
 
         @media (max-width: 750px) {
-
             .centered,
             .lefty,
             .righty,
@@ -192,6 +191,10 @@
             }
         }
 
+    .ref-tooltip { color:#2E86AB; cursor:pointer; border-bottom:1px dotted #2E86AB; }
+    .ref-popup { position:absolute; max-width:280px; background:#fff; border:1px solid #ccc;
+      border-radius:4px; padding:8px 10px; font-size:0.85em; box-shadow:0 2px 8px rgba(0,0,0,.2); z-index:1000; }
+        
         /* Fix issue on mobile browser where scroll breaks  */
         .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
         .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
