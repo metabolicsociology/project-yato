@@ -579,7 +579,7 @@
               markerColor: c.markerColor
             };
           });
-
+      
         function openStoryPanel(chapterId) {
             var chapter = config.chapters.find(function(c) { return c.id === chapterId; });
             if (!chapter) return;
@@ -618,6 +618,24 @@
             if (activePin) activePin.classList.add('active');
         }
 
+            function attachRefTooltips(container) {
+            container.querySelectorAll('.ref-tooltip').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+              e.stopPropagation();
+              document.querySelectorAll('.ref-popup').forEach(p => p.remove()); // close others
+              var ref = REFS.find(r => r.id === el.dataset.refId);
+              if (!ref) return;
+              var popup = document.createElement('div');
+              popup.className = 'ref-popup';
+              popup.innerHTML = ref.text;
+              document.body.appendChild(popup);
+              var rect = el.getBoundingClientRect();
+              popup.style.top = (window.scrollY + rect.bottom + 4) + 'px';
+              popup.style.left = (window.scrollX + rect.left) + 'px';
+            });
+          });
+        }
+  
         function closeStoryPanel() {
             var panel = document.getElementById('story-panel');
             var chapterId = panel.dataset.activeChapter;
