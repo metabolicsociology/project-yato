@@ -9,7 +9,7 @@ var REFS = [
   { id: "kanie1985", text: "Kanie, Yasumitsu. 1985. <em>The Geology of Yokosuka</em> (Yokosuka no Chishitsu). Yokosuka: Yokosuka Cultural Properties Association." },
   { id: "kinugasa2000", text: "Kinugasa Regional Cultural Promotion Council. 2000. <em>Katasumi no Hirasaku kara</em> (From a Corner of Hirasaku). Yokosuka: Yokosuka City Kinugasa Regional Cultural Promotion Council." },
   { id: "yokosukaboe1986", text: "Yokosuka City Board of Education. 1986. <em>Aruite mawaru Yokosuka no Shokubutsu</em> (Plants of Yokosuka to Explore on Foot). Yokosuka: Yokosuka City Board of Education." },
-  { id: "yokosukawater2015-12", text: "Yokosuka Water and Environment Study Group. 2015. <em>Yokosuka no Wakimizu</em> (Spring Water in Yokosuka). Yokosuka: Yokosuka Water and Environment Study Group." },
+  { id: "yokosukawater2015", text: "Yokosuka Water and Environment Study Group. 2015. <em>Yokosuka no Wakimizu</em> (Spring Water in Yokosuka). Yokosuka: Yokosuka Water and Environment Study Group." },
   { id: "yokosukawater2017",    text: "Yokosuka Water and Environment Study Group. 2017. <em>Yokosuka no Tameike</em> (Reservoirs in Yokosuka). Yokosuka: Yokosuka Water and Environment Study Group." },
   { id: "yokosukawater2019",    text: "Yokosuka Water and Environment Study Group. 2019. <em>Yokosuka no Kawa</em> (Rivers in Yokosuka). Yokosuka: Yokosuka Water and Environment Study Group." }
 ];
@@ -87,7 +87,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             hidden: false,
             title: 'A Name Without a Bridge',
             markerColor: '#C05A40', 
-            description: `A record from 1875 describes a bridge here, spanning the Hemi Yato River at the point where it opened into the sea. A resident born in 1892 remembered the river as abundant with loach, eel, crucian carp, and freshwater crab <span class="ref-tooltip" data-ref-id="cityyokosuka1981">(Yokosuka City 1981, 8)</span>. Today, the Migiwa bridge (now called Nagisa bridge) is gone, and its name lives on only as a bus stop. Down the road toward JR Taura Station, the Yoshikura Tunnel — bored through the bluff in 1891 — spared travelers the punishing climb over the headland and gave them faster access to Yoshikura, where boats ran to and from Enokido. That connection mattered: Enokido, now Uragō-chō, had been a key node in the fresh fish trade since the mid-1700s, channeling catch from the Miura Peninsula up to the tables of Edo (Asaka 1955).`,
+            description: `A record from 1875 describes a bridge here, spanning the Hemi Yato River at the point where it opened into the sea. A resident born in 1892 remembered the river as abundant with loach, eel, crucian carp, and freshwater crab <span class="ref-tooltip" data-ref-id="cityyokosuka1981">(Yokosuka City 1981, 8)</span>. Today, the Migiwa bridge (now called Nagisa bridge) is gone, and its name lives on only as a bus stop. Down the road toward JR Taura Station, the Yoshikura Tunnel — bored through the bluff in 1891 — spared travelers the punishing climb over the headland and gave them faster access to Yoshikura, where boats ran to and from Enokido. That connection mattered: Enokido, now Uragō-chō, had been a key node in the fresh fish trade since the mid-1700s, channeling catch from the Miura Peninsula up to the tables of Edo <span class="ref-tooltip" data-ref-id="asaka1955">(Asaka 1955)</span>.`,
             location: {
                 center: [139.65199, 35.28358],
                 zoom: 16,
@@ -167,7 +167,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             hidden: false,
             title: 'Growing with Camphor Trees',
             markerColor: '#C05A40', 
-            description: `In 1895, the then-mayor declared that planting trees and education were both pillars of nation-building, and gifted seeds of camphor trees to several elementary schools across the prefecture — Hemi Elementary among them <span class="ref-tooltip" data-ref-id="ishii1987a">(Ishii 1987a, 192)</span>. Those seeds have since grown, over some 130 years, into four large camphor trees that still stand on the school grounds. Today, children recognize camphor trees from the anime My Neighbor Totoro (1988), where Totoro lives inside one. For elders who remember the war, the trees symbolize resilience — they kept growing even as bombs fell on the surrounding hills, where machine guns and anti-aircraft batteries had been installed (<span class="ref-tooltip" data-ref-id="ishii1987a">Ishii 1987a, 192</span>; Hemi School District Community Center, 1981, 53). The highest mountain on the Miura Peninsula, directly south of Hemi Elementary, is called Ōkusu ("Large Camphor") Mountain — a name taken from a legendary large camphor tree said to have stood at the peak.`,
+            description: `In 1895, the then-mayor declared that planting trees and education were both pillars of nation-building, and gifted seeds of camphor trees to several elementary schools across the prefecture — Hemi Elementary among them <span class="ref-tooltip" data-ref-id="ishii1987a">(Ishii 1987a, 192)</span>. Those seeds have since grown, over some 130 years, into four large camphor trees that still stand on the school grounds. Today, children recognize camphor trees from the anime My Neighbor Totoro (1988), where Totoro lives inside one. For elders who remember the war, the trees symbolize resilience — they kept growing even as bombs fell on the surrounding hills, where machine guns and anti-aircraft batteries had been installed (<span class="ref-tooltip" data-ref-id="ishii1987a">Ishii 1987a, 192</span>; <span class="ref-tooltip" data-ref-id="hemischool1981">Hemi School District Community Center, 1981, 53</span>). The highest mountain on the Miura Peninsula, directly south of Hemi Elementary, is called Ōkusu ("Large Camphor") Mountain — a name taken from a legendary large camphor tree said to have stood at the peak.`,
             location: {
                 center: [139.64993, 35.28314],
                 zoom: 16,
@@ -352,7 +352,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             hidden: false,
             title: `The Emperor's Water, the Village's Well`,
             markerColor: '#2E86AB', 
-            description: `<p style="margin-bottom: 1.5em;">No bridge remains here today, but its corner posts still stand as a commemorative marker by the Shioiri station roundabout, framing an inset panel that recounts the history of the Miyuki Bridge. It once spanned the Shioiri River, which ran from the Kappa Mountain area in Sakamoto down to what is now the pumping station inside Verny Park — the point where the river met Tokyo Bay (Yokosuka Water and Environment Study Group 2019, 21).</p>
+            description: `<p style="margin-bottom: 1.5em;">No bridge remains here today, but its corner posts still stand as a commemorative marker by the Shioiri station roundabout, framing an inset panel that recounts the history of the Miyuki Bridge. It once spanned the Shioiri River, which ran from the Kappa Mountain area in Sakamoto down to what is now the pumping station inside Verny Park — the point where the river met Tokyo Bay <span class="ref-tooltip" data-ref-id="yokosukawater2019">(Yokosuka Water and Environment Study Group 2019, 21)</span>.</p>
                           <p style="margin-bottom: 1.5em;">The bridge's name honored a visit by the Meiji Emperor - which he did on several occasions since 1871 <span class="ref-tooltip" data-ref-id="ishii1987a">(Ishii 1987a, 24)</span>. The name is drawn from omiyuki (imperial outing), the general term for his travels beyond the palace. Yet the well is thought to be older than the occasion that named it, having served the local community well before the Meiji era. It may originally have belonged to the Grand Suwa Shrine, situated across the Uraga Road to the east of the hospital, said to have been brought to this site and enshrined for veneration by a descendant of the Miura clan in 1380.</p>
                           <p style="margin-bottom: 1.5em;">The bridge is gone, and the Emperor's visit survives now only in the corner posts that once framed it. The well, disused and unmarked, still holds the older claim — a village drawing its water long before any emperor ever passed through.</p>`,
             location: {
@@ -435,7 +435,7 @@ var envLocations = [
                 id: 'spring-hemi-01',
                 type: 'spring',
                 title: 'Hemi Yato Spring',
-                description: `As one of several natural seeps along the Hemi Yato valley floor, this spring water is funneled via pipe into a covered storage tank at the edge of an open lot. Maintenance of the water source is managed independently by a neighboring resident (Yokosuka Water and Environment Study Group 2015, 12).`,
+                description: `As one of several natural seeps along the Hemi Yato valley floor, this spring water is funneled via pipe into a covered storage tank at the edge of an open lot. Maintenance of the water source is managed independently by a neighboring resident <span class="ref-tooltip" data-ref-id="yokosukawater2015">(Yokosuka Water and Environment Study Group 2015, 12)</span>.`,
                 coordinates: [139.64836, 35.27655],
                 color: '#4A90D9'
     },
@@ -451,7 +451,7 @@ var envLocations = [
                 id: 'spring-kinugasa-01',
                 type: 'spring',
                 title: 'Castle Town Well #2 - Ishii Fudō',
-                description: `Nestled between the ruins of Kinugasa and Gō castles, this natural spring served as a vital community well until the installation of a modern water system around 1960 (Yokosuka Water and Environment Study Group 2015, 14). Its waters feed into the Hirasaku River, eventually emptying into Tokyo Bay.`,
+                description: `Nestled between the ruins of Kinugasa and Gō castles, this natural spring served as a vital community well until the installation of a modern water system around 1960 <span class="ref-tooltip" data-ref-id="yokosukawater2015">(Yokosuka Water and Environment Study Group 2015, 14)</span>. Its waters feed into the Hirasaku River, eventually emptying into Tokyo Bay.`,
                 coordinates: [139.65536, 35.2515],
                 color: '#4A90D9'
     },
