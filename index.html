@@ -606,6 +606,7 @@
                 var desc = document.createElement('div');
                 desc.innerHTML = chapter.description;
                 panelContent.appendChild(desc);
+                attachRefTooltips(panelContent); 
             }
             // Mark active pin
             document.querySelectorAll('.story-pin').forEach(function(el) {
@@ -618,22 +619,24 @@
             if (activePin) activePin.classList.add('active');
         }
 
-            function attachRefTooltips(container) {
+        function attachRefTooltips(container) {
             container.querySelectorAll('.ref-tooltip').forEach(function (el) {
-            el.addEventListener('click', function (e) {
-              e.stopPropagation();
-              document.querySelectorAll('.ref-popup').forEach(p => p.remove()); // close others
-              var ref = REFS.find(r => r.id === el.dataset.refId);
-              if (!ref) return;
-              var popup = document.createElement('div');
-              popup.className = 'ref-popup';
-              popup.innerHTML = ref.text;
-              document.body.appendChild(popup);
-              var rect = el.getBoundingClientRect();
-              popup.style.top = (window.scrollY + rect.bottom + 4) + 'px';
-              popup.style.left = (window.scrollX + rect.left) + 'px';
+                el.addEventListener('mouseenter', function () {
+                    var ref = REFS.find(r => r.id === el.dataset.refId);
+                    if (!ref) return;
+                    var popup = document.createElement('div');
+                    popup.className = 'ref-popup';
+                    popup.innerHTML = ref.text;
+                    document.body.appendChild(popup);
+                    var rect = el.getBoundingClientRect();
+                    popup.style.top = (window.scrollY + rect.bottom + 4) + 'px';
+                    popup.style.left = (window.scrollX + rect.left) + 'px';
+                    el._popup = popup;
+                });
+                el.addEventListener('mouseleave', function () {
+                    if (el._popup) { el._popup.remove(); el._popup = null; }
+                });
             });
-          });
         }
   
         function closeStoryPanel() {
