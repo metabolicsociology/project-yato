@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Mapbox Storytelling</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="icon" type="image/x-icon"
+        href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/mapbox-gl-globe-minimap@1.2.0/dist/bundle.js"></script>
+    <script src="https://unpkg.com/scrollama"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Karma:wght@300;400;500;600;700&display=swap');
+        * {
+            font-family: 'Karma', serif;
+        }
+
+          :root {
+        --primary:    #6EC1E4;
+        --secondary:  #54595F;
+        --text:       #444444;
+        --accent:     #61CE70;
+        --white:      #FDFEFE;
+        --dark-green: #0E5735;
+        --light-bg:   #F7F9FA;
+        --border:     #E2E8ED;
+        --terracotta: #C05A40;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Karma', serif;
+            cursor: grab;
+        }
+
+        a,
+        a:hover,
+        a:visited {
+            color: var(--accent);
+        }
+
+        #map {
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 1;
+        }
+
+        #header {
+            margin: auto;
+            width: 100%;
+            position: relative;
+            z-index: 5;
+            min-height: 100vh;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                url('https://metabolicsociology.org/wp-content/uploads/2026/04/yato_combined.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 60vh;        /* makes header taller ÃÂ¢ÃÂÃÂ reduce to 60vh if too tall */
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+            .env-toggle-header {
+              cursor: pointer;
+              user-select: none;
+              display: block;
+              margin-bottom: 6px;
+            }
+            .env-toggle-header:hover {
+              opacity: 0.75;
+            }
+        #header h1 {
+            color:#fafafa;
+            margin-bottom: 0.1em;
+            font-size: 3.5rem;
+            text-align: center;
+        }
+        #header h2 {
+            color:#fafafa;
+            margin-bottom: 1.8em;
+            font-size: 1.4rem;
+        }
+        #header p {
+            color:#fafafa;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            padding-left: 100px;
+            padding-right: 100px;
+            text-align: center;
+        }
+
+        #footer {
+            width: 100%;
+            min-height: 5vh;
+            padding-top: 2vh;
+            padding-bottom: 2vh;
+            text-align: center;
+            line-height: 25px;
+            font-size: 13px;
+            position: relative;
+            z-index: 5;
+        }
+
+        #features {
+            padding-top: 10vh;
+            padding-bottom: 10vh;
+            position: relative;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        #story {
+            position: relative;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .hidden {
+            visibility: hidden;
+        }
+
+        .centered {
+            width: 50vw;
+            margin: 0 auto;
+        }
+
+        .lefty {
+            width: 33vw;
+            margin-left: 5vw;
+        }
+
+        .righty {
+            width: 33vw;
+            margin-left: 62vw;
+        }
+
+        .fully {
+            width: 100%;
+            margin: auto;
+        }
+
+        .light {
+            color: #444;
+            background-color: #fafafa;
+        }
+
+        .dark {
+            color: #fafafa;
+            background-color: #444;
+        }
+
+        .step {
+            padding-bottom: 50vh;
+            /* margin-bottom: 10vh; */
+            opacity: 0.25;
+            pointer-events: none; 
+        }
+
+        .step.active {
+            opacity: 0.9;
+        }
+
+        .step div {
+            padding: 25px 50px;
+            line-height: 25px;
+            font-size: 16px;
+        }
+
+        .step img {
+            width: 100%;
+        }
+
+        @media (max-width: 750px) {
+            .centered,
+            .lefty,
+            .righty,
+            .fully {
+                width: 90vw;
+                margin: 0 auto;
+            }
+        }
+
+    .ref-tooltip { color:#2E86AB; cursor:pointer; border-bottom:1px dotted #2E86AB; }
+    .ref-popup { position:absolute; max-width:280px; background:#fff; border:1px solid #ccc;
+      border-radius:4px; padding:8px 10px; font-size:0.85em; box-shadow:0 2px 8px rgba(0,0,0,.2); z-index:1000; }
+        
+        /* Fix issue on mobile browser where scroll breaks  */
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
+            touch-action: unset;
+        }
+
+/* Environmental Layer Toggle */
+        #env-toggle {
+          position: fixed;
+          top: 16px;
+          right: 16px;
+          z-index: 100;
+          background: rgba(255,255,255,0.95);
+          border-radius: 6px;
+          padding: 12px 14px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+          font-family: 'Karma', serif;
+          font-size: 12px;
+          color: #54595F;
+          min-width: 220px;
+          max-width: 260px;
+        }
+        #env-toggle h4 {
+          margin: 0 0 10px 0;
+          font-size: 10px;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: #A0845C;
+          border-bottom: 1px solid #e0d9d0;
+          padding-bottom: 6px;
+        }
+        .env-row {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 5px 0;
+          cursor: pointer;
+          line-height: 1.3;
+        }
+        .env-row input[type="checkbox"] {
+          flex-shrink: 0;
+          accent-color: #54595F;
+          cursor: pointer;
+        }
+        .env-dot {
+          width: 12px;
+          height: 12px;
+          flex-shrink: 0;
+        }
+        /* -- Environmental Location Map Pins -------------------------------- */
+            .env-pin-marker {
+                            width: 14px;
+                            height: 14px;
+                            border-radius: 50%;
+                            border: 2.5px solid rgba(255,255,255,0.9);
+                            box-shadow: 0 1px 5px rgba(0,0,0,0.35);
+                            cursor: pointer;
+                            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            }
+            .env-pin-marker:hover {
+                            transform: scale(1.35);
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.45);
+            }
+            .env-pin-marker.water  { background: #4A90D9; }
+            .env-pin-marker.woodland { background: #4A7C59; }
+    
+            /* Mapbox GL popup overrides for env-location popups */
+            .mapboxgl-popup.env-popup .mapboxgl-popup-content {
+                            background: rgba(255,255,255,0.93);
+                            border-radius: 7px;
+                            padding: 12px 14px 10px;
+                            max-width: 230px;
+                            box-shadow: 0 3px 14px rgba(0,0,0,0.20);
+                            font-family: 'Karma', serif;
+                            font-size: 0.82rem;
+                            line-height: 1.45;
+                            color: #444;
+            }
+            .mapboxgl-popup.env-popup .mapboxgl-popup-tip {
+                            border-top-color: rgba(255,255,255,0.93);
+            }
+            .mapboxgl-popup.env-popup .env-popup-type {
+                            font-size: 0.66rem;
+                            text-transform: uppercase;
+                            letter-spacing: 0.08em;
+                            margin-bottom: 4px;
+                            font-weight: 600;
+            }
+            .mapboxgl-popup.env-popup .env-popup-title {
+                            font-weight: 700;
+                            font-size: 0.88rem;
+                            margin: 0 0 6px;
+                            color: #333;
+                            line-height: 1.25;
+            }
+            .mapboxgl-popup.env-popup .env-popup-desc {
+                            font-size: 0.78rem;
+                            color: #555;
+                            margin: 0;
+            }
+            .mapboxgl-popup-close-button {
+                            font-size: 16px;
+                            color: #888;
+                            padding: 2px 6px;
+            }
+
+        /* ===== STORY PIN MARKERS ===== */
+        .story-pin {
+            width: 28px;
+            height: 28px;
+            background-color: var(--pin-color, #C05A40); 
+            border: 3px solid #fff;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .story-pin:hover {
+            transform: rotate(-45deg) scale(1.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .story-pin.active {
+            background-color: #0E5735;
+        }
+
+        /* ===== STORY PANEL (floating sidebar) ===== */
+        #story-panel {
+            position: fixed;
+            top: 0;
+            left: -420px;
+            width: 380px;
+            height: 100vh;
+            background: #fff;
+            z-index: 100;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+                @media (max-width: 600px) {
+                                #story-panel {
+                                                    width: 100vw;
+                                                    left: -100vw;
+                                }
+                }
+        #story-panel.open {
+            left: 0;
+        }
+        #story-panel-header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 12px 16px 8px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+            background: var(--dark-green);
+        }
+        #story-panel-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #fff;
+            line-height: 1;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.15s;
+        }
+        #story-panel-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        #story-panel-content {
+            padding: 20px 24px 24px;
+            overflow-y: auto;
+            flex: 1;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        #story-panel-content h3 {
+            color: var(--dark-green);
+            font-size: 1.4rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        #story-panel-content img {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 14px;
+        }
+        /* Hide old scroll-based story elements */
+        #features, .step {
+            display: none !important;
+        }
+
+        /* ===== PIN-CLICK MODE: HEADER BECOMES INTRO SPLASH ===== */
+        /* Make body non-scrollable once on map */
+        body {
+            overflow: hidden;
+        }
+        /* #story becomes a full-screen intro overlay */
+        #story {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            z-index: 50 !important;
+            pointer-events: all !important;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #story.dismissed {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        /* Header becomes centered splash content */
+        #header {
+            position: relative !important;
+            min-height: 100vh;
+            max-height: none;
+            display: flex !important;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 60px;
+        }
+        /* Explore Map button */
+        #explore-map-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 32px;
+            background: var(--dark-green);
+            color: #fff;
+            font-size: 1.1rem;
+            font-family: 'Karma', serif;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+            letter-spacing: 0.03em;
+        }
+        #explore-map-btn:hover {
+            background: #0a3d26;
+            transform: scale(1.04);
+            color: #fff;
+        }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 600px) {
+        
+          /* Make the env-toggle panel smaller and start collapsed */
+          #env-toggle {
+            min-width: 160px;
+            max-width: 200px;
+            font-size: 11px;
+            padding: 8px 10px;
+            top: 8px;
+            right: 8px;
+          }
+        
+          /* Reduce story pin size on mobile */
+          .story-pin {
+            width: 18px;
+            height: 18px;
+          }
+        
+          /* Reduce env pin markers slightly */
+          .env-pin-marker {
+            width: 10px;
+            height: 10px;
+          }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="map"></div>    
+    <div id="story"></div>
+
+    <script src="./config.js"></script>
+    <script>
+        var initLoad = true;
+        var layerTypes = {
+            'fill': ['fill-opacity'],
+            'line': ['line-opacity'],
+            'circle': ['circle-opacity', 'circle-stroke-opacity'],
+            'symbol': ['icon-opacity', 'text-opacity'],
+            'raster': ['raster-opacity'],
+            'fill-extrusion': ['fill-extrusion-opacity'],
+            'heatmap': ['heatmap-opacity']
+        }
+
+        var alignments = {
+            'left': 'lefty',
+            'center': 'centered',
+            'right': 'righty',
+            'full': 'fully'
+        }
+
+        function getLayerPaintType(layer) {
+            var layerType = map.getLayer(layer).type;
+            return layerTypes[layerType];
+        }
+
+        function setLayerOpacity(layer) {
+            var paintProps = getLayerPaintType(layer.layer);
+            paintProps.forEach(function (prop) {
+                var options = {};
+                if (layer.duration) {
+                    var transitionProp = prop + "-transition";
+                    options = { "duration": layer.duration };
+                    map.setPaintProperty(layer.layer, transitionProp, options);
+                }
+                map.setPaintProperty(layer.layer, prop, layer.opacity, options);
+            });
+        }
+
+        var story = document.getElementById('story');
+        var header = document.createElement('div');
+
+        if (config.title) {
+            var titleText = document.createElement('h1');
+            titleText.innerHTML = config.title;
+            header.appendChild(titleText);
+        }
+
+        if (config.subtitle) {
+            var subtitleText = document.createElement('h2');
+            subtitleText.innerText = config.subtitle;
+            header.appendChild(subtitleText);
+        }
+
+        if (config.byline) {
+            var bylineText = document.createElement('p');
+            bylineText.innerHTML = config.byline;
+            header.appendChild(bylineText);
+        }
+
+        if (header.innerText.length > 0) {
+            header.classList.add(config.theme);
+            header.setAttribute('id', 'header');
+            story.appendChild(header);
+        }
+
+        var footer = document.createElement('div');
+
+        if (config.footer) {
+            var footerText = document.createElement('p');
+            footerText.innerHTML = config.footer;
+            footer.appendChild(footerText);
+        }
+
+        if (footer.innerText.length > 0) {
+            footer.classList.add(config.theme);
+            footer.setAttribute('id', 'footer');
+            story.appendChild(footer);
+        }
+
+        mapboxgl.accessToken = config.accessToken;
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: config.style,
+            center: config.chapters[0].location.center,
+            zoom: config.chapters[0].location.zoom,
+            bearing: config.chapters[0].location.bearing,
+            pitch: config.chapters[0].location.pitch,
+            interactive: true,
+            projection: config.projection
+        });
+
+        // All map interactions enabled: drag, zoom, rotate, keyboard
+
+        // ---- Story pin markers (click to open story panel) ----
+        var chapterMarkers = config.chapters
+          .filter(function(c) { return c.id !== 'intro'; }) // intro has no map pin
+          .map(function(c) {
+            return {
+              id: c.id,
+              lngLat: c.location.center,
+              label: c.title,
+              markerColor: c.markerColor
+            };
+          });
+      
+        function openStoryPanel(chapterId) {
+            var chapter = config.chapters.find(function(c) { return c.id === chapterId; });
+            if (!chapter) return;
+            // Fly map to chapter location
+            map[chapter.mapAnimation || 'flyTo'](chapter.location);
+            // Apply chapter layer visibility changes
+            if (chapter.onChapterEnter && chapter.onChapterEnter.length > 0) {
+                chapter.onChapterEnter.forEach(setLayerOpacity);
+            }
+            // Populate story panel
+            var panelContent = document.getElementById('story-panel-content');
+            panelContent.innerHTML = '';
+            if (chapter.title) {
+                var h3 = document.createElement('h3');
+                h3.innerText = chapter.title;
+                panelContent.appendChild(h3);
+            }
+            if (chapter.image) {
+                var img = document.createElement('img');
+                img.src = chapter.image;
+                panelContent.appendChild(img);
+            }
+            if (chapter.description) {
+                var desc = document.createElement('div');
+                desc.innerHTML = chapter.description;
+                panelContent.appendChild(desc);
+                attachRefTooltips(panelContent); 
+            }
+            // Mark active pin
+            document.querySelectorAll('.story-pin').forEach(function(el) {
+                el.classList.remove('active');
+            });
+            var panel = document.getElementById('story-panel');
+            panel.dataset.activeChapter = chapterId;
+            panel.classList.add('open');
+            var activePin = document.querySelector('.story-pin[data-chapter="' + chapterId + '"]');
+            if (activePin) activePin.classList.add('active');
+        }
+
+        function attachRefTooltips(container) {
+            container.querySelectorAll('.ref-tooltip').forEach(function (el) {
+                el.addEventListener('mouseenter', function () {
+                    var ref = REFS.find(r => r.id === el.dataset.refId);
+                    if (!ref) return;
+                    var popup = document.createElement('div');
+                    popup.className = 'ref-popup';
+                    popup.innerHTML = ref.text;
+                    document.body.appendChild(popup);
+                    var rect = el.getBoundingClientRect();
+                    popup.style.top = (window.scrollY + rect.bottom + 4) + 'px';
+                    popup.style.left = (window.scrollX + rect.left) + 'px';
+                    el._popup = popup;
+                });
+                el.addEventListener('mouseleave', function () {
+                    if (el._popup) { el._popup.remove(); el._popup = null; }
+                });
+            });
+        }
+  
+        function closeStoryPanel() {
+            var panel = document.getElementById('story-panel');
+            var chapterId = panel.dataset.activeChapter;
+            if (chapterId) {
+                var chapter = config.chapters.find(function(c) { return c.id === chapterId; });
+                if (chapter && chapter.onChapterExit && chapter.onChapterExit.length > 0) {
+                    chapter.onChapterExit.forEach(setLayerOpacity);
+                }
+            }
+            panel.classList.remove('open');
+            panel.dataset.activeChapter = '';
+            document.querySelectorAll('.story-pin').forEach(function(el) {
+                el.classList.remove('active');
+            });
+        }
+
+
+        // Dismiss intro overlay on button click
+        function showMap() {
+            document.getElementById('story').classList.add('dismissed');
+        }
+
+        // Add the Explore Map button to the header after it's built
+        document.addEventListener('DOMContentLoaded', function() {
+            var header = document.getElementById('header');
+            if (header) {
+                var btn = document.createElement('a');
+                btn.id = 'explore-map-btn';
+                btn.href = '#';
+                btn.innerHTML = 'Explore Map ↓';
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showMap();
+                });
+                header.appendChild(btn);
+            }
+        });
+        // Create clickable story-pin markers
+        chapterMarkers.forEach(function(cm) {
+            var el = document.createElement('div');
+            el.className = 'story-pin';
+            el.style.setProperty('--pin-color', cm.markerColor || '#C05A40');
+            el.setAttribute('data-chapter', cm.id);
+            el.title = cm.label;
+            el.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var panel = document.getElementById('story-panel');
+                if (panel.dataset.activeChapter === cm.id && panel.classList.contains('open')) {
+                    closeStoryPanel();
+                } else {
+                    openStoryPanel(cm.id);
+                }
+            });
+            new mapboxgl.Marker({ element: el })
+                .setLngLat(cm.lngLat)
+                .addTo(map);
+        });
+
+        
+        // Create a inset map if enabled in config.js
+        if (config.inset) {
+            map.addControl(
+                new GlobeMinimap({ ...config.insetOptions }),
+                config.insetPosition
+            );
+        }
+
+        if (config.showMarkers) {
+            var marker = new mapboxgl.Marker({ color: config.markerColor });
+            marker.setLngLat(config.chapters[0].location.center).addTo(map);
+        }
+
+                map.on("load", function () {
+            if (config.use3dTerrain) {
+                            map.addSource('mapbox-dem', {
+                                'type': 'raster-dem',
+                                'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+                                'tileSize': 512,
+                                'maxzoom': 14
+                            });
+                            // add the DEM source as a terrain layer with exaggerated height
+                            map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
+            
+                            // add a sky layer that will show when the map is highly pitched
+                            map.addLayer({
+                                'id': 'sky',
+                                'type': 'sky',
+                                'paint': {
+                                    'sky-type': 'atmosphere',
+                                    'sky-atmosphere-sun': [0.0, 0.0],
+                                    'sky-atmosphere-sun-intensity': 15
+                                }
+                            });
+                        }
+                // Environmental Layers
+                // Note: layer IDs (e.g. 2990100) follow the naming pattern and are
+                // best guesses ÃÂ¢ÃÂÃÂ adjust if a layer returns empty on first test.
+                
+                // Base variables
+                var BBOX = '139.55,35.20,139.78,35.40';
+                var BASE = 'https://biodiversitymap.env.go.jp/server/rest/services/Hosted/';
+                var Q    = '/query?f=geojson&where=1%3D1&outFields=*&returnGeometry=true' +
+                           '&geometry=' + BBOX +
+                           '&geometryType=esriGeometryEnvelope&inSR=4326&outSR=4326';
+                
+                // Triangle image for tree points
+                var triSize = 22;
+                var triCanvas = document.createElement('canvas');
+                triCanvas.width = triSize;
+                triCanvas.height = triSize;
+                var triCtx = triCanvas.getContext('2d');
+                triCtx.fillStyle = '#1a5c2a';
+                triCtx.strokeStyle = '#0d3316';
+                triCtx.lineWidth = 1.5;
+                triCtx.beginPath();
+                triCtx.moveTo(triSize / 2, 1);
+                triCtx.lineTo(triSize - 1, triSize - 1);
+                triCtx.lineTo(1, triSize - 1);
+                triCtx.closePath();
+                triCtx.fill();
+                triCtx.stroke();
+                var triData = triCtx.getImageData(0, 0, triSize, triSize);
+                map.addImage('green-triangle', { width: triSize, height: triSize, data: triData.data });
+                
+                // Protected Areas All
+                map.addSource('protected-all', {
+                  type: 'geojson',
+                  data: BASE + 'F_02_99_01/FeatureServer/2990100' + Q
+                });
+                map.addLayer({
+                  id: 'protected-all-fill', type: 'fill', source: 'protected-all',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#E8DFC8', 'fill-opacity': 0.55 }
+                });
+                map.addLayer({
+                  id: 'protected-all-line', type: 'line', source: 'protected-all',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#b8a882', 'line-width': 1.5 }
+                });
+                
+                // Protected Areas Local
+                map.addSource('protected-sub', {
+                  type: 'geojson',
+                  data: BASE + 'F_02_01_05/FeatureServer/2010500' + Q
+                });
+                map.addLayer({
+                  id: 'protected-sub-fill', type: 'fill', source: 'protected-sub',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#E8DFC8', 'fill-opacity': 0.40 }
+                });
+                map.addLayer({
+                  id: 'protected-sub-line', type: 'line', source: 'protected-sub',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#b8a882', 'line-width': 1 }
+                });
+                
+                // Biodiversity
+                map.addSource('biodiversity', {
+                  type: 'geojson',
+                  data: BASE + 'F_02_03_03/FeatureServer/2030300' + Q
+                });
+                map.addLayer({
+                  id: 'biodiversity-fill', type: 'fill', source: 'biodiversity',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#C72C00', 'fill-opacity': 0.35 }
+                });
+                map.addLayer({
+                  id: 'biodiversity-line', type: 'line', source: 'biodiversity',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#8B1E00', 'line-width': 1.5 }
+                });
+                
+                // Satoyama
+                map.addSource('satoyama', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_04_01/FeatureServer/4040100' + Q
+                });
+                map.addLayer({
+                  id: 'satoyama-fill', type: 'fill', source: 'satoyama',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#C72C00', 'fill-opacity': 0.25 }
+                });
+                map.addLayer({
+                  id: 'satoyama-line', type: 'line', source: 'satoyama',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#8B1E00', 'line-width': 1 }
+                });
+                
+                // Satoyama Points
+                map.addSource('satoyama-points', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_04_02/FeatureServer/4040200' + Q
+                });
+                map.addLayer({
+                  id: 'satoyama-points-layer', type: 'symbol', source: 'satoyama-points',
+                  layout: {
+                    visibility: 'none',
+                    'icon-image': 'orange-triangle',
+                    'icon-size': 0.5,
+                    'icon-allow-overlap': true,
+                    'text-field': ['get', 'name'],
+                    'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
+                    'text-size': 10,
+                    'text-offset': [0, 1.2],
+                    'text-anchor': 'top',
+                    'text-optional': true
+                  },
+                  paint: {
+                    'text-color': '#8B1E00',
+                    'text-halo-color': 'rgba(255,255,255,0.8)',
+                    'text-halo-width': 1.5
+                  }
+                });
+                
+                // Insects
+                map.addSource('insects', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_14_01/FeatureServer/4140100' + Q
+                });
+                map.addLayer({
+                  id: 'insects-fill', type: 'fill', source: 'insects',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#C72C00', 'fill-opacity': 0.20 }
+                });
+                map.addLayer({
+                  id: 'insects-line', type: 'line', source: 'insects',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#8B1E00', 'line-width': 1, 'line-dasharray': [3, 2] }
+                });
+                
+                // Plants
+                map.addSource('plants-01', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_07_01_01/FeatureServer/4070101' + Q
+                });
+                map.addLayer({
+                  id: 'plants-01-fill', type: 'fill', source: 'plants-01',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#C72C00', 'fill-opacity': 0.20 }
+                });
+                map.addLayer({
+                  id: 'plants-01-line', type: 'line', source: 'plants-01',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#8B1E00', 'line-width': 1, 'line-dasharray': [2, 3] }
+                });
+                
+                // More Plants
+                map.addSource('plants-02', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_07_02_01/FeatureServer/4070201' + Q
+                });
+                map.addLayer({
+                  id: 'plants-02-fill', type: 'fill', source: 'plants-02',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#C72C00', 'fill-opacity': 0.15 }
+                });
+                map.addLayer({
+                  id: 'plants-02-line', type: 'line', source: 'plants-02',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#8B1E00', 'line-width': 1, 'line-dasharray': [2, 3] }
+                });
+                
+                // Most Plants
+                map.addSource('plants-03', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_07_03_01/FeatureServer/4070301' + Q
+                });
+                map.addLayer({
+                  id: 'plants-03-fill', type: 'fill', source: 'plants-03',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#C72C00', 'fill-opacity': 0.10 }
+                });
+                map.addLayer({
+                  id: 'plants-03-line', type: 'line', source: 'plants-03',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#8B1E00', 'line-width': 1, 'line-dasharray': [2, 3] }
+                });
+                
+                // Marine areas
+                // Satoumi
+                map.addSource('kaiki-01', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_06_01/FeatureServer/4060100' + Q
+                });
+                map.addLayer({
+                  id: 'kaiki-01-fill', type: 'fill', source: 'kaiki-01',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#B8D4F0', 'fill-opacity': 0.55 }
+                });
+                map.addLayer({
+                  id: 'kaiki-01-line', type: 'line', source: 'kaiki-01',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#2a5f8a', 'line-width': 1.5 }
+                });
+                
+                // More Satoumi
+                map.addSource('kaiki-02', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_06_02/FeatureServer/4060200' + Q
+                });
+                map.addLayer({
+                  id: 'kaiki-02-fill', type: 'fill', source: 'kaiki-02',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#B8D4F0', 'fill-opacity': 0.40 }
+                });
+                map.addLayer({
+                  id: 'kaiki-02-line', type: 'line', source: 'kaiki-02',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#2a5f8a', 'line-width': 1 }
+                });
+                
+                // Most Satoumi
+                map.addSource('kaiki-03', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_06_03/FeatureServer/4060300' + Q
+                });
+                map.addLayer({
+                  id: 'kaiki-03-fill', type: 'fill', source: 'kaiki-03',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#B8D4F0', 'fill-opacity': 0.25 }
+                });
+                map.addLayer({
+                  id: 'kaiki-03-line', type: 'line', source: 'kaiki-03',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#2a5f8a', 'line-width': 1 }
+                });
+                
+                // Trees
+                // Large Trees
+                map.addSource('kjurin-01', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_08_02_01/FeatureServer/4080201' + Q
+                });
+                map.addLayer({
+                  id: 'kjurin-01-layer', type: 'symbol', source: 'kjurin-01',
+                  layout: {
+                    visibility: 'none',
+                    'icon-image': 'green-triangle',
+                    'icon-size': 0.8,
+                    'icon-allow-overlap': true
+                  }
+                });
+                
+                // Tree Groves
+                map.addSource('kjurin-02', {
+                  type: 'geojson',
+                  data: BASE + 'F_04_08_02_02/FeatureServer/4080202' + Q
+                });
+                map.addLayer({
+                  id: 'kjurin-02-layer', type: 'symbol', source: 'kjurin-02',
+                  layout: {
+                    visibility: 'none',
+                    'icon-image': 'green-triangle',
+                    'icon-size': 0.8,
+                    'icon-allow-overlap': true
+                  }
+                });
+
+                // National & Prefectural Nature Conservation Areas
+                map.addSource('nature-conservation', {
+                  type: 'geojson',
+                  data: BASE + 'F_02_01_05/FeatureServer/2010500' + Q
+                });    
+                map.addLayer({ id: 'nature-conservation-fill', type: 'fill', source: 'nature-conservation',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#7DB87A', 'fill-opacity': 0.25 }
+                });
+                map.addLayer({ id: 'nature-conservation-line', type: 'line', source: 'nature-conservation',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#4A8C4A', 'line-width': 1.5 }
+                });
+                
+                // National & Prefectural Wildlife Protection Areas
+                map.addSource('wildlife-protection', {
+                  type: 'geojson',
+                  data: BASE + 'F_02_03_04/FeatureServer/2030400' + Q
+                });
+                map.addLayer({ id: 'wildlife-protection-fill', type: 'fill', source: 'wildlife-protection',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#4A8C6F', 'fill-opacity': 0.25 }
+                });
+                map.addLayer({ id: 'wildlife-protection-line', type: 'line', source: 'wildlife-protection',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#2D6B50', 'line-width': 1.5 }
+                });
+                
+                // Suburban Greenspace Special Conservation Areas
+                map.addSource('suburban-greenspace', {
+                  type: 'geojson',
+                  data: BASE + 'F_02_06_01/FeatureServer/2060100' + Q
+                });
+                map.addLayer({ id: 'suburban-greenspace-fill', type: 'fill', source: 'suburban-greenspace',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#D4E8A0', 'fill-opacity': 0.35 }
+                });
+                map.addLayer({ id: 'suburban-greenspace-line', type: 'line', source: 'suburban-greenspace',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#8AAA40', 'line-width': 1.5 }
+                });
+
+                // Yato List
+                map.addSource('yato-list', {
+                  type: 'geojson',
+                  data: 'https://metabolicsociology.github.io/project-yato/assets/yato-list.geojson'
+                });
+                map.addLayer({
+                  id: 'yato-list-fill',
+                  type: 'fill',
+                  source: 'yato-list',
+                  layout: { visibility: 'none' },
+                  paint: { 'fill-color': '#E6EE9C', 'fill-opacity': 0.2 }
+                });
+                map.addLayer({
+                  id: 'yato-list-line',
+                  type: 'line',
+                  source: 'yato-list',
+                  layout: { visibility: 'none' },
+                  paint: { 'line-color': '#E6EE9C', 'line-width': 1.5 }
+                });
+
+                // ── East Uraga Road ──────────────────────────────────────────────────────────
+                map.addSource('east-uraga-road', {
+                    type: 'geojson',
+                    data: 'https://metabolicsociology.github.io/project-yato/assets/east-uraga-road.geojson'
+                });
+                map.addLayer({
+                    id: 'east-uraga-road-line',
+                    type: 'line',
+                    source: 'east-uraga-road',
+                    layout: { visibility: 'none' },
+                    paint: { 'line-color': '#CCFF00', 'line-width': 2 }
+                });
+                
+                // ── West Uraga Road ──────────────────────────────────────────────────────────
+                map.addSource('west-uraga-road', {
+                    type: 'geojson',
+                    data: 'https://metabolicsociology.github.io/project-yato/assets/west-uraga-road.geojson'
+                });
+                map.addLayer({
+                    id: 'west-uraga-road-line',
+                    type: 'line',
+                    source: 'west-uraga-road',
+                    layout: { visibility: 'none' },
+                    paint: { 'line-color': '#8FE0FF', 'line-width': 2 }
+                });
+
+                // Rivers
+                map.addSource('rivers', {
+                    type: 'geojson',
+                    data: 'https://metabolicsociology.github.io/project-yato/assets/rivers.geojson'
+                });
+                map.addLayer({
+                    id: 'rivers-line',
+                    type: 'line',
+                    source: 'rivers',
+                    filter: ['in', ['geometry-type'], ['literal', ['LineString', 'MultiLineString']]],
+                    layout: { visibility: 'none' },
+                    paint: { 'line-color': '#2E86AB', 'line-width': 2 }
+                });
+            
+     });  // end map.on("load")
+        
+    function envToggle(ids, on) {
+                ids.forEach(function(id) {
+                    map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
+                });
+            }
+    function toggleEnvPanel() {
+      const body = document.getElementById('env-toggle-body');
+      const arrow = document.getElementById('env-arrow');
+      const isHidden = body.style.display === 'none';
+      body.style.display = isHidden ? 'block' : 'none';
+      arrow.textContent = isHidden ? '▾' : '▴';
+    }
+    
+    // Collapse the env panel by default on mobile screens
+    if (window.innerWidth <= 600) {
+      document.addEventListener('DOMContentLoaded', function () {
+        const body = document.getElementById('env-toggle-body');
+        const arrow = document.getElementById('env-arrow');
+        if (body) {
+          body.style.display = 'none';
+          arrow.textContent = '▴';
+        }
+      });
+    }
+
+        // Pin-click storytelling mode active.
+        // Map is fully interactive — users can freely pan, zoom, and rotate.
+        // Click any story pin to open its story panel.
+
+    </script>
+
+<div id="env-toggle">
+    <b class="env-toggle-header" onclick="toggleEnvPanel()">Environmental Layers <span id="env-arrow" style="font-size:1.4em;color:#FFD700;margin-left:4px;text-shadow: 0 0 1px #222, 0 0 1px #222;">▾</span></b>
+    <div id="env-toggle-body">
+
+    <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+        'yato-list-fill','yato-list-line'
+          ], this.checked)">
+    <span class="env-dot" style="background:#e6ee9c; border-radius:0;"></span>
+    Yato Areas
+    </label>
+
+    <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+        'east-uraga-road-line'
+    ], this.checked)">
+    <span class="env-dot" style="background:#CCFF00"></span>
+    East Uraga Road
+    </label>
+
+    <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+        'west-uraga-road-line'
+    ], this.checked)">
+    <span class="env-dot" style="background:#8FE0FF"></span>
+    West Uraga Road
+    </label>
+
+    <label class="env-row">
+        <input type="checkbox" onchange="envToggle(['rivers-line'], this.checked)">
+        <span class="env-dot" style="background:#2E86AB"></span>
+        Rivers
+    </label>
+        
+    <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+      'protected-all-fill','protected-all-line',
+      'protected-sub-fill','protected-sub-line'
+    ], this.checked)">
+    <span class="env-dot" style="background:#E8DFC8;border:1px solid #b8a882"></span>
+    Conservation Areas
+  </label>
+
+  <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+      'biodiversity-fill','biodiversity-line',
+      'satoyama-fill','satoyama-line',
+      'satoyama-points-layer',
+      'insects-fill','insects-line',
+      'plants-01-fill','plants-01-line',
+      'plants-02-fill','plants-02-line',
+      'plants-03-fill','plants-03-line'
+    ], this.checked)">
+    <span class="env-dot" style="background:#C72C00"></span>
+    Key Satoyama Biodiversity Areas
+  </label>
+
+  <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+      'kaiki-01-fill','kaiki-01-line',
+      'kaiki-02-fill','kaiki-02-line',
+      'kaiki-03-fill','kaiki-03-line'
+    ], this.checked)">
+    <span class="env-dot" style="background:#B8D4F0"></span>
+    Key Satoumi Biodiversity Areas
+  </label>
+
+  <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+      'kjurin-01-layer',
+      'kjurin-02-layer'
+    ], this.checked)">
+    <span class="env-dot" style="background:#1a5c2a;clip-path:polygon(50% 0%, 0% 100%, 100% 100%)"></span>
+    Large-size Trees and Groves
+  </label>
+
+  <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+      'suburban-greenspace-fill','suburban-greenspace-line'
+    ], this.checked)">
+    <span class="env-dot" style="background:#D4E8A0;border:1px solid #8AAA40"></span>
+    Suburban Greenspace Special Conservation Areas
+  </label>
+        
+  <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+      'nature-conservation-fill','nature-conservation-line'
+    ], this.checked)">
+    <span class="env-dot" style="background:#7DB87A"></span>
+    National and Prefectural Nature Conservation Areas
+  </label>
+
+  <label class="env-row">
+    <input type="checkbox" onchange="envToggle([
+      'wildlife-protection-fill','wildlife-protection-line'
+    ], this.checked)">
+    <span class="env-dot" style="background:#4A8C6F"></span>
+    National and Prefectural Wildlife Protection Areas
+  </label>
+</div>  <!-- closes env-toggle-body -->
+
+    <script>
+            // Environmental Location Map Pins
+            // Creates Mapbox GL JS markers for spring water and ecological locations.
+            // Clicking a marker opens a styled popup with the location name and description.
+            (function () {
+
+                        // Water-type keys blue; woodland/satoyama green
+                        var WATER_TYPES = { spring: true, wetland: true, 'heritage-water': true };
+
+                        var typeLabels = {
+                                        'spring':         'Spring Water',
+                                        'wetland':        'Wetland',
+                                        'satoyama':       'Satoyama Edge',
+                                        'heritage-water': 'Heritage Water'
+                        };
+
+                        // Track the single open popup so we can close it on second click
+                        var activePopup = null;
+
+                        function waitForMap(cb) {
+                                        if (typeof map !== 'undefined' && map.loaded && map.loaded()) {
+                                                            cb();
+                                        } else if (typeof map !== 'undefined') {
+                                                            map.once('load', cb);
+                                        } else {
+                                                            setTimeout(function () { waitForMap(cb); }, 300);
+                                        }
+                        }
+
+                        function buildMarkers() {
+                                        if (typeof envLocations === 'undefined') return;
+
+                                        envLocations.forEach(function (loc) {
+                                                            // Determine colour group
+                                                            var colorClass = WATER_TYPES[loc.type] ? 'water' : 'woodland';
+
+                                                            // Create the marker element (a small coloured circle)
+                                                            var el = document.createElement('div');
+                                                            el.className = 'env-pin-marker ' + colorClass;
+                                                            el.title = loc.title;
+
+                                                            // Build the popup HTML
+                                                            var typeLabel = typeLabels[loc.type] || loc.type;
+                                                            var popupColor = WATER_TYPES[loc.type] ? '#4A90D9' : '#4A7C59';
+                                                            var popupHTML =
+                                                                                    '<div class="env-popup-type" style="color:' + popupColor + '">' + typeLabel + '</div>' +
+                                                                                    '<p class="env-popup-title">' + loc.title + '</p>' +
+                                                                                    '<p class="env-popup-desc">' + loc.description + '</p>';
+
+                                                            // Create the Mapbox GL popup (no default close button offset)
+                                                            var popup = new mapboxgl.Popup({
+                                                                                    className: 'env-popup',
+                                                                                    maxWidth: '240px',
+                                                                                    offset: 10,
+                                                                                    closeButton: true,
+                                                                                    closeOnClick: false
+                                                                }).setHTML(popupHTML);
+
+                                                            // Create the marker and attach the popup
+                                                            var marker = new mapboxgl.Marker({ element: el, anchor: 'center' })
+                                                                .setLngLat(loc.coordinates)
+                                                                .setPopup(popup) 
+                                                                .addTo(map);
+
+                                                                    el.addEventListener('click', function(e) {
+                                                                                                    e.stopPropagation();
+                                                                                                        if (popup.isOpen()) {
+                                                                                                          popup.remove();
+                                                                                                            activePopup = null;
+                                                                                                        } else {
+                                                                                                            if (activePopup) activePopup.remove();  // close any other open popup
+                                                                                                            popup.setLngLat(loc.coordinates).addTo(map);
+                                                                                                            activePopup = popup;
+                                                                                                        }
+                                                                    });
+
+                        });
+                        }
+
+                        waitForMap(buildMarkers);
+            })();
+            // 
+    </script>
+                </div>  <!-- closes env-toggle -->   
+
+    <script>
+      // Click-drag to scroll
+      // Lets users left-click and drag up/down to scroll the page.
+      (function () {
+        let isDragging = false;
+        let startY = 0;
+        let startScrollY = 0;
+    
+        document.addEventListener('mousedown', function (e) {
+          // Only trigger on left-click (button 0)
+          // Ignore clicks on interactive elements (links, buttons, checkboxes, map canvas)
+          const tag = e.target.tagName.toLowerCase();
+          const isInteractive =
+            tag === 'a' || tag === 'button' || tag === 'input' ||
+            tag === 'label' || tag === 'select' || tag === 'textarea' ||
+            e.target.closest('a, button, input, label');
+    
+          if (e.button !== 0 || isInteractive) return;
+    
+          isDragging = true;
+          startY = e.clientY;
+          startScrollY = window.scrollY;
+    
+          document.body.style.cursor = 'grabbing';
+          document.body.style.userSelect = 'none'; // prevent text selection while dragging
+          e.preventDefault();
+        });
+    
+        window.addEventListener('mousemove', function (e) {
+          if (!isDragging) return;
+          const delta = startY - e.clientY;       // drag up = scroll down
+          window.scrollTo(0, startScrollY + delta);
+        });
+    
+        window.addEventListener('mouseup', function () {
+          if (!isDragging) return;
+          isDragging = false;
+          document.body.style.cursor = '';
+          document.body.style.userSelect = '';
+        });
+    
+        // Also cancel if mouse leaves the window
+        window.addEventListener('mouseout', function (e) {
+            if (!isDragging) return;
+            if (e.relatedTarget !== null) return; // still inside window
+            isDragging = false;
+            document.body.style.cursor = '';
+            document.body.style.userSelect = '';
+        });
+      })();
+    </script>
+    
+
+    <!-- Floating story panel (pin-click mode) -->
+    <div id="story-panel">
+        <div id="story-panel-header">
+            <button id="story-panel-close" onclick="closeStoryPanel()" title="Close">&times;</button>
+        </div>
+        <div id="story-panel-content"></div>
+    </div>
+
+</body>
