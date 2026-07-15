@@ -575,15 +575,19 @@
         // All map interactions enabled: drag, zoom, rotate, keyboard
 
         // ---- Story pin markers (click to open story panel) ----
-        var chapterMarkers = config.chapters
+var chapterMarkers = [];
+        config.chapters
           .filter(function(c) { return c.id !== 'intro'; }) // intro has no map pin
-          .map(function(c) {
-            return {
-              id: c.id,
-              lngLat: c.location.center,
-              label: c.title,
-              markerColor: c.markerColor
-            };
+          .forEach(function(c) {
+                  var coords = (c.pins && c.pins.length) ? c.pins : [c.location.center];
+                  coords.forEach(function(coord) {
+                            chapterMarkers.push({
+                                        id: c.id,
+                                        lngLat: coord,
+                                        label: c.title,
+                                        markerColor: c.markerColor
+                            });
+                  });
           });
       
         function openStoryPanel(chapterId) {
