@@ -1048,20 +1048,6 @@
                     layout: { visibility: 'none' },
                     paint: { 'line-color': '#8FE0FF', 'line-width': 2 }
                 });
-
-                // Rivers
-                map.addSource('rivers', {
-                    type: 'geojson',
-                    data: 'https://metabolicsociology.github.io/project-yato/assets/rivers.geojson'
-                });
-                map.addLayer({
-                    id: 'rivers-line',
-                    type: 'line',
-                    source: 'rivers',
-                    filter: ['in', ['geometry-type'], ['literal', ['LineString', 'MultiLineString']]],
-                    layout: { visibility: 'none' },
-                    paint: { 'line-color': '#2E86AB', 'line-width': 2 }
-                });
             
      });  // end map.on("load")
         
