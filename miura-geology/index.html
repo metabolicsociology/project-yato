@@ -743,39 +743,59 @@ var chapterMarkers = [];
                                 }
                             });
                         }
-                // --- Seafloor geology raster ---
-                    map.addSource('sagami-seafloor', {
-                      type: 'image',
-                      url: 'assets/sagami_bay_seafloor_geology_georeferenced.jpg',
-                      coordinates: [
-                        [139.2241, 35.3399], // top-left
-                        [139.6928, 35.3399], // top-right
-                        [139.6928, 35.0667], // bottom-right
-                        [139.2241, 35.0667]  // bottom-left
-                      ]
-                    });
-                    map.addLayer({
-                      id: 'sagami-seafloor-layer',
-                      type: 'raster',
-                      source: 'sagami-seafloor',
-                      paint: { 'raster-opacity': 0 } // start hidden; chapters will fade it in
-                    });
-                    
-                    // --- Survey tracklines ---
-                    map.addSource('survey-lines', {
-                      type: 'geojson',
-                      data: 'assets/sagami_bay_survey_tracklines.geojson'
-                    });
-                    map.addLayer({
-                      id: 'survey-lines-layer',
-                      type: 'line',
-                      source: 'survey-lines',
-                      paint: {
-                        'line-color': '#333333',
-                        'line-width': 0.75,
-                        'line-opacity': 0 // start hidden; chapters will fade it in
-                      }
-                    });
+                // --- Land geology: formations + faults (tile 5239) — always visible ---
+                map.addSource('miura-geology', {
+                    'type': 'geojson',
+                    'data': 'assets/seamlessV2_kml_5239.geojson'
+                });
+            
+                map.addLayer({
+                    'id': 'geology-formations-layer',
+                    'type': 'fill',
+                    'source': 'miura-geology',
+                    'filter': ['==', ['geometry-type'], 'Polygon'],
+                    'paint': {
+                        'fill-color': [
+                            'match', ['get', 'symbol'],
+                            'H_sad', '#8FBF6B',
+                            'N3_sosma', '#6FA8DC',
+                            /* ...add entries for your other formation codes as you style them... */
+                            '#cccccc' // fallback for any symbol not listed
+                        ],
+                        'fill-opacity': 0.6
+                    }
+                });
+            
+                map.addLayer({
+                    'id': 'faults-layer',
+                    'type': 'line',
+                    'source': 'miura-geology',
+                    'filter': ['in', ['get', 'Legend_E'], ['literal', ['confirmed fault', 'inferred fault']]],
+                    'paint': {
+                        'line-color': '#cc0000',
+                        'line-width': 1
+                    }
+                });
+            
+                // --- Seafloor geology raster — always visible ---
+                map.addSource('sagami-seafloor', {
+                    'type': 'image',
+                    'url': 'assets/sagami_bay_seafloor_geology_georeferenced.jpg',
+                    'coordinates': [
+                        [139.2241, 35.3399],
+                        [139.6928, 35.3399],
+                        [139.6928, 35.0667],
+                        [139.2241, 35.0667]
+                    ]
+                });
+                map.addLayer({
+                    'id': 'sagami-seafloor-layer',
+                    'type': 'raster',
+                    'source': 'sagami-seafloor',
+                    'paint': { 'raster-opacity': 1 }
+                });
+            
+            });
                 // Environmental Layers
                 // Note: layer IDs (e.g. 2990100) follow the naming pattern and are
                 // best guesses ÃÂ¢ÃÂÃÂ adjust if a layer returns empty on first test.
