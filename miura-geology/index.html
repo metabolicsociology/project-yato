@@ -1384,16 +1384,23 @@ var chapterMarkers = [];
             'H2_or': 'Holocene, latest substage (0.006-0 Ma)'
         };
         
-        function showEraPopup(e) {
-            if (!e.features || !e.features.length) return;
-            var symbol = e.features[0].properties.symbol;
-            var era = SEDIMENTARY_ERAS[symbol];
-            if (!era) return;
-            new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
-                .setLngLat(e.lngLat)
-                .setHTML('<div class="env-popup-type" style="color:#A0845C">Geologic Era</div><p class="env-popup-title" style="margin-bottom:0;">' + era + '</p>')
-                .addTo(map);
-        }
+function showEraPopup(e) {
+                if (!e.features || !e.features.length) return;
+                var symbol = e.features[0].properties.symbol;
+                var era = SEDIMENTARY_ERAS[symbol];
+                var text;
+                if (era) {
+                                    text = era + ' — Sedimentary Rock';
+                } else if (symbol === 'N3_vis_al') {
+                                    text = 'Late Miocene to Pliocene (7.245-3.6 Ma) — Igneous Rock';
+                } else {
+                                    text = 'Rock type not specified and/or era not classified';
+                }
+                new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
+                    .setLngLat(e.lngLat)
+                    .setHTML('<div class="env-popup-type" style="color:#A0845C">Geologic Era</div><p class="env-popup-title" style="margin-bottom:0;">' + text + '</p>')
+                    .addTo(map);
+}
         map.on('click', 'geology-formations-layer', showEraPopup);
         map.on('click', 'geology-formations-layer-2', showEraPopup);
         map.on('mouseenter', 'geology-formations-layer', function () { map.getCanvas().style.cursor = 'pointer'; });
