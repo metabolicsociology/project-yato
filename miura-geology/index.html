@@ -777,23 +777,6 @@ var chapterMarkers = [];
                     }
                 });
             
-                // --- Seafloor geology raster — always visible ---
-                map.addSource('sagami-seafloor', {
-                    'type': 'image',
-                    'url': 'assets/sagami_bay_seafloor_geology_georeferenced.jpg',
-                    'coordinates': [
-                        [139.2241, 35.3399],
-                        [139.6928, 35.3399],
-                        [139.6928, 35.0667],
-                        [139.2241, 35.0667]
-                    ]
-                });
-                map.addLayer({
-                    'id': 'sagami-seafloor-layer',
-                    'type': 'raster',
-                    'source': 'sagami-seafloor',
-                    'paint': { 'raster-opacity': 1 }
-                });
                 // Environmental Layers
                 // Note: layer IDs (e.g. 2990100) follow the naming pattern and are
                 // best guesses ÃÂ¢ÃÂÃÂ adjust if a layer returns empty on first test.
