@@ -743,29 +743,41 @@ var chapterMarkers = [];
                                 }
                             });
                         }
-                // --- Land geology: formations + faults (tile 5239) — always visible ---
-                map.addSource('miura-geology', {
+                map.addSource('miura-formations', {
                     'type': 'geojson',
-                    'data': 'assets/seamlessV2_kml_5239.geojson'
+                    'data': 'assets/seamlessV2_kml_5239_formations.geojson'
                 });
-            
+                
+                map.addSource('miura-faults', {
+                    'type': 'geojson',
+                    'data': 'assets/seamlessV2_kml_5239_faults.geojson'
+                });
+                
                 map.addLayer({
                     'id': 'geology-formations-layer',
                     'type': 'fill',
-                    'source': 'miura-geology',
-                    'filter': ['==', ['geometry-type'], 'Polygon'],
+                    'source': 'miura-formations',
                     'paint': {
                         'fill-color': [
                             'match', ['get', 'symbol'],
                             'H_sad', '#8FBF6B',
                             'N3_sosma', '#6FA8DC',
-                            /* ...add entries for your other formation codes as you style them... */
-                            '#cccccc' // fallback for any symbol not listed
+                            '#cccccc'
                         ],
                         'fill-opacity': 0.6
                     }
                 });
-            
+                
+                map.addLayer({
+                    'id': 'faults-layer',
+                    'type': 'line',
+                    'source': 'miura-faults',
+                    'filter': ['in', ['get', 'Legend_E'], ['literal', ['confirmed fault', 'inferred fault']]],
+                    'paint': {
+                        'line-color': '#cc0000',
+                        'line-width': 1
+                    }
+                });            
                 map.addLayer({
                     'id': 'faults-layer',
                     'type': 'line',
