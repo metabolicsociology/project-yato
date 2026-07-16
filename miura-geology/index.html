@@ -1383,20 +1383,26 @@ var chapterMarkers = [];
             'H_smd': 'Holocene (0.012-0 Ma)',
             'H_ssd': 'Holocene (0.012-0 Ma)',
             'H_svd': 'Holocene (0.012-0 Ma)',
-            'H2_or': 'Holocene, latest substage (0.006-0 Ma)',
+        };
+
+var OTHER_ERAS = {
+            'H2_or': 'Holocene, latest substage (0.006-0 Ma)'
+        };
+        
+var ACCRETIONARY_ERAS = {
+            'Pg13-22_pu_o_Pg4': 'Late Paleocene to Middle Eocene (59.2-37.8 Ma)',
+            'Pg22-N211_vba_ol_Pg4': 'Middle Eocene to Middle Miocene (41.2-15.3 Ma)'
             'N12-221_som_N2': 'Early to Middle Miocene (20.44-11.63 Ma)',
             'N12-221_sosma_N2': 'Early to Middle Miocene (20.44-11.63 Ma)',
             'N12-221_soss_N2': 'Early to Middle Miocene (20.44-11.63 Ma)',
             'N12-221_sx_N2': 'Early to Middle Miocene (20.44-11.63 Ma)',
             'N222-32_somas_N3': 'Late Miocene to Pliocene (11.63-3.6 Ma)',
-            'N222-32_soss_N3': 'Late Miocene to Pliocene (11.63-3.6 Ma)'
+            'N222-32_soss_N3': 'Late Miocene to Pliocene (11.63-3.6 Ma)',
+            'N122-221_vi_al_N2': 'Early to Middle Miocene (17.1-11.63 Ma)'
         };
         
 var IGNEOUS_ERAS = {
-            'N3_vis_al': 'Late Miocene to Pliocene (7.245-3.6 Ma)',
-            'N122-221_vi_al_N2': 'Early to Middle Miocene (17.1-11.63 Ma)',
-            'Pg13-22_pu_o_Pg4': 'Late Paleocene to Middle Eocene (59.2-37.8 Ma)',
-            'Pg22-N211_vba_ol_Pg4': 'Middle Eocene to Middle Miocene (41.2-15.3 Ma)'
+            'N3_vis_al': 'Late Miocene to Pliocene (7.245-3.6 Ma)'
         };
 
         function showEraPopup(e) {
