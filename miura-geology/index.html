@@ -743,6 +743,39 @@ var chapterMarkers = [];
                                 }
                             });
                         }
+                // --- Seafloor geology raster ---
+                    map.addSource('sagami-seafloor', {
+                      type: 'image',
+                      url: 'assets/sagami_bay_seafloor_geology_georeferenced.jpg',
+                      coordinates: [
+                        [139.2241, 35.3399], // top-left
+                        [139.6928, 35.3399], // top-right
+                        [139.6928, 35.0667], // bottom-right
+                        [139.2241, 35.0667]  // bottom-left
+                      ]
+                    });
+                    map.addLayer({
+                      id: 'sagami-seafloor-layer',
+                      type: 'raster',
+                      source: 'sagami-seafloor',
+                      paint: { 'raster-opacity': 0 } // start hidden; chapters will fade it in
+                    });
+                    
+                    // --- Survey tracklines ---
+                    map.addSource('survey-lines', {
+                      type: 'geojson',
+                      data: 'assets/sagami_bay_survey_tracklines.geojson'
+                    });
+                    map.addLayer({
+                      id: 'survey-lines-layer',
+                      type: 'line',
+                      source: 'survey-lines',
+                      paint: {
+                        'line-color': '#333333',
+                        'line-width': 0.75,
+                        'line-opacity': 0 // start hidden; chapters will fade it in
+                      }
+                    });
                 // Environmental Layers
                 // Note: layer IDs (e.g. 2990100) follow the naming pattern and are
                 // best guesses ÃÂ¢ÃÂÃÂ adjust if a layer returns empty on first test.
