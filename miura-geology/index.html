@@ -1353,7 +1353,7 @@ var IGNEOUS_ERAS = {
                 var otherEra = OTHER_ERAS[symbol];
                 var text;
                 if (sedimEra) {
-                    text = era + ' — Sedimentary Rock';
+                    text = sedimEra + ' — Sedimentary Rock';
                 } else if (igneousEra) {
                     text = igneousEra + ' — Igneous Rock';
                 } else if (accretEra) {
@@ -1404,6 +1404,14 @@ var IGNEOUS_ERAS = {
     <div id="env-toggle-body">
 
 <label class="env-row">
+    <input type="checkbox" onchange="envToggle(['rivers-line'], this.checked)">
+    <span class="env-dot" style="background:#2E86AB"></span>
+    Rivers
+  </label>
+
+  <p class="env-citation">Environmental layers retrieved from:<br>Biodiversity "Mieruka" Map (© Biodiversity Center of Japan, Ministry of the Environment)</p>
+
+  <label class="env-row">
     <input type="checkbox" onchange="envToggle([
       'protected-all-fill','protected-all-line',
       'protected-sub-fill','protected-sub-line'
@@ -1556,7 +1564,6 @@ var IGNEOUS_ERAS = {
                 </div>  <!-- closes env-toggle -->   
 <div id="env-controls">
 <button id="show-env-btn" onclick="toggleEnvPanelVisibility()">Show Environmental Layers</button>
-<p class="env-citation">Environmental layers retrieved from:<br>Biodiversity "Mieruka" Map (© Biodiversity Center of Japan, Ministry of the Environment)</p>
 <p class="env-description">【Sedimentary rocks】Formed by surface processes of weathering.</p>
 <p class="env-description">【Igneous rocks】Formed by magma or lava cooling down.</p>
 <p class="env-description">【Accretionary rocks】Formed by ocean floor sediments, basalt chunks, and seamounts due to the movement of tectonic plates.</p>
