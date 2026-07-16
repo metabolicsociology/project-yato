@@ -474,28 +474,7 @@
             align-items: center;
             padding-top: 60px;
         }
-        /* Explore Map button */
-        #explore-map-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 14px 32px;
-            background: var(--dark-green);
-            color: #fff;
-            font-size: 1.1rem;
-            font-family: 'Karma', serif;
-            border: 2px solid rgba(255,255,255,0.5);
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.15s;
-            letter-spacing: 0.03em;
-        }
-        #explore-map-btn:hover {
-            background: #0a3d26;
-            transform: scale(1.04);
-            color: #fff;
-        }
-
+        
         /* ===== MOBILE RESPONSIVE ===== */
         @media (max-width: 600px) {
         
@@ -717,26 +696,6 @@ var chapterMarkers = [];
         }
 
 
-        // Dismiss intro overlay on button click
-        function showMap() {
-            document.getElementById('story').classList.add('dismissed');
-        }
-
-        // Add the Explore Map button to the header after it's built
-        document.addEventListener('DOMContentLoaded', function() {
-            var header = document.getElementById('header');
-            if (header) {
-                var btn = document.createElement('a');
-                btn.id = 'explore-map-btn';
-                btn.href = '#';
-                btn.innerHTML = 'Explore Map ↓';
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    showMap();
-                });
-                header.appendChild(btn);
-            }
-        });
         // Create clickable story-pin markers
         chapterMarkers.forEach(function(cm) {
             var el = document.createElement('div');
