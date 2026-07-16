@@ -1408,15 +1408,19 @@ var IGNEOUS_ERAS = {
         function showEraPopup(e) {
                 if (!e.features || !e.features.length) return;
                 var symbol = e.features[0].properties.symbol;
-                var era = SEDIMENTARY_ERAS[symbol];
+                var sedimEra = SEDIMENTARY_ERAS[symbol];
                 var igneousEra = IGNEOUS_ERAS[symbol];
+                var accretEra = ACCRETIONARY_ERAS[symbol];
+                var otherEra = OTHER_ERAS[symbol];
                 var text;
-                if (era) {
+                if (sedimEra) {
                     text = era + ' — Sedimentary Rock';
                 } else if (igneousEra) {
                     text = igneousEra + ' — Igneous Rock';
-                } else {
-                    text = 'Rock type not specified and/or era not classified';
+                } else if (accretEra) {
+                    text = accretEra + ' — Accretionary Rock';
+                } else if (otherEra) {
+                    text = otherEra + ' — Other / Reclaimed';
                 }
                 new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
                     .setLngLat(e.lngLat)
