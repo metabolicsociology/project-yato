@@ -777,14 +777,44 @@ var chapterMarkers = [];
                         'line-color': '#cc0000',
                         'line-width': 1
                     }
-                });            
+                }); 
+                    
+                map.addSource('miura-formations-2', {
+                    'type': 'geojson',
+                    'data': 'assets/seamlessV2_kml_5339_formations.geojson'
+                });
+                
+                map.addSource('miura-faults-2', {
+                    'type': 'geojson',
+                    'data': 'assets/seamlessV2_kml_5339_faults.geojson'
+                });
+                
                 map.addLayer({
-                    'id': 'faults-layer',
-                    'type': 'line',
-                    'source': 'miura-geology',
-                    'filter': ['in', ['get', 'Legend_E'], ['literal', ['confirmed fault', 'inferred fault']]],
+                    'id': 'geology-formations-layer-2',
+                    'type': 'fill',
+                    'source': 'miura-formations-2',
                     'paint': {
-                        'line-color': '#cc0000',
+                        'fill-color': [
+                            'match', ['get', 'symbol'],
+                            'H_sad', '#8FBF6B',
+                            'N3_sosma', '#6FA8DC',
+                            // add more symbol codes here as needed
+                            '#cccccc'
+                        ],
+                        'fill-opacity': 0.6
+                    }
+                });              
+                map.addLayer({
+                    'id': 'geology-faults-layer-2',
+                    'type': 'line',
+                    'source': 'miura-faults-2',
+                    'paint': {
+                        'line-color': [
+                            'match', ['get', 'Legend_E'],
+                            'fault', '#ff0000',
+                            'boundary', '#333333',
+                            '#999999'
+                        ],
                         'line-width': 1
                     }
                 });
