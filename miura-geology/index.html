@@ -1255,32 +1255,6 @@ var chapterMarkers = [];
                   paint: { 'line-color': '#E6EE9C', 'line-width': 1.5 }
                 });
 
-                // ── East Uraga Road ──────────────────────────────────────────────────────────
-                map.addSource('east-uraga-road', {
-                    type: 'geojson',
-                    data: 'https://metabolicsociology.github.io/project-yato/assets/east-uraga-road.geojson'
-                });
-                map.addLayer({
-                    id: 'east-uraga-road-line',
-                    type: 'line',
-                    source: 'east-uraga-road',
-                    layout: { visibility: 'none' },
-                    paint: { 'line-color': '#CCFF00', 'line-width': 2 }
-                });
-                
-                // ── West Uraga Road ──────────────────────────────────────────────────────────
-                map.addSource('west-uraga-road', {
-                    type: 'geojson',
-                    data: 'https://metabolicsociology.github.io/project-yato/assets/west-uraga-road.geojson'
-                });
-                map.addLayer({
-                    id: 'west-uraga-road-line',
-                    type: 'line',
-                    source: 'west-uraga-road',
-                    layout: { visibility: 'none' },
-                    paint: { 'line-color': '#8FE0FF', 'line-width': 2 }
-                });
-
                 // Rivers
                 map.addSource('rivers', {
                     type: 'geojson',
