@@ -607,10 +607,12 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: config.style,
-            center: config.chapters[0].location.center,
-            zoom: config.chapters[0].location.zoom,
-            bearing: config.chapters[0].location.bearing,
-            pitch: config.chapters[0].location.pitch,
+            // Fixed initial view so most of the Miura peninsula is visible on load
+            // (chapter locations are still used for the fly-to animation when a pin is clicked)
+            center: [139.665, 35.225],
+            zoom: 11.2,
+            bearing: 0,
+            pitch: 0,
             interactive: true,
             projection: config.projection
         });
@@ -1381,20 +1383,34 @@ var chapterMarkers = [];
             'H_smd': 'Holocene (0.012-0 Ma)',
             'H_ssd': 'Holocene (0.012-0 Ma)',
             'H_svd': 'Holocene (0.012-0 Ma)',
-            'H2_or': 'Holocene, latest substage (0.006-0 Ma)'
+            'H2_or': 'Holocene, latest substage (0.006-0 Ma)',
+            'N12-221_som_N2': 'Early to Middle Miocene (20.44-11.63 Ma)',
+            'N12-221_sosma_N2': 'Early to Middle Miocene (20.44-11.63 Ma)',
+            'N12-221_soss_N2': 'Early to Middle Miocene (20.44-11.63 Ma)',
+            'N12-221_sx_N2': 'Early to Middle Miocene (20.44-11.63 Ma)',
+            'N222-32_somas_N3': 'Late Miocene to Pliocene (11.63-3.6 Ma)',
+            'N222-32_soss_N3': 'Late Miocene to Pliocene (11.63-3.6 Ma)'
         };
         
-function showEraPopup(e) {
+var IGNEOUS_ERAS = {
+            'N3_vis_al': 'Late Miocene to Pliocene (7.245-3.6 Ma)',
+            'N122-221_vi_al_N2': 'Early to Middle Miocene (17.1-11.63 Ma)',
+            'Pg13-22_pu_o_Pg4': 'Late Paleocene to Middle Eocene (59.2-37.8 Ma)',
+            'Pg22-N211_vba_ol_Pg4': 'Middle Eocene to Middle Miocene (41.2-15.3 Ma)'
+        };
+
+        function showEraPopup(e) {
                 if (!e.features || !e.features.length) return;
                 var symbol = e.features[0].properties.symbol;
                 var era = SEDIMENTARY_ERAS[symbol];
+                var igneousEra = IGNEOUS_ERAS[symbol];
                 var text;
                 if (era) {
-                                    text = era + ' — Sedimentary Rock';
-                } else if (symbol === 'N3_vis_al') {
-                                    text = 'Late Miocene to Pliocene (7.245-3.6 Ma) — Igneous Rock';
+                    text = era + ' — Sedimentary Rock';
+                } else if (igneousEra) {
+                    text = igneousEra + ' — Igneous Rock';
                 } else {
-                                    text = 'Rock type not specified and/or era not classified';
+                    text = 'Rock type not specified and/or era not classified';
                 }
                 new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
                     .setLngLat(e.lngLat)
