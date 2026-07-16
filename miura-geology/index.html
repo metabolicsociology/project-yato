@@ -244,6 +244,75 @@
           height: 12px;
           flex-shrink: 0;
         }
+        /* Geologic Eras Legend */
+        #env-toggle {
+            display: none;
+        }
+        #geology-legend {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            border-radius: 6px;
+            padding: 12px 14px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            font-family: 'Karma', serif;
+            font-size: 12px;
+            color: #54595F;
+            min-width: 260px;
+            max-width: 320px;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+        #geology-legend h4 {
+            margin: 0 0 10px 0;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #A0845C;
+            border-bottom: 1px solid #e0d9d0;
+            padding-bottom: 6px;
+        }
+        .legend-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            line-height: 1.3;
+        }
+        .legend-swatches {
+            display: flex;
+            flex-shrink: 0;
+            gap: 2px;
+        }
+        .legend-swatch {
+            width: 12px;
+            height: 12px;
+            border: 1px solid rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+        .legend-era-label {
+            font-size: 11.5px;
+        }
+        #show-env-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 6px 10px;
+            background: var(--dark-green);
+            color: #fff;
+            font-size: 11px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Karma', serif;
+            width: 100%;
+            text-align: center;
+        }
+        #show-env-btn:hover {
+            background: #0a3d26;
+        }
+        
         /* -- Environmental Location Map Pins -------------------------------- */
             .env-pin-marker {
                             width: 14px;
@@ -1300,7 +1369,22 @@ var chapterMarkers = [];
       arrow.textContent = isHidden ? '▾' : '▴';
     }
     
-    // Collapse the env panel by default on mobile screens
+    function toggleLegendPanel() {
+        const body = document.getElementById('legend-body');
+        const arrow = document.getElementById('legend-arrow');
+        const isHidden = body.style.display === 'none';
+        body.style.display = isHidden ? 'block' : 'none';
+        arrow.textContent = isHidden ? '▾' : '▴';
+    }
+        function toggleEnvPanelVisibility() {
+            const panel = document.getElementById('env-toggle');
+            const btn = document.getElementById('show-env-btn');
+            const isHidden = window.getComputedStyle(panel).display === 'none';
+            panel.style.display = isHidden ? 'block' : 'none';
+            btn.textContent = isHidden ? 'Hide Environmental Layers' : 'Show Environmental Layers';
+        }
+        
+        // Collapse the env panel by default on mobile screens
     if (window.innerWidth <= 600) {
       document.addEventListener('DOMContentLoaded', function () {
         const body = document.getElementById('env-toggle-body');
@@ -1503,6 +1587,95 @@ var chapterMarkers = [];
             // 
     </script>
                 </div>  <!-- closes env-toggle -->   
+<div id="geology-legend">
+<b class="env-toggle-header" onclick="toggleLegendPanel()">Geologic Eras <span id="legend-arrow" style="font-size:1.4em;color:#FFD700;margin-left:4px;text-shadow: 0 0 1px #222, 0 0 1px #222;">&#9662;</span></b>
+<div id="legend-body">
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#81acd4"></span></div>
+<span class="legend-era-label">Late Jurassic (163.5-145 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#cf8f50"></span><span class="legend-swatch" style="background:#787878"></span><span class="legend-swatch" style="background:#a3d898"></span></div>
+<span class="legend-era-label">Early Cretaceous, Berriasian-Aptian (145-113 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#d39352"></span><span class="legend-swatch" style="background:#a9da9f"></span></div>
+<span class="legend-era-label">Early Cretaceous, Albian (113-100.5 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#f3cf8b"></span><span class="legend-swatch" style="background:#ffcf8b"></span><span class="legend-swatch" style="background:#c8c8c8"></span><span class="legend-swatch" style="background:#aee2fa"></span><span class="legend-swatch" style="background:#d6ecd4"></span><span class="legend-swatch" style="background:#fff246"></span></div>
+<span class="legend-era-label">Early Miocene (23-16 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#ffe2ac"></span><span class="legend-swatch" style="background:#baecfe"></span><span class="legend-swatch" style="background:#e2f1e2"></span></div>
+<span class="legend-era-label">Middle to Late Miocene (16-7.2 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#e6e8aa"></span><span class="legend-swatch" style="background:#ffe8aa"></span><span class="legend-swatch" style="background:#ebf5ec"></span><span class="legend-swatch" style="background:#fff799"></span></div>
+<span class="legend-era-label">Pliocene (5.3-2.6 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#ffffd2"></span><span class="legend-swatch" style="background:#ffffdc"></span><span class="legend-swatch" style="background:#e6ffd2"></span></div>
+<span class="legend-era-label">Early Pleistocene (2.6-0.78 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#ffe6ff"></span></div>
+<span class="legend-era-label">Middle Pleistocene-Holocene (1.8-0 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#dcffb4"></span><span class="legend-swatch" style="background:#dcffbe"></span><span class="legend-swatch" style="background:#beffbe"></span><span class="legend-swatch" style="background:#dcff64"></span></div>
+<span class="legend-era-label">Middle Pleistocene, Chibanian (0.4-0.13 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#c8e6dc"></span></div>
+<span class="legend-era-label">Middle Pleistocene-Holocene (0.4-0 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#c8ff7a"></span></div>
+<span class="legend-era-label">Late Pleistocene, early (0.13-0.07 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#dcffd2"></span></div>
+<span class="legend-era-label">Late Pleistocene (0.13-0.012 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#c8ffaa"></span></div>
+<span class="legend-era-label">Late Pleistocene, late (0.07-0.012 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#dcf0c8"></span></div>
+<span class="legend-era-label">Late Pleistocene-Holocene (0.03-0 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#e6ffff"></span><span class="legend-swatch" style="background:#d2faff"></span><span class="legend-swatch" style="background:#ffff96"></span><span class="legend-swatch" style="background:#f5ffe6"></span></div>
+<span class="legend-era-label">Holocene (0.012-0 Ma)</span>
+</div>
+
+<div class="legend-row">
+<div class="legend-swatches"><span class="legend-swatch" style="background:#f4dfca"></span></div>
+<span class="legend-era-label">Holocene, latest substage (0.006-0 Ma)</span>
+</div>
+
+<button id="show-env-btn" onclick="toggleEnvPanelVisibility()">Show Environmental Layers</button>
+
+</div>
+</div>
+
 
     <script>
       // Click-drag to scroll
