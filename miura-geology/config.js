@@ -2,7 +2,7 @@ var REFS = [
   { id: "nozaki-utsunomiya2022", text: "Nozaki, A. and M. Utsunomiya. 2022. \u201CGeology and Fossil Cold-Seep Assemblages in the Kazusa Group on the Northern Miura Peninsula, Central Japan.\u201D <em>Journal of the Geological Society of Japan</em> 128(1): 313\u2013333." },
   { id: "yokohamacollab2024", text: "Yokohama Collaborative Research Group. 2024. \u201CSome Key Tephra Beds in the Uragou Formation of the Lower Kazusa Group Exposed on the Northeastern District of Kamakura City, Kanagawa Prefecture, Central Japan.\u201D <em>Bulletin of the Association for Kanto Quaternary Research</em> 39: 3\u201317." },
   { id: "yokosukawater2019",    text: "Yokosuka Water and Environment Study Group. 2019. <em>Yokosuka no Kawa</em> (Rivers in Yokosuka). Yokosuka: Yokosuka Water and Environment Study Group." },
-  { id: "aist1976",    text: "Geological Survey of Japan, AIST. 1976. <a href="https://www.gsj.jp/Map/JP/geology0.html"><em>Distribution Map of Gas and Oil Fields in Japan (including Offshore Areas) (2nd ed.)</em></a>." }
+  { id: "aist1976",    text: "Geological Survey of Japan, AIST. 1976. <a href='https://www.gsj.jp/Map/JP/geology0.html'><em>Distribution Map of Gas and Oil Fields in Japan (including Offshore Areas) (2nd ed.)</em></a>." }
 ];
 
 var config = {
