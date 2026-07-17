@@ -928,6 +928,36 @@ var chapterMarkers = [];
                         'line-width': 1
                     }
                 });
+
+                                    map.addSource('miura-formations-3', {
+                                                            'type': 'geojson',
+                                                            'data': 'assets/seamlessV2_kml_5240_5340_formations.geojson'
+                                    });
+
+                                    map.addSource('miura-faults-3', {
+                                                            'type': 'geojson',
+                                                            'data': 'assets/seamlessV2_kml_5240_5340_faults.geojson'
+                                    });
+
+                                    map.addLayer({
+                                                            'id': 'geology-formations-layer-3',
+                                                            'type': 'fill',
+                                                            'source': 'miura-formations-3',
+                                                            'paint': {
+                                                                                        'fill-color': '#cccccc',
+                                                                                        'fill-opacity': 0.6
+                                                                }
+                                    });
+
+                                    map.addLayer({
+                                                            'id': 'geology-faults-layer-3',
+                                                            'type': 'line',
+                                                            'source': 'miura-faults-3',
+                                                            'paint': {
+                                                                                        'line-color': '#999999',
+                                                                                        'line-width': 1
+                                                                }
+                                    });
             
                 // Environmental Layers
                 // Note: layer IDs (e.g. 2990100) follow the naming pattern and are
