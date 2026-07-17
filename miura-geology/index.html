@@ -1468,14 +1468,6 @@ var IGNEOUS_ERAS = {
         map.on('mouseenter', 'gasfield-fill', function () { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'gasfield-fill', function () { map.getCanvas().style.cursor = 'grab'; });
 
-        function toggleEnvPanelVisibility() {
-            const panel = document.getElementById('env-toggle');
-            const btn = document.getElementById('show-env-btn');
-            const isHidden = window.getComputedStyle(panel).display === 'none';
-            panel.style.display = isHidden ? 'block' : 'none';
-            btn.textContent = isHidden ? 'Hide Environmental Layers' : 'Show Environmental Layers';
-        }
-        
         // Collapse the env panel by default on mobile screens
     if (window.innerWidth <= 600) {
       document.addEventListener('DOMContentLoaded', function () {
