@@ -1489,7 +1489,7 @@ var IGNEOUS_ERAS = {
                 var props = e.features[0].properties || {};
                 var name = props.Name || 'Minami Kanto Gas Field';
                 var zone = props.Zone;
-                var text = zone ? (name + ' — ' + zone) : name;
+                var text = zone ? (name + ' — ') : name;
                 new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
                     .setLngLat(e.lngLat)
                     .setHTML('<div class="env-popup-type" style="color:#54595F">Minami Kanto Gas Field</div><p class="env-popup-title" style="margin-bottom:0;">' + text + '</p>')
