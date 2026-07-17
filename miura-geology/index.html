@@ -1357,7 +1357,30 @@ var chapterMarkers = [];
                     paint: { 'line-color': '#2E86AB', 'line-width': 2 }
                 });
             
-     });  // end map.on("load")
+                     // Minami Kanto Gas Field
+                map.addSource('minami-kanto-gasfield', {
+                    type: 'geojson',
+                    data: 'https://metabolicsociology.github.io/project-yato/assets/minami_kanto_gasfield.geojson'
+                });
+                map.addLayer({
+                    id: 'gasfield-fill',
+                    type: 'fill',
+                    source: 'minami-kanto-gasfield',
+                    layout: { visibility: 'none' },
+                    paint: { 'fill-opacity': 0 }
+                });
+                map.addLayer({
+                    id: 'gasfield-line',
+                    type: 'line',
+                    source: 'minami-kanto-gasfield',
+                    layout: { visibility: 'none' },
+                    paint: {
+                        'line-color': '#54595F',
+                        'line-width': ['case', ['==', ['get', 'Name'], 'Main Oil Field'], 3, 1]
+                    }
+                });
+
+});  // end map.on("load")
         
     function envToggle(ids, on) {
                 ids.forEach(function(id) {
@@ -1461,6 +1484,21 @@ var IGNEOUS_ERAS = {
         map.on('mouseenter', 'geology-formations-layer-2', function () { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'geology-formations-layer-2', function () { map.getCanvas().style.cursor = 'grab'; });
         
+        function showGasFieldPopup(e) {
+                if (!e.features || !e.features.length) return;
+                var props = e.features[0].properties || {};
+                var name = props.Name || 'Minami Kanto Gas Field';
+                var zone = props.Zone;
+                var text = zone ? (name + ' — ' + zone) : name;
+                new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
+                    .setLngLat(e.lngLat)
+                    .setHTML('<div class="env-popup-type" style="color:#54595F">Minami Kanto Gas Field</div><p class="env-popup-title" style="margin-bottom:0;">' + text + '</p>')
+                    .addTo(map);
+        }
+        map.on('click', 'gasfield-fill', showGasFieldPopup);
+        map.on('mouseenter', 'gasfield-fill', function () { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'gasfield-fill', function () { map.getCanvas().style.cursor = 'grab'; });
+
         function toggleEnvPanelVisibility() {
             const panel = document.getElementById('env-toggle');
             const btn = document.getElementById('show-env-btn');
@@ -1498,6 +1536,12 @@ var IGNEOUS_ERAS = {
   </label>
 
   <p class="env-citation">The following information is retrieved from:<br>Biodiversity "Mieruka" Map (© Biodiversity Center of Japan, Ministry of the Environment)</p>
+
+  <label class="env-row">
+    <input type="checkbox" onchange="envToggle(['gasfield-fill','gasfield-line'], this.checked)">
+    <span class="env-dot" style="background:#54595F"></span>
+    Minami Kanto Gas Field
+  </label>
 
   <label class="env-row">
     <input type="checkbox" onchange="envToggle([
