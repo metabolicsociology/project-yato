@@ -249,37 +249,6 @@
             display: none;
         }
         
-        /* Environmental Controls (button + citations) */
-        #env-controls {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            z-index: 100;
-            background: rgba(255,255,255,0.95);
-            border-radius: 6px;
-            padding: 12px 14px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            font-family: 'Karma', serif;
-            color: #54595F;
-            min-width: 220px;
-            max-width: 260px;
-        }
-        #show-env-btn {
-            display: block;
-            padding: 6px 10px;
-            background: var(--dark-green);
-            color: #fff;
-            font-size: 11px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Karma', serif;
-            width: 100%;
-            text-align: center;
-        }
-        #show-env-btn:hover {
-            background: #0a3d26;
-        }
         .env-citation {
             margin: 10px 0 0 0;
             font-size: 10px;
@@ -1529,16 +1498,21 @@ var IGNEOUS_ERAS = {
     <b class="env-toggle-header" onclick="toggleEnvPanel()">Environmental Layers <span id="env-arrow" style="font-size:1.4em;color:#FFD700;margin-left:4px;text-shadow: 0 0 1px #222, 0 0 1px #222;">▾</span></b>
     <div id="env-toggle-body">
 
+<p class="env-citation">Geological data is downloaded from:<br>Seamless Digital Geological Map of Japan V2 1:200,000 (© Geological Survey of Japan, AIST)</p>
+<p class="env-description">【Sedimentary rocks】Formed by surface processes of weathering.</p>
+<p class="env-description">【Igneous rocks】Formed by magma or lava cooling down.</p>
+<p class="env-description">【Accretionary rocks】Formed by ocean floor sediments, basalt chunks, and seamounts due to the movement of tectonic plates.</p>
+
 <label class="env-row">
     <input type="checkbox" onchange="envToggle(['rivers-line'], this.checked)">
     <span class="env-dot" style="background:#2E86AB"></span>
-    Rivers
+    Rivers <span class="ref-tooltip" data-ref-id="yokosukawater2019">(Yokosuka Water and Environment Study Group 2019)</span>
   </label>
 
   <label class="env-row">
     <input type="checkbox" onchange="envToggle(['gasfield-fill','gasfield-line'], this.checked)">
     <span class="env-dot" style="background:#54595F"></span>
-    Minami Kanto Gas Field
+    Minami Kanto Gas Field <span class="ref-tooltip" data-ref-id="aist1976">(Geological Survey of Japan, AIST 1976)</span>
   </label>
 
   <p class="env-citation">The following information is retrieved from:<br>Biodiversity "Mieruka" Map (© Biodiversity Center of Japan, Ministry of the Environment)</p>
@@ -1694,13 +1668,9 @@ var IGNEOUS_ERAS = {
             // 
     </script>
                 </div>  <!-- closes env-toggle -->   
-<div id="env-controls">
-<button id="show-env-btn" onclick="toggleEnvPanelVisibility()">Show Environmental Layers</button>
-<p class="env-description">【Sedimentary rocks】Formed by surface processes of weathering.</p>
-<p class="env-description">【Igneous rocks】Formed by magma or lava cooling down.</p>
-<p class="env-description">【Accretionary rocks】Formed by ocean floor sediments, basalt chunks, and seamounts due to the movement of tectonic plates.</p>
-<p class="env-citation">Geological data downloaded from:<br>Seamless Digital Geological Map of Japan V2 1:200,000 (© Geological Survey of Japan, AIST)</p>
-</div>
+<script>
+    attachRefTooltips(document.getElementById('env-toggle-body'));
+</script>
 
     <script>
       // Click-drag to scroll
