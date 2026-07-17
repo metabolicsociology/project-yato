@@ -1492,7 +1492,7 @@ var IGNEOUS_ERAS = {
                 var text = zone ? (name + ' — ') : name;
                 new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
                     .setLngLat(e.lngLat)
-                    .setHTML('<div class="env-popup-type" style="color:#54595F">Minami Kanto Gas Field</div><p class="env-popup-title" style="margin-bottom:0;">' + text + '</p>')
+                    .setHTML('<div class="env-popup-type" style="color:#54595F">Minami Kanto Gas Field</div><p class="env-popup-title" style="margin-bottom:0;">' + text + '</p><p class="env-popup-citation" style="margin:6px 0 0 0;font-size:10px;font-weight:300;color:#888;">Geological Survey of Japan, AIST. (1976). Distribution Map of Oil and Gas Fields in Japan (including Offshore Areas) (2nd ed.)</p>')
                     .addTo(map);
         }
         map.on('click', 'gasfield-fill', showGasFieldPopup);
