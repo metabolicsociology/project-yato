@@ -898,22 +898,22 @@ var chapterMarkers = [];
                     }
                 });
 
-                                    map.addSource('miura-formations-3', {
-                                                            'type': 'geojson',
-                                                            'data': 'assets/seamlessV2_kml_5240_5340_formations.geojson'
-                                    });
+                map.addSource('miura-formations-3', {
+                    'type': 'geojson',
+                    'data': 'assets/seamlessV2_kml_5240_5340_formations.geojson'
+                });
 
-                                    map.addSource('miura-faults-3', {
-                                                            'type': 'geojson',
-                                                            'data': 'assets/seamlessV2_kml_5240_5340_faults.geojson'
-                                    });
+                map.addSource('miura-faults-3', {
+                     'type': 'geojson',
+                     'data': 'assets/seamlessV2_kml_5240_5340_faults.geojson'
+                });
 
-                                    map.addLayer({
-                                                            'id': 'geology-formations-layer-3',
-                                                            'type': 'fill',
-                                                            'source': 'miura-formations-3',
-                                                            'paint': {
-                                                                                        'fill-color': [
+                map.addLayer({
+                     'id': 'geology-formations-layer-3',
+                     'type': 'fill',
+                     'source': 'miura-formations-3',
+                     'paint': {
+                         'fill-color': [
                             'match', ['get', 'symbol'],
                             'C13-J1_soh_J1', '#ee9800', 'C13-J22_soh_J2', '#f49800', 'C13-P1_vbs_o_J1', '#00af00',
                             'C13-Tr32_sol_J2', '#0082e9', 'C13-Tr32_vbs_o_J2', '#00b400', 'C13-Tr_sol_J1', '#0078e9',
@@ -964,16 +964,16 @@ var chapterMarkers = [];
                             'Q3_vas_al', '#eb6161', 'Q3_vbs_al', '#76739d', 'Q3_vis_al', '#d07100',
                             '#cccccc' // fallback for any symbol not in this list
                         ],
-                                                                                        'fill-opacity': 0.6
-                                                                }
-                                    });
+                        'fill-opacity': 0.6
+                            }
+                     });
 
-                                    map.addLayer({
-                                                            'id': 'geology-faults-layer-3',
-                                                            'type': 'line',
-                                                            'source': 'miura-faults-3',
-                                                            'paint': {
-                                                                                        'line-color': [
+                map.addLayer({
+                    'id': 'geology-faults-layer-3',
+                    'type': 'line',
+                    'source': 'miura-faults-3',
+                    'paint': {
+                    'line-color': [
                             'match', ['get', 'Legend_E'],
                             'confirmed fault', '#ff0000',
                             'inferred fault', '#ff0000',
@@ -981,10 +981,35 @@ var chapterMarkers = [];
                             'boundary', '#4d4d4d',
                             'shoreline', '#3388cc',
                             '#999999'
-                        ],
-                                                                                        'line-width': 1
-                                                                }
-                                    });
+                    ],
+                    'line-width': 1
+                             }
+                    });
+
+                map.addSource('yokosuka-detailed-geology', {
+                  'type': 'geojson',
+                  'data': 'assets/yokosuka_geo_A_4326.geojson'
+                });
+                
+                map.addLayer({
+                  'id': 'geology-formations-layer-4',
+                  'type': 'fill',
+                  'source': 'yokosuka-detailed-geology',
+                  'paint': {
+                    'fill-color': ['get', 'geo_A_legend_lookup_hex'],
+                    'fill-opacity': 1
+                  }
+                });
+                
+                map.addLayer({
+                  'id': 'geology-boundary-layer-4',
+                  'type': 'line',
+                  'source': 'yokosuka-detailed-geology',
+                  'paint': {
+                    'line-color': '#4d4d4d',
+                    'line-width': 1
+                  }
+                });
             
                 // Environmental Layers
                 // Note: layer IDs (e.g. 2990100) follow the naming pattern and are
@@ -1468,6 +1493,27 @@ var IGNEOUS_ERAS = {
         map.on('mouseenter', 'gasfield-fill', function () { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'gasfield-fill', function () { map.getCanvas().style.cursor = 'grab'; });
 
+        function showDetailedGeologyPopup(e) {
+            if (!e.features || !e.features.length) return;
+            var p = e.features[0].properties || {};
+            var formation = p.geo_A_legend_lookup_formation_en || p.geo_A_legend_lookup_formation_jp || '';
+            var era = [p.geo_A_legend_lookup_era_en, p.geo_A_legend_lookup_epoch_en].filter(Boolean).join(', ');
+            var lithology = p.geo_A_legend_lookup_lithology_en || '';
+        
+            var html = '<div class="env-popup-type" style="color:#A0845C">' + (era || 'Geologic Era') + '</div>'
+                + '<p class="env-popup-title" style="margin-bottom:0;">' + formation + '</p>'
+                + (lithology ? '<p style="margin:4px 0 0 0;font-size:11px;color:#666;">' + lithology + '</p>' : '')
+                + '<p class="env-popup-citation" style="margin:6px 0 0 0;font-size:10px;font-weight:300;color:#888;">Eto, Yazaki, Urabe & Isobe (1998). Geological Map of Yokosuka District (1:50,000). Geological Survey of Japan / GSJ, AIST.</p>';
+        
+            new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
+                .setLngLat(e.lngLat)
+                .setHTML(html)
+                .addTo(map);
+        }
+        map.on('click', 'geology-formations-layer-4', showDetailedGeologyPopup);
+        map.on('mouseenter', 'geology-formations-layer-4', function () { map.getCanvas().style.cursor = 'pointer'; });
+        map.on('mouseleave', 'geology-formations-layer-4', function () { map.getCanvas().style.cursor = 'grab'; });
+        
         // Collapse the env panel by default on mobile screens
     if (window.innerWidth <= 600) {
       document.addEventListener('DOMContentLoaded', function () {
