@@ -1011,6 +1011,11 @@ var chapterMarkers = [];
                     'line-width': 1
                   }
                 });
+
+                    // Move old-map fault lines above the new detailed Yokosuka map
+                    map.moveLayer('faults-layer');
+                    map.moveLayer('geology-faults-layer-2');
+                    map.moveLayer('geology-faults-layer-3');
             
                 // Yato List
                 map.addSource('yato-list', {
