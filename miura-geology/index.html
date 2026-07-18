@@ -1498,6 +1498,9 @@ var IGNEOUS_ERAS = {
         function showDetailedGeologyPopup(e) {
             if (!e.features || !e.features.length) return;
             var p = e.features[0].properties || {};
+        
+            if (p.MAJOR_CODE === 99 || p.MAJOR_CODE === 88) return; // skip undivided / unclassified units
+        
             var formation = p.geo_A_legend_lookup_formation_en || p.geo_A_legend_lookup_formation_jp || '';
             var era = [p.geo_A_legend_lookup_era_en, p.geo_A_legend_lookup_epoch_en].filter(Boolean).join(', ');
             var lithology = p.geo_A_legend_lookup_lithology_en || '';
