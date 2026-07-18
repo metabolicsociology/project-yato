@@ -339,6 +339,25 @@
             background-color: #0E5735;
         }
 
+        .story-pin-label {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            background: rgba(255,255,255,0.92);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #333;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .story-pin-label.visible {
+            opacity: 1;
+        }
+
         /* ===== STORY PANEL (floating sidebar) ===== */
         #story-panel {
             position: fixed;
@@ -576,19 +595,22 @@
         // ---- Story pin markers (click to open story panel) ----
 var chapterMarkers = [];
         config.chapters
-          .filter(function(c) { return c.id !== 'intro'; }) // intro has no map pin
-          .forEach(function(c) {
-                  var coords = (c.pins && c.pins.length) ? c.pins : [c.location.center];
-                  coords.forEach(function(coord, pinIndex) {
-                            chapterMarkers.push({
-                                        id: c.id,
-                                        pinIndex: pinIndex,
-                                        lngLat: coord,
-                                        label: c.title,
-                                        markerColor: c.markerColor
-                            });
-                  });
-          });
+        .filter(function(c) { return c.id !== 'intro'; }) // intro has no map pin
+        .forEach(function(c) {
+            var coords = (c.pins && c.pins.length) ? c.pins : [c.location.center];
+            coords.forEach(function(pin, pinIndex) {
+                var isPinObj = pin && !Array.isArray(pin);
+                var coord = isPinObj ? pin.coordinates : pin;
+                var pinLabel = (isPinObj && pin.label) ? pin.label : c.title;
+                chapterMarkers.push({
+                    id: c.id,
+                    pinIndex: pinIndex,
+                    lngLat: coord,
+                    label: pinLabel,
+                    markerColor: c.markerColor
+                });
+            });
+        });
       
         function openStoryPanel(chapterId, pinCoord, pinIndex) {
             var chapter = config.chapters.find(function(c) { return c.id === chapterId; });
@@ -672,6 +694,7 @@ var chapterMarkers = [];
 
 
         // Create clickable story-pin markers
+        var pinLabelEls = [];
         chapterMarkers.forEach(function(cm) {
             var el = document.createElement('div');
             el.className = 'story-pin';
@@ -692,7 +715,25 @@ var chapterMarkers = [];
             new mapboxgl.Marker({ element: el })
                 .setLngLat(cm.lngLat)
                 .addTo(map);
+
+            var labelEl = document.createElement('div');
+            labelEl.className = 'story-pin-label';
+            labelEl.textContent = cm.label;
+            new mapboxgl.Marker({ element: labelEl, anchor: 'top', offset: [0, 16] })
+            .setLngLat(cm.lngLat)
+            .addTo(map);
+            pinLabelEls.push(labelEl);
         });
+
+        // Story-pin location labels are only shown once zoomed in close (avoids cluttering the full map view)
+        var PIN_LABEL_MIN_ZOOM = 13;
+        function updatePinLabelVisibility() {
+            var show = map.getZoom() >= PIN_LABEL_MIN_ZOOM;
+            pinLabelEls.forEach(function(el) { el.classList.toggle('visible', show); });
+        }
+        map.on('zoom', updatePinLabelVisibility);
+        map.on('load', updatePinLabelVisibility);
+        updatePinLabelVisibility();
 
         
         // Create a inset map if enabled in config.js
