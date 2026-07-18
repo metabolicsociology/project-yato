@@ -579,9 +579,10 @@ var chapterMarkers = [];
           .filter(function(c) { return c.id !== 'intro'; }) // intro has no map pin
           .forEach(function(c) {
                   var coords = (c.pins && c.pins.length) ? c.pins : [c.location.center];
-                  coords.forEach(function(coord) {
+                  coords.forEach(function(coord, pinIndex) {
                             chapterMarkers.push({
                                         id: c.id,
+                                        pinIndex: pinIndex,
                                         lngLat: coord,
                                         label: c.title,
                                         markerColor: c.markerColor
@@ -589,11 +590,14 @@ var chapterMarkers = [];
                   });
           });
       
-        function openStoryPanel(chapterId) {
+        function openStoryPanel(chapterId, pinCoord, pinIndex) {
             var chapter = config.chapters.find(function(c) { return c.id === chapterId; });
             if (!chapter) return;
-            // Fly map to chapter location
-            map[chapter.mapAnimation || 'flyTo'](chapter.location);
+            // Fly map to this specific pin's coordinate (falls back to the chapter's shared location)
+            var flyLocation = pinCoord
+                ? Object.assign({}, chapter.location, { center: pinCoord })
+                : chapter.location;
+            map[chapter.mapAnimation || 'flyTo'](flyLocation);
             // Apply chapter layer visibility changes
             if (chapter.onChapterEnter && chapter.onChapterEnter.length > 0) {
                 chapter.onChapterEnter.forEach(setLayerOpacity);
@@ -623,8 +627,9 @@ var chapterMarkers = [];
             });
             var panel = document.getElementById('story-panel');
             panel.dataset.activeChapter = chapterId;
+            panel.dataset.activePinIndex = (pinIndex !== undefined && pinIndex !== null) ? String(pinIndex) : '';
             panel.classList.add('open');
-            var activePin = document.querySelector('.story-pin[data-chapter="' + chapterId + '"]');
+            var activePin = document.querySelector('.story-pin[data-chapter="' + chapterId + '"][data-pin-index="' + pinIndex + '"]');
             if (activePin) activePin.classList.add('active');
         }
 
@@ -659,6 +664,7 @@ var chapterMarkers = [];
             }
             panel.classList.remove('open');
             panel.dataset.activeChapter = '';
+            panel.dataset.activePinIndex = '';
             document.querySelectorAll('.story-pin').forEach(function(el) {
                 el.classList.remove('active');
             });
@@ -671,14 +677,16 @@ var chapterMarkers = [];
             el.className = 'story-pin';
             el.style.setProperty('--pin-color', cm.markerColor || '#C05A40');
             el.setAttribute('data-chapter', cm.id);
+            el.setAttribute('data-pin-index', cm.pinIndex);
             el.title = cm.label;
             el.addEventListener('click', function(e) {
                 e.stopPropagation();
                 var panel = document.getElementById('story-panel');
-                if (panel.dataset.activeChapter === cm.id && panel.classList.contains('open')) {
+                var isSamePin = panel.dataset.activeChapter === cm.id && panel.dataset.activePinIndex === String(cm.pinIndex);
+                if (isSamePin && panel.classList.contains('open')) {
                     closeStoryPanel();
                 } else {
-                    openStoryPanel(cm.id);
+                    openStoryPanel(cm.id, cm.lngLat, cm.pinIndex);
                 }
             });
             new mapboxgl.Marker({ element: el })
