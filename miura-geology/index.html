@@ -996,7 +996,7 @@ var chapterMarkers = [];
                   'type': 'fill',
                   'source': 'yokosuka-detailed-geology',
                   'paint': {
-                    'fill-color': ['get', 'geo_A_legend_lookup_hex'],
+                    'fill-color': ['coalesce', ['get', 'geo_A_legend_lookup_hex'], 'hsl(220, 1%, 86%)'],
                     'fill-opacity': 1
                   }
                 });
