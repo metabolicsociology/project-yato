@@ -244,6 +244,18 @@
           height: 12px;
           flex-shrink: 0;
         }
+
+        /* Environmental Layers panel visible by default */
+            #env-toggle {
+                display: block;
+            }
+            .env-citation {
+                margin: 10px 0 0 0;
+                font-size: 10px;
+                line-height: 1.4;
+                color: #7a7f85;
+            }
+        
         /* -- Environmental Location Map Pins -------------------------------- */
             .env-pin-marker {
                             width: 14px;
@@ -1110,8 +1122,7 @@
     West Uraga Road
     </label>
 
-    <div class="env-divider">---- The following information is retrieved from: Biodiversity "Mieruka" Map (© Biodiversity Center of Japan, Ministry of the Environment) ----</div>
-        
+    <p class="env-citation">The following information is retrieved from: Biodiversity "Mieruka" Map (© Biodiversity Center of Japan, Ministry of the Environment)</p>    
         
     <label class="env-row">
         <input type="checkbox" onchange="envToggle([
