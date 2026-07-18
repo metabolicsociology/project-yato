@@ -3,9 +3,9 @@ var REFS = [
   { id: "yokohamacollab2024", text: "Yokohama Collaborative Research Group. 2024. \u201CSome Key Tephra Beds in the Uragou Formation of the Lower Kazusa Group Exposed on the Northeastern District of Kamakura City, Kanagawa Prefecture, Central Japan.\u201D <em>Bulletin of the Association for Kanto Quaternary Research</em> 39: 3\u201317." },
   { id: "yokosukawater2019",    text: "Yokosuka Water and Environment Study Group. 2019. <em>Yokosuka no Kawa</em> (Rivers in Yokosuka). Yokosuka: Yokosuka Water and Environment Study Group." },
   { id: "aist1976",    text: "Geological Survey of Japan, AIST. 1976. <a href='https://www.gsj.jp/Map/JP/geology0.html'><em>Distribution Map of Gas and Oil Fields in Japan (including Offshore Areas) (2nd ed.)</em></a>." },
-  { id: "eto1998",    text: "Etoh, T., Yazaki K., Urabe, A. & Ishobe, I. 1998. <em>Geology of the Yokosuka Area</em> Geological Survey of Japan, AIST (former Geological Survey Office)." },
-  { id: "umeda2017",    text: "Umeda, Y. 2017. <em>A Study of the Forming Process of Kannon-Jodo-Teien in Kamakura: Its Characteristic Location, Spatial Construction and Philosophical Background</em> [Doctoral Dissertation, Kyoto University of the Arts]" },
-  { id: "yoko-bod1985",    text: "Yokosuka Board of Education. 1985. <em>Yokosuka no Chishitsu (Geology of Yokosuka)</em> Yokosuka Cultural Property Series No.2. Yokosuka: Yokosuka Board of Education." }
+  { id: "eto1998",    text: "Etoh, T., Yazaki K., Urabe, A. & Ishobe, I. 1998. <em>Geology of the Yokosuka Area.</em> Geological Survey of Japan, AIST (former Geological Survey Office)." },
+  { id: "umeda2017",    text: "Umeda, Y. 2017. <em>A Study of the Forming Process of Kannon-Jodo-Teien in Kamakura: Its Characteristic Location, Spatial Construction and Philosophical Background.</em> [Doctoral Dissertation, Kyoto University of the Arts]." },
+  { id: "yoko-bod1985",    text: "Yokosuka Board of Education. 1985. <em>Yokosuka no Chishitsu (Geology of Yokosuka).</em> Yokosuka Cultural Property Series No.2. Yokosuka: Yokosuka Board of Education." }
 ];
 
 var config = {
