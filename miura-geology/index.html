@@ -1452,6 +1452,7 @@ var IGNEOUS_ERAS = {
 
         function showEraPopup(e) {
                 if (!e.features || !e.features.length) return;
+            if (map.queryRenderedFeatures(e.point, { layers: ['geology-formations-layer-4'] }).length > 0) return;
                 var symbol = e.features[0].properties.symbol;
                 var sedimEra = SEDIMENTARY_ERAS[symbol];
                 var igneousEra = IGNEOUS_ERAS[symbol];
