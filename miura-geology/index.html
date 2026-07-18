@@ -701,6 +701,11 @@ var chapterMarkers = [];
         }
 
                 map.on("load", function () {
+            let firstSymbolId;
+            const __baseStyleLayers = map.getStyle().layers;
+            for (const __layer of __baseStyleLayers) {
+                if (__layer.type === 'symbol') { firstSymbolId = __layer.id; break; }
+            }
             if (config.use3dTerrain) {
                             map.addSource('mapbox-dem', {
                                 'type': 'raster-dem',
@@ -790,7 +795,7 @@ var chapterMarkers = [];
                         ],
                         'fill-opacity': 0.4
                     }
-                });
+                }, firstSymbolId);
                 
                 map.addLayer({
                     'id': 'faults-layer',
@@ -808,7 +813,7 @@ var chapterMarkers = [];
                         ],
                         'line-width': 1
                     }
-                });
+                }, firstSymbolId);
                     
                 map.addSource('miura-formations-2', {
                     'type': 'geojson',
@@ -878,7 +883,7 @@ var chapterMarkers = [];
                         ],
                         'fill-opacity': 0.4
                     }
-                });
+                }, firstSymbolId);
                     
                 map.addLayer({
                     'id': 'geology-faults-layer-2',
@@ -896,7 +901,7 @@ var chapterMarkers = [];
                         ],
                         'line-width': 1
                     }
-                });
+                }, firstSymbolId);
 
                 map.addSource('miura-formations-3', {
                     'type': 'geojson',
@@ -966,7 +971,7 @@ var chapterMarkers = [];
                         ],
                         'fill-opacity': 0.4
                             }
-                     });
+                     }, firstSymbolId);
 
                 map.addLayer({
                     'id': 'geology-faults-layer-3',
@@ -984,7 +989,7 @@ var chapterMarkers = [];
                     ],
                     'line-width': 1
                              }
-                    });
+                    }, firstSymbolId);
 
                 map.addSource('yokosuka-detailed-geology', {
                   'type': 'geojson',
@@ -999,7 +1004,7 @@ var chapterMarkers = [];
                     'fill-color': ['coalesce', ['get', 'geo_A_legend_lookup_hex'], 'hsl(220, 1%, 86%)'],
                     'fill-opacity': 0.8
                   }
-                });
+                }, firstSymbolId);
                 
                 map.addLayer({
                   'id': 'geology-boundary-layer-4',
@@ -1010,12 +1015,12 @@ var chapterMarkers = [];
                     'line-color': '#4d4d4d',
                     'line-width': 1
                   }
-                });
+                }, firstSymbolId);
 
                     // Move old-map fault lines above the new detailed Yokosuka map
-                    map.moveLayer('faults-layer');
-                    map.moveLayer('geology-faults-layer-2');
-                    map.moveLayer('geology-faults-layer-3');
+                    map.moveLayer('faults-layer', firstSymbolId);
+                    map.moveLayer('geology-faults-layer-2', firstSymbolId);
+                    map.moveLayer('geology-faults-layer-3', firstSymbolId);
             
                 // Yato List
                 map.addSource('yato-list', {
