@@ -1005,6 +1005,7 @@ var chapterMarkers = [];
                   'id': 'geology-boundary-layer-4',
                   'type': 'line',
                   'source': 'yokosuka-detailed-geology',
+                    'filter': ['!=', ['get', 'geo_A_legend_lookup_hex'], null],
                   'paint': {
                     'line-color': '#4d4d4d',
                     'line-width': 1
