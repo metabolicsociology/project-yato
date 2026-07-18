@@ -1470,7 +1470,7 @@ var IGNEOUS_ERAS = {
                 }
                 new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
                     .setLngLat(e.lngLat)
-                    .setHTML('<div class="env-popup-type" style="color:#A0845C">Geologic Era</div><p class="env-popup-title" style="margin-bottom:0;">' + text + '</p>')
+                    .setHTML('<div class="env-popup-type" style="color:#A0845C">Geologic Era</div><p class="env-popup-title" style="margin-bottom:0;">' + text + '</p><p class="env-popup-citation" style="margin:6px 0 0 0;font-size:10px;font-weight:300;color:#888;">Seamless Digital Geological Map of Japan V2 1:200,000 (© Geological Survey of Japan, AIST)</p>')
                     .addTo(map);
 }
         map.on('click', 'geology-formations-layer', showEraPopup);
