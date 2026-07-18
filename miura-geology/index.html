@@ -1352,7 +1352,7 @@ var chapterMarkers = [];
                     paint: { 'line-color': '#2E86AB', 'line-width': 2 }
                 });
             
-                     // Minami Kanto Gas Field
+                // Minami Kanto Gas Field
                 map.addSource('minami-kanto-gasfield', {
                     type: 'geojson',
                     data: 'assets/minami_kanto_gasfield.geojson'
@@ -1541,10 +1541,11 @@ var IGNEOUS_ERAS = {
     <b class="env-toggle-header" onclick="toggleEnvPanel()">Environmental Layers <span id="env-arrow" style="font-size:1.4em;color:#FFD700;margin-left:4px;text-shadow: 0 0 1px #222, 0 0 1px #222;">▾</span></b>
     <div id="env-toggle-body">
 
-<p class="env-citation">Geological data is downloaded from:<br>Seamless Digital Geological Map of Japan V2 1:200,000 (© Geological Survey of Japan, AIST)</p>
+<p class="env-description">The geological map of Yokosuka is more detailed (1:50,000) than the surrounding areas (1:200,000). The surrounding areas are classified by rock type — how the rock formed — into four categories: Sedimentary, Igneous, Accretionary, and Metamorphic. For Yokosuka, the pop-up instead shows lithological information — what the rock is actually made of — printed in smaller text beneath the bolded stratigraphic formation name.</p>
 <p class="env-description">【Sedimentary rocks】Formed when eroded fragments of pre-existing rock, minerals, and organic material are deposited in layers and compacted or cemented together over time.</p>
 <p class="env-description">【Igneous rocks】Formed when molten rock — magma below the surface or lava above it — cools and solidifies into crystalline or glassy minerals.</p>
 <p class="env-description">【Accretionary rocks】Formed when ocean floor sediments, basalt fragments, and seamounts are scraped off a subducting plate and added onto the edge of the overriding plate at a convergent margin. </p>
+<p class="env-description">【Metamorphic rocks】Formed when pre-existing rock is transformed by intense heat and pressure — without melting — causing its minerals to recrystallize into new structures.</p>
 
 <label class="env-row">
     <input type="checkbox" onchange="envToggle(['rivers-line'], this.checked)">
