@@ -988,7 +988,7 @@ var chapterMarkers = [];
 
                 map.addSource('yokosuka-detailed-geology', {
                   'type': 'geojson',
-                  'data': 'assets/yokosuka_geo_A_4326.geojson'
+                  'data': 'assets/joined_yokosuka_geo_A.geojson'
                 });
                 
                 map.addLayer({
@@ -1515,16 +1515,16 @@ var IGNEOUS_ERAS = {
         map.on('mouseleave', 'geology-formations-layer-4', function () { map.getCanvas().style.cursor = 'grab'; });
         
         // Collapse the env panel by default on mobile screens
-    if (window.innerWidth <= 600) {
-      document.addEventListener('DOMContentLoaded', function () {
-        const body = document.getElementById('env-toggle-body');
-        const arrow = document.getElementById('env-arrow');
-        if (body) {
-          body.style.display = 'none';
-          arrow.textContent = '▴';
+        if (window.innerWidth <= 600) {
+          document.addEventListener('DOMContentLoaded', function () {
+            const body = document.getElementById('env-toggle-body');
+            const arrow = document.getElementById('env-arrow');
+            if (body) {
+              body.style.display = 'none';
+              arrow.textContent = '▴';
+            }
+          });
         }
-      });
-    }
 
         // Pin-click storytelling mode active.
         // Map is fully interactive — users can freely pan, zoom, and rotate.
