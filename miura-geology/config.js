@@ -33,7 +33,7 @@ var config = {
                           <p style="margin-bottom: 1.5em;">These stones were in high demand throughout the medieval and early modern periods, a fact attested to by four surviving quarry ruins: the three at Kamakura, Ikego, and Takatori, plus a fourth further south on the peninsula at Sajima. Stonemasons valued the tuff for its softness and malleability, and while it served many purposes, among the greatest demands were landscaping for temple gardens meant to evoke nirvana, and the carving of gravestones (<span class="ref-tooltip" data-ref-id="umeda2017">Umeda 2017</span>; <span class="ref-tooltip" data-ref-id="yoko-bod1985">Yokosuka Board of Education 1985, 74</span>). Long before a mason's chisel ever touched it, the stone already held the dead within it — and centuries later, it was cut into gravestones to hold them again. Ashes to ashes, twice over, tens of millions of years apart.</p>`,
             location: {
                 center: [139.61266, 35.30648],
-                zoom: 10,
+                zoom: 6,
                 pitch: 45,
                 bearing: -20
             },
