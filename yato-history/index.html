@@ -687,7 +687,18 @@
             marker.setLngLat(config.chapters[0].location.center).addTo(map);
         }
 
-                map.on("load", function () {
+        map.on("load", function () {
+            // Force all base-map labels to English, falling back to local name if no English exists
+            var baseStyle = map.getStyle();
+            baseStyle.layers.forEach(function (layer) {
+                if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
+                    map.setLayoutProperty(layer.id, 'text-field', [
+                        'coalesce',
+                        ['get', 'name_en'],
+                        ['get', 'name']
+                    ]);
+                }
+            });
             if (config.use3dTerrain) {
                             map.addSource('mapbox-dem', {
                                 'type': 'raster-dem',
