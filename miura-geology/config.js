@@ -34,7 +34,7 @@ pins: [
   { coordinates: [139.56751, 35.31709], label: 'Kamakura Stone Quarry Ruins' },
   { coordinates: [139.619, 35.22745], label: 'Sajima Stone Quarry Ruins' }
   ],
-              description: `<p style="margin-bottom: 1.5em;">The land on which the yato stands was formed during the Miura Formation, spanning the late Miocene to early Pliocene, approximately 5 to 15 million years ago <span class="ref-tooltip" data-ref-id="eto1998">(Eto, Yazaki, Urabe & Tobe, 1998)</span>. While the yato areas are mostly mudstone and sandstone, scientists have found tuffs deposited by ash fall from volcanic activity around the fault lines and around the Sagami coast. Researchers argue that the tuffs quarried at Kamakura, Ikego, and Takatori — whose ruins remain today — are located in the vicinity of each other but were deposited in different eras between Zushi, Ikego, Uragō and Nojima Formations <span class="ref-tooltip" data-ref-id="yokohamacollab2024">(Yokohama Collaborative Research Group 2024)</span>. Scientists have found that some of these tuffs carried fossil cold-seep assemblages <span class="ref-tooltip" data-ref-id="nozaki-utsunomiya2022">(Nozaki and Utsunomiya 2022)</span>, entombed in the volcanic ash tens of millions of years before any mason ever touched it. </p>
+            description: `<p style="margin-bottom: 1.5em;">The land on which the yato stands was formed during the Miura Formation, spanning the late Miocene to early Pliocene, approximately 5 to 15 million years ago <span class="ref-tooltip" data-ref-id="eto1998">(Eto, Yazaki, Urabe & Tobe, 1998)</span>. While the yato areas are mostly mudstone and sandstone, scientists have found tuffs deposited by ash fall from volcanic activity around the fault lines and around the Sagami coast. Researchers argue that the tuffs quarried at Kamakura, Ikego, and Takatori — whose ruins remain today — are located in the vicinity of each other but were deposited in different eras between Zushi, Ikego, Uragō and Nojima Formations <span class="ref-tooltip" data-ref-id="yokohamacollab2024">(Yokohama Collaborative Research Group 2024)</span>. Scientists have found that some of these tuffs carried fossil cold-seep assemblages <span class="ref-tooltip" data-ref-id="nozaki-utsunomiya2022">(Nozaki and Utsunomiya 2022)</span>, entombed in the volcanic ash tens of millions of years before any mason ever touched it. </p>
                           <p style="margin-bottom: 1.5em;">These stones were in high demand throughout the medieval and early modern periods, a fact attested to by four surviving quarry ruins: the three at Kamakura, Ikego, and Takatori, plus a fourth further south on the peninsula at Sajima. Stonemasons valued the tuff for its softness and malleability, and while it served many purposes, among the greatest demands were landscaping for temple gardens meant to evoke nirvana, and the carving of gravestones (<span class="ref-tooltip" data-ref-id="umeda2017">Umeda 2017</span>; <span class="ref-tooltip" data-ref-id="yoko-bod1985">Yokosuka Board of Education 1985, 74</span>). Long before a mason's chisel ever touched it, the stone already held the dead within it — and centuries later, it was cut into gravestones to hold them again. Ashes to ashes, twice over, tens of millions of years apart.</p>`,
             location: {
                 center: [139.61266, 35.30648],
@@ -47,7 +47,127 @@ pins: [
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
-            }, 
+            },
+            {
+            id: 'confluence',
+            alignment: 'left',
+            hidden: false,
+            title: `A Confluence Called Spouse`,
+            markerColor: '#2E86AB',
+            pins: [
+              { coordinates: [139.62777, 35.31685], label: 'A Confluence Called Spouse' },
+              ],
+            description: `<p style="margin-bottom: 1.5em;">A bridge already stood at this crossing during the early Meiji period (1868–1912), but the stone bridge spanning the Takatori River today dates to 1933. It takes its name — Meoto-bashi, the "Spouse Bridge" — from the point just upstream where the river's male and female branches join into one current <a href="https://www.sano-k.net/town/town025/" target="_blank" rel="noopener noreferrer">(Sano Kōmuten website)</a>.</p>
+                          <p style="margin-bottom: 1.5em;">A different <a href="#two-bridges" onclick="openStoryPanel('two-bridges'); return false;">Spouse Bridge crosses the Hirasaku River</a> further south, in the Hirasaku district, but the name there marks a different kind of pairing — two bridges built by human hands on either side of a reclamation-era water gate, spanning a single river rather than joining two.</p>
+                          <p style="margin-bottom: 1.5em;">At Hirasaku, it was engineers who paired two bridges over one river. Here, it was the river itself that paired two currents into one — and only afterward did anyone think to build a bridge to mark the joining.</p>`,
+            location: {
+                center: [139.62777, 35.31685],
+                zoom: 16,
+                pitch: 40,
+                bearing: -20
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
+            {
+            id: 'two-eras',
+            alignment: 'left',
+            hidden: false,
+            title: `The River That Carried Two Eras`,
+            markerColor: '#2E86AB', 
+            pins: [
+              { coordinates: [139.6023, 35.30615], label: 'The River That Carried Two Eras' },
+              ],
+            description: `<p style="margin-bottom: 1.5em;">Ikego's stone was tuff — a durable, lightweight rock born from compacted volcanic ash and debris hurled out in explosive eruptions. Quarries here, together with the Takatoriyama quarry nearby, supplied cut stone for construction through the late Meiji and early Shōwa eras.</p>
+                          <p style="margin-bottom: 1.5em;">Cut blocks from both sites were floated down the Takatori River to reach Tokyo Bay, where that same tuff went into a project straddling two eras: the three artificial forts built out on the water, their foundations laid with Edo-period stone-masonry technique set alongside newly imported Western engineering — brick, concrete, and diving gear enlisted to hold ground in water too deep for the old methods alone.</p>
+                          <p style="margin-bottom: 1.5em;">Ash that once rained down from a volcano, carried downriver on a current, ended up anchoring fortresses where old craft and new science met.</p>`,
+            location: {
+                center: [139.6023, 35.30615],
+                zoom: 16,
+                pitch: 40,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
+            {
+            id: 'emperor-water',
+            alignment: 'left',
+            hidden: false,
+            title: `The Emperor's Water, the Village's Well`,
+            markerColor: '#2E86AB', 
+            pins: [
+              { coordinates: [139.66136, 35.28082], label: `The Emperor's Water, the Village's Well` },
+              ],
+            description: `<p style="margin-bottom: 1.5em;">No bridge remains here today, but its corner posts still stand as a commemorative marker by the Shioiri station roundabout, framing an inset panel that recounts the history of the Miyuki Bridge. It once spanned the Shioiri River, which ran from the Kappa Mountain area in Sakamoto down to what is now the pumping station inside Verny Park — the point where the river met Tokyo Bay <span class="ref-tooltip" data-ref-id="yokosukawater2019">(Yokosuka Water and Environment Study Group 2019, 21)</span>.</p>
+                          <p style="margin-bottom: 1.5em;">The bridge's name honored a visit by the Meiji Emperor - which he did on several occasions since 1871 <span class="ref-tooltip" data-ref-id="ishii1987a">(Ishii 1987a, 24)</span>. The name is drawn from omiyuki (imperial outing), the general term for his travels beyond the palace. Yet the well is thought to be older than the occasion that named it, having served the local community well before the Meiji era. It may originally have belonged to the Grand Suwa Shrine, situated across the Uraga Road to the east of the hospital, said to have been brought to this site and enshrined for veneration by a descendant of the Miura clan in 1380.</p>
+                          <p style="margin-bottom: 1.5em;">The bridge is gone, and the Emperor's visit survives now only in the corner posts that once framed it. The well, disused and unmarked, still holds the older claim — a village drawing its water long before any emperor ever passed through.</p>`,
+            location: {
+                center: [139.66136, 35.28082],
+                zoom: 16,
+                pitch: 40,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
+            {
+            id: 'seven-names',
+            alignment: 'left',
+            hidden: false,
+            title: `A River Named Seven Times`,
+            markerColor: '#2E86AB', 
+            pins: [
+              { coordinates: [139.6584, 35.25618, label: `A River Named Seven Times` },
+              ],
+            description: `<p style="margin-bottom: 1.5em;">The New Topography of Sagami Province — compiled in 1841, in the closing decades of the Edo period — records that the river now known as the Hirasaku River was, in its own day, no single river at all. At least seven villages along its course gave it seven different names, each drawn from the stretch of land it happened to pass through.</p>
+                          <p style="margin-bottom: 1.5em;">From its headwaters in the foothills of Ōkusu Mountain, near the Abekura Hot Springs, it was called the Yu-no-sawa River. Further inland, it became the Seisui River. In Koyabe — a district straddling both sides of Route 26 — it was known as the Sumata River. North of what is now the JR line, villagers called it the Gotanda River; near JR Kinugasa Station, the Butai River; and further downstream, by Morisaki Shrine and Myōkakuji Temple, the Funa-tsuki River. Where its lower reaches had been reclaimed for rice cultivation, it took the name Uchikawa, after the paddies themselves. By the time it reached Kurihama port and opened into Tokyo Bay, it was the Yawata River <span class="ref-tooltip" data-ref-id="ishii1987b">(Ishii 1987b, 112)</span>.</p>
+                          <p style="margin-bottom: 1.5em;">Today the river answers to a single name, Hirasaku, from source to mouth — but for centuries it was less a river than a chain of rivers, each village claiming the stretch that ran past its own door.</p>`,
+            location: {
+                center: [139.6584, 35.25618],
+                zoom: 16,
+                pitch: 40,
+                bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
+            {
+            id: 'two-bridges',
+            alignment: 'left',
+            hidden: false,
+            title: `Two Bridges, No River`,
+            markerColor: '#2E86AB', 
+            pins: [
+              { coordinates: [139.70522, 35.23144, label: `Two Bridges, No River` },
+              ],
+            description: `<p style="margin-bottom: 1.5em;">On the tidal flats where the Hirasaku River meets the Uraga Channel, land reclamation found one of its earliest champions in Sunamura Shinzaemon Masatsugu, a civil engineer whose entrepreneurial instincts matched his technical skill. A rising population, advances in construction methods, and the Shogunate's chronic financial strain — which pushed authorities to encourage private investment in coastal reclamation for rice production — created the conditions for his career. He had already lent his expertise to the Noge Shinden in Yokohama, later renamed the Yoshida Shinden, when he turned his attention to the marshy inlet at Kurihama.</p>
+                          <p style="margin-bottom: 1.5em;">Beginning in 1660, Shinzaemon spent eight arduous years completing what would become the largest reclamation project in present-day Yokosuka: the Uchikawa Shinden. The water gate built to keep seawater from reclaiming the new paddies proved the hardest part of the work, breaking more than once before its completion in 1667 <span class="ref-tooltip" data-ref-id="ishii1987a">(Ishii 1987a, 241)</span>. The gate stood on a small island raised in the middle of the tidal channel, with a bridge reaching out to each bank — and it is this pairing, not any wedding, that gave the crossing its enduring name: Meoto-bashi, the "Spouse Bridge." (<a href="#confluence" onclick="openStoryPanel('confluence'); return false;">A different Meoto-bashi spans the Takatori River to the north</a>; the two are unrelated.)</p>
+                          <p style="margin-bottom: 1.5em;">Shinzaemon later went on to develop the Sunamura Shinden in Edo — land that today gives Tokyo's Kōtō Ward its name — but Uchikawa remained his largest undertaking, and the one for which he is still honored locally: a monument to him stands at the bridge's edge, and a memorial service is held there every December. Where seawater once had to be fought back tide by tide, commuters now cross without a glance —two bridges over a channel that was never a river, the water gate itself long gone, its name alone carrying the crossing's history back to 1667.</p>`,
+            location: {
+                center: [139.70522, 35.23144],
+                zoom: 16,
+                pitch: 40,
+                bearing: -30
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
     ]
 };
 
