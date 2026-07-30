@@ -1180,6 +1180,21 @@ var chapterMarkers = [];
                     }
                 });
 
+                // Fix 1: erase the 1:50,000 Yokosuka detail outlines
+                // (only affects the detailed Yokosuka layer — the 1:200,000 areas elsewhere are untouched)
+                map.setLayoutProperty('geology-boundary-layer-4', 'visibility', 'none');
+                
+                // Fix 2: raise 1:50,000 fill opacity slightly so labels/detail are more legible
+                map.setPaintProperty('geology-formations-layer-4', 'fill-opacity', 0.9);
+                
+                // Fix 3: darker label color + thinner halo on all base-map place/POI labels
+                map.getStyle().layers.forEach(function (layer) {
+                    if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
+                        map.setPaintProperty(layer.id, 'text-color', '#4a4a4a');
+                        map.setPaintProperty(layer.id, 'text-halo-width', 0.3);
+                    }
+                });
+                            
 });  // end map.on("load")
         
     function envToggle(ids, on) {
