@@ -706,21 +706,29 @@
         baseStyle.layers.forEach(function (layer) {
             if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
                 map.setLayoutProperty(layer.id, 'text-field', [
-                    'match', ['get', 'name'],
-                    '吉倉町', nameOverrides['吉倉町'],
-                    '浦郷町', nameOverrides['浦郷町'],
-                    '米国海軍横須賀基地', nameOverrides['米国海軍横須賀基地'],
-                    '上町1', nameOverrides['上町1'],
-                    '上町浄化センター', nameOverrides['上町浄化センター'],
-                    '米軍施設', nameOverrides['米軍施設'],
-                    '追浜浄化センター', nameOverrides['追浜浄化センター'],
-                    '田浦変電所', nameOverrides['田浦変電所'],
-                    '横須賀火力発電所', nameOverrides['横須賀火力発電所'],
+                    'case',
+                    ['all', ['in', '米国', ['get', 'name']], ['in', '海軍', ['get', 'name']], ['in', '横須賀', ['get', 'name']], ['in', '基地', ['get', 'name']]],
+                    'U.S. Fleet Activities Yokosuka',
+        
+                    ['all', ['in', '上町', ['get', 'name']], ['in', '浄化', ['get', 'name']], ['in', 'センター', ['get', 'name']]],
+                    'Uwamachi sewage treatment plant',
+        
+                    ['all', ['in', '追浜', ['get', 'name']], ['in', '浄化', ['get', 'name']], ['in', 'センター', ['get', 'name']]],
+                    'Oppama sewage treatment plant',
+        
+                    ['all', ['in', '横須賀', ['get', 'name']], ['in', '火力', ['get', 'name']], ['in', '発電所', ['get', 'name']]],
+                    'Yokosuka Thermal Power Station',
+        
+                    ['==', ['get', 'name'], '吉倉町'], 'Yoshikuracho',
+                    ['==', ['get', 'name'], '浦郷町'], 'Uragocho',
+                    ['==', ['get', 'name'], '上町1'], 'Uwamachi 1',
+                    ['==', ['get', 'name'], '米軍施設'], 'U.S. military facility',
+                    ['==', ['get', 'name'], '田浦変電所'], 'Taura electrical substation',
+        
                     ['coalesce', ['get', 'name_en'], ['get', 'name']]
                 ]);
             }
         });
-
         // --- 2. Add a brand-new label for Fukaura Boat Park, since no feature/name
         //        exists at this location in Mapbox's data to override ---
         map.addSource('fukaura-boat-park', {
@@ -730,7 +738,7 @@
                 features: [{
                     type: 'Feature',
                     geometry: { type: 'Point', coordinates: [139.6364, 35.3087] },
-                    properties: { title: 'Fukaura Boat Park' }
+                    properties: { title: 'Fukaura Boat Park', sizerank: 13 }
                 }]
             }
         });
@@ -741,14 +749,17 @@
             source: 'fukaura-boat-park',
             layout: {
                 'text-field': ['get', 'title'],
-                'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
-                'text-size': 11,
-                'text-anchor': 'top',
-                'text-offset': [0, 0.5],
+                'text-font': ['DIN Pro Italic', 'Arial Unicode MS Regular'],
+                'text-size': ['step', ['zoom'], ['step', ['get', 'sizerank'], 18, 5, 12], 17, ['step', ['get', 'sizerank'], 18, 13, 12]],
+                'text-anchor': ['step', ['zoom'], ['step', ['get', 'sizerank'], 'center', 5, 'top'], 17, ['step', ['get', 'sizerank'], 'center', 13, 'top']],
+                'text-offset': [0, 0],
                 'text-optional': true
             },
             paint: {
-                'text-color': '#5a5a5a'
+                'text-halo-color': 'hsl(220, 0%, 100%)',
+                'text-halo-width': 0.5,
+                'text-halo-blur': 0.5,
+                'text-color': 'hsl(220, 1%, 62%)'
             }
         });
             
