@@ -127,7 +127,7 @@ pins: [
             title: `A River Named Seven Times`,
             markerColor: '#2E86AB', 
             pins: [
-              { coordinates: [139.6584, 35.25618, label: `A River Named Seven Times` },
+              { coordinates: [139.6584, 35.25618], label: `A River Named Seven Times` },
               ],
             description: `<p style="margin-bottom: 1.5em;">The New Topography of Sagami Province — compiled in 1841, in the closing decades of the Edo period — records that the river now known as the Hirasaku River was, in its own day, no single river at all. At least seven villages along its course gave it seven different names, each drawn from the stretch of land it happened to pass through.</p>
                           <p style="margin-bottom: 1.5em;">From its headwaters in the foothills of Ōkusu Mountain, near the Abekura Hot Springs, it was called the Yu-no-sawa River. Further inland, it became the Seisui River. In Koyabe — a district straddling both sides of Route 26 — it was known as the Sumata River. North of what is now the JR line, villagers called it the Gotanda River; near JR Kinugasa Station, the Butai River; and further downstream, by Morisaki Shrine and Myōkakuji Temple, the Funa-tsuki River. Where its lower reaches had been reclaimed for rice cultivation, it took the name Uchikawa, after the paddies themselves. By the time it reached Kurihama port and opened into Tokyo Bay, it was the Yawata River <span class="ref-tooltip" data-ref-id="ishii1987b">(Ishii 1987b, 112)</span>.</p>
@@ -151,7 +151,7 @@ pins: [
             title: `Two Bridges, No River`,
             markerColor: '#2E86AB', 
             pins: [
-              { coordinates: [139.70522, 35.23144, label: `Two Bridges, No River` },
+              { coordinates: [139.70522, 35.23144], label: `Two Bridges, No River` },
               ],
             description: `<p style="margin-bottom: 1.5em;">On the tidal flats where the Hirasaku River meets the Uraga Channel, land reclamation found one of its earliest champions in Sunamura Shinzaemon Masatsugu, a civil engineer whose entrepreneurial instincts matched his technical skill. A rising population, advances in construction methods, and the Shogunate's chronic financial strain — which pushed authorities to encourage private investment in coastal reclamation for rice production — created the conditions for his career. He had already lent his expertise to the Noge Shinden in Yokohama, later renamed the Yoshida Shinden, when he turned his attention to the marshy inlet at Kurihama.</p>
                           <p style="margin-bottom: 1.5em;">Beginning in 1660, Shinzaemon spent eight arduous years completing what would become the largest reclamation project in present-day Yokosuka: the Uchikawa Shinden. The water gate built to keep seawater from reclaiming the new paddies proved the hardest part of the work, breaking more than once before its completion in 1667 <span class="ref-tooltip" data-ref-id="ishii1987a">(Ishii 1987a, 241)</span>. The gate stood on a small island raised in the middle of the tidal channel, with a bridge reaching out to each bank — and it is this pairing, not any wedding, that gave the crossing its enduring name: Meoto-bashi, the "Spouse Bridge." (<a href="#confluence" onclick="openStoryPanel('confluence'); return false;">A different Meoto-bashi spans the Takatori River to the north</a>; the two are unrelated.)</p>
