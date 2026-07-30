@@ -1194,6 +1194,17 @@ var chapterMarkers = [];
       body.style.display = isHidden ? 'block' : 'none';
       arrow.textContent = isHidden ? '▾' : '▴';
     }
+    // Collapse the env panel by default on mobile screens
+    if (window.innerWidth < 600) {
+      document.addEventListener('DOMContentLoaded', function () {
+        const body = document.getElementById('env-toggle-body');
+        const arrow = document.getElementById('env-arrow');
+        if (body) {
+          body.style.display = 'none';
+          arrow.textContent = '▴';
+        }
+      });
+    }
     
 // Sedimentary-code -> English era name & date range (used by the era click-popup)
         var SEDIMENTARY_ERAS = {
@@ -1324,18 +1335,6 @@ var IGNEOUS_ERAS = {
         map.on('mouseenter', 'geology-formations-layer-4', function () { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'geology-formations-layer-4', function () { map.getCanvas().style.cursor = 'grab'; });
         
-        // Collapse the env panel by default on mobile screens
-        if (window.innerWidth <= 600) {
-          document.addEventListener('DOMContentLoaded', function () {
-            const body = document.getElementById('env-toggle-body');
-            const arrow = document.getElementById('env-arrow');
-            if (body) {
-              body.style.display = 'none';
-              arrow.textContent = '▴';
-            }
-          });
-        }
-
         // Pin-click storytelling mode active.
         // Map is fully interactive — users can freely pan, zoom, and rotate.
         // Click any story pin to open its story panel.
