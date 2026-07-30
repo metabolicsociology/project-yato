@@ -688,17 +688,70 @@
         }
 
         map.on("load", function () {
-            // Force all base-map labels to English, falling back to local name if no English exists
-            var baseStyle = map.getStyle();
-            baseStyle.layers.forEach(function (layer) {
-                if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
-                    map.setLayoutProperty(layer.id, 'text-field', [
-                        'coalesce',
-                        ['get', 'name_en'],
-                        ['get', 'name']
-                    ]);
-                }
-            });
+        // --- 1. Force all base-map labels to English, with hardcoded overrides for
+        //        names Mapbox has missing or wrong translations for ---
+        var nameOverrides = {
+            '吉倉町': 'Yoshikuracho',
+            '浦郷町': 'Uragocho',
+            '米国海軍横須賀基地': 'U.S. Fleet Activities Yokosuka',
+            '上町1': 'Uwamachi 1',
+            '上町浄化センター': 'Uwamachi sewage treatment plant',
+            '米軍施設': 'U.S. military facility',
+            '追浜浄化センター': 'Oppama sewage treatment plant',
+            '田浦変電所': 'Taura electrical substation',
+            '横須賀火力発電所': 'Yokosuka Thermal Power Station'
+        };
+        
+        var baseStyle = map.getStyle();
+        baseStyle.layers.forEach(function (layer) {
+            if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
+                map.setLayoutProperty(layer.id, 'text-field', [
+                    'match', ['get', 'name'],
+                    '吉倉町', nameOverrides['吉倉町'],
+                    '浦郷町', nameOverrides['浦郷町'],
+                    '米国海軍横須賀基地', nameOverrides['米国海軍横須賀基地'],
+                    '上町1', nameOverrides['上町1'],
+                    '上町浄化センター', nameOverrides['上町浄化センター'],
+                    '米軍施設', nameOverrides['米軍施設'],
+                    '追浜浄化センター', nameOverrides['追浜浄化センター'],
+                    '田浦変電所', nameOverrides['田浦変電所'],
+                    '横須賀火力発電所', nameOverrides['横須賀火力発電所'],
+                    ['coalesce', ['get', 'name_en'], ['get', 'name']]
+                ]);
+            }
+        });
+
+        // --- 2. Add a brand-new label for Fukaura Boat Park, since no feature/name
+        //        exists at this location in Mapbox's data to override ---
+        map.addSource('fukaura-boat-park', {
+            type: 'geojson',
+            data: {
+                type: 'FeatureCollection',
+                features: [{
+                    type: 'Feature',
+                    geometry: { type: 'Point', coordinates: [139.6364, 35.3087] },
+                    properties: { title: 'Fukaura Boat Park' }
+                }]
+            }
+        });
+        
+        map.addLayer({
+            id: 'fukaura-boat-park-label',
+            type: 'symbol',
+            source: 'fukaura-boat-park',
+            layout: {
+                'text-field': ['get', 'title'],
+                'text-font': ['Open Sans Regular', 'Arial Unicode MS Regular'],
+                'text-size': 11,
+                'text-anchor': 'top',
+                'text-offset': [0, 0.5],
+                'text-optional': true
+            },
+            paint: {
+                'text-color': '#5a5a5a'
+            }
+        });
+            
             if (config.use3dTerrain) {
                             map.addSource('mapbox-dem', {
                                 'type': 'raster-dem',
