@@ -1334,12 +1334,14 @@ var IGNEOUS_ERAS = {
         
             var formation = p.geo_A_legend_lookup_formation_en || p.geo_A_legend_lookup_formation_jp || '';
             var era = [p.geo_A_legend_lookup_era_en, p.geo_A_legend_lookup_epoch_en].filter(Boolean).join(', ');
-            var lithology = p.geo_A_legend_lookup_lithology_en || '';
-        
-            var html = '<div class="env-popup-type" style="color:#A0845C">' + (era || 'Geologic Era') + '</div>'
-                + '<p class="env-popup-title" style="margin-bottom:0;">' + formation + '</p>'
-                + (lithology ? '<p style="margin:4px 0 0 0;font-size:11px;color:#666;">' + lithology + '</p>' : '')
-                + '<p class="env-popup-citation" style="margin:6px 0 0 0;font-size:10px;font-weight:300;color:#888;">Eto, Yazaki, Urabe & Isobe (1998). Geological Map of Yokosuka District (1:50,000). Geological Survey of Japan / GSJ, AIST.</p>';
+var lithology = p.geo_A_legend_lookup_lithology_en || '';
+var member = p.geo_A_legend_lookup_member_en || p.geo_A_legend_lookup_member_jp || '';
+
+var html = '<div class="env-popup-type" style="color:#A0845C">' + (era || 'Geologic Era') + '</div>'
+    + '<p class="env-popup-title" style="margin-bottom:0;">' + formation + '</p>'
+    + (member ? '<p style="margin:2px 0 0 0;font-size:11px;font-style:italic;color:#888;">' + member + '</p>' : '')
+    + (lithology ? '<p style="margin:4px 0 0 0;font-size:11px;color:#666;">' + lithology + '</p>' : '')
+    + '<p class="env-popup-citation" style="margin:6px 0 0 0;font-size:10px;font-weight:300;color:#888;">Eto, Yazaki, Urabe & Isobe (1998). Geological Map of Yokosuka District (1:50,000). Geological Survey of Japan / GSJ, AIST.</p>';
         
             new mapboxgl.Popup({ className: 'env-popup', closeButton: true, maxWidth: '230px' })
                 .setLngLat(e.lngLat)
