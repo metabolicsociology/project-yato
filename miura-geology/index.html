@@ -801,7 +801,28 @@ var chapterMarkers = [];
                 }]
             }
         });
-                
+        map.addLayer({
+            id: 'fukaura-boat-park-label',
+            type: 'symbol',
+            source: 'fukaura-boat-park',
+            minzoom: 6,
+            layout: {
+                'text-field': ['get', 'title'],
+                'text-font': ['DIN Pro Italic', 'Arial Unicode MS Regular'],
+                'text-size': [
+                    'step', ['zoom'],
+                    ['step', ['get', 'sizerank'], 18, 5, 12],
+                    17, ['step', ['get', 'sizerank'], 18, 13, 12]
+                ]
+            },
+            paint: {
+                'text-color': '#4a4a4a',
+                'text-halo-color': 'hsl(220, 0%, 100%)',
+                'text-halo-width': 0.3,
+                'text-halo-blur': 0.5
+            }
+        });
+        
             let firstSymbolId;
             const __baseStyleLayers = map.getStyle().layers;
             for (const __layer of __baseStyleLayers) {
