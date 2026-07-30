@@ -746,7 +746,62 @@ var chapterMarkers = [];
             marker.setLngLat(config.chapters[0].location.center).addTo(map);
         }
 
-                map.on("load", function () {
+        map.on("load", function () {
+        // --- 1. Force all base-map labels to English, with hardcoded overrides for
+        //        names Mapbox has missing or wrong translations for ---
+        var nameOverrides = {
+            '吉倉町': 'Yoshikuracho',
+            '浦郷町': 'Uragocho',
+            '米国海軍横須賀基地': 'U.S. Fleet Activities Yokosuka',
+            '上町1': 'Uwamachi 1',
+            '上町浄化センター': 'Uwamachi sewage treatment plant',
+            '米軍施設': 'U.S. military facility',
+            '追浜浄化センター': 'Oppama sewage treatment plant',
+            '田浦変電所': 'Taura electrical substation',
+            '横須賀火力発電所': 'Yokosuka Thermal Power Station'
+        };
+        
+        var baseStyle = map.getStyle();
+        baseStyle.layers.forEach(function (layer) {
+            if (layer.type === 'symbol' && layer.layout && layer.layout['text-field']) {
+                map.setLayoutProperty(layer.id, 'text-field', [
+                    'case',
+                    ['all', ['in', '米国', ['get', 'name']], ['in', '海軍', ['get', 'name']], ['in', '横須賀', ['get', 'name']], ['in', '基地', ['get', 'name']]],
+                    'U.S. Fleet Activities Yokosuka',
+        
+                    ['all', ['in', '上町', ['get', 'name']], ['in', '浄化', ['get', 'name']], ['in', 'センター', ['get', 'name']]],
+                    'Uwamachi sewage treatment plant',
+        
+                    ['all', ['in', '追浜', ['get', 'name']], ['in', '浄化', ['get', 'name']], ['in', 'センター', ['get', 'name']]],
+                    'Oppama sewage treatment plant',
+        
+                    ['all', ['in', '横須賀', ['get', 'name']], ['in', '火力', ['get', 'name']], ['in', '発電所', ['get', 'name']]],
+                    'Yokosuka Thermal Power Station',
+        
+                    ['==', ['get', 'name'], '吉倉町'], 'Yoshikuracho',
+                    ['==', ['get', 'name'], '浦郷町'], 'Uragocho',
+                    ['==', ['get', 'name'], '上町1'], 'Uwamachi 1',
+                    ['==', ['get', 'name'], '米軍施設'], 'U.S. military facility',
+                    ['==', ['get', 'name'], '田浦変電所'], 'Taura electrical substation',
+        
+                    ['coalesce', ['get', 'name_en'], ['get', 'name']]
+                ]);
+            }
+        });
+        // --- 2. Add a brand-new label for Fukaura Boat Park, since no feature/name
+        //        exists at this location in Mapbox's data to override ---
+        map.addSource('fukaura-boat-park', {
+            type: 'geojson',
+            data: {
+                type: 'FeatureCollection',
+                features: [{
+                    type: 'Feature',
+                    geometry: { type: 'Point', coordinates: [139.6364, 35.3087] },
+                    properties: { title: 'Fukaura Boat Park', sizerank: 13 }
+                }]
+            }
+        });
+                
             let firstSymbolId;
             const __baseStyleLayers = map.getStyle().layers;
             for (const __layer of __baseStyleLayers) {
