@@ -1385,12 +1385,12 @@ var html = '<div class="env-popup-type" style="color:#A0845C">' + (era || 'Geolo
     <b class="env-toggle-header" onclick="toggleEnvPanel()">Geological Information <span id="env-arrow" style="font-size:1.4em;color:#FFD700;margin-left:4px;text-shadow: 0 0 1px #222, 0 0 1px #222;">▾</span></b>
     <div id="env-toggle-body">
 
+<p class="env-description" style="color: var(--dark-green); font-weight: bold">REFERENCE LAYERS</p>
 <label class="env-row">
     <input type="checkbox" onchange="envToggle(['rivers-line'], this.checked)">
     <span class="env-dot" style="background:#2E86AB"></span>
     <span class="ref-tooltip" data-ref-id="yokosukawater2019">Rivers</span>
   </label>
-
   <label class="env-row">
     <input type="checkbox" onchange="envToggle(['gasfield-fill','gasfield-line'], this.checked)">
     <span class="env-dot" style="background:#54595F"></span>
@@ -1409,7 +1409,6 @@ var html = '<div class="env-popup-type" style="color:#A0845C">' + (era || 'Geolo
 <p class="env-description"> ∙ Kazusa Group (2.4 - 0.45 Ma), incl. Uragō, Nojima & Hayashi Formations
 <p class="env-description"> ∙ Sagami Group (0.6 - 0.4 Ma), incl. Miyata & Yokosuka Formations and Obaradai & Misaki Sand and Gravel Deposits
 <p class="env-description"> ∙ Alluvium, Reclaimed land, & Earthwork materials (〜 today)</p>
-<p class="env-description" style="color: var(--dark-green); font-weight: bold">REFERENCE LAYERS</p>
 
   </div>  <!-- closes env-toggle-body -->
 
