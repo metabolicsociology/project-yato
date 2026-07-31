@@ -716,7 +716,7 @@ var chapterMarkers = [];
                 .addTo(map);
 
             var labelEl = document.createElement('div');
-            labelEl.className = 'story-pin-label';
+            labelEl.className = 'story-pin-label visible';
             labelEl.textContent = cm.label;
             new mapboxgl.Marker({ element: labelEl, anchor: 'top', offset: [0, 16] })
             .setLngLat(cm.lngLat)
@@ -724,17 +724,6 @@ var chapterMarkers = [];
             pinLabelEls.push(labelEl);
         });
 
-        // Story-pin location labels are only shown once zoomed in close (avoids cluttering the full map view)
-        var PIN_LABEL_MIN_ZOOM = 13;
-        function updatePinLabelVisibility() {
-            var show = map.getZoom() >= PIN_LABEL_MIN_ZOOM;
-            pinLabelEls.forEach(function(el) { el.classList.toggle('visible', show); });
-        }
-        map.on('zoom', updatePinLabelVisibility);
-        map.on('load', updatePinLabelVisibility);
-        updatePinLabelVisibility();
-
-        
         // Create a inset map if enabled in config.js
         if (config.inset) {
             map.addControl(
