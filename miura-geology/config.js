@@ -1,4 +1,6 @@
 var REFS = [
+  { id: "ishii1987a",      text: "Ishii, Akira. 1987a. <em>Furusato Yokosuka, J\u014d</em> (Hometown Yokosuka, Vol. 1). Yokohama: Kanagawa Shimbun-sha." },
+  { id: "ishii1987b",         text: "Ishii, Akira. 1987b. <em>Furusato Yokosuka, Ge</em> (Hometown Yokosuka, Vol. 2). Yokohama: Kanagawa Shimbun-sha." },
   { id: "nozaki-utsunomiya2022", text: "Nozaki, A. and M. Utsunomiya. 2022. \u201CGeology and Fossil Cold-Seep Assemblages in the Kazusa Group on the Northern Miura Peninsula, Central Japan.\u201D <em>Journal of the Geological Society of Japan</em> 128(1): 313\u2013333." },
   { id: "yokohamacollab2024", text: "Yokohama Collaborative Research Group. 2024. \u201CSome Key Tephra Beds in the Uragou Formation of the Lower Kazusa Group Exposed on the Northeastern District of Kamakura City, Kanagawa Prefecture, Central Japan.\u201D <em>Bulletin of the Association for Kanto Quaternary Research</em> 39: 3\u201317." },
   { id: "yokosukawater2019",    text: "Yokosuka Water and Environment Study Group. 2019. <em>Yokosuka no Kawa</em> (Rivers in Yokosuka). Yokosuka: Yokosuka Water and Environment Study Group." },
