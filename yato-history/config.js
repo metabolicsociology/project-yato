@@ -345,8 +345,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
-            },
-        },    
+            }, 
     ]
 };
 
