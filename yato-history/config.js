@@ -319,6 +319,12 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                 pitch: 50,
                 bearing: 10
             },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+            },
             {
             id: 'naked-public',
             alignment: 'left',
@@ -333,6 +339,12 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                 zoom: 16,
                 pitch: 50,
                 bearing: 10
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
             },
         },    
     ]
