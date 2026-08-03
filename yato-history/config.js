@@ -319,6 +319,21 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                 pitch: 50,
                 bearing: 10
             },
+            {
+            id: 'coast',
+            alignment: 'left',
+            hidden: false,
+            title: 'A Surviving Naked Public',
+            markerColor: '#0097a7', 
+            description: `<p style="margin-bottom: 1.5em;">There were more than a hundred public baths in Yokosuka until the 1970s; now only a handful remain. Most survive not on profit but on the owners' determination to keep the doors open, the city's "Fureai Support" tickets distributed to single elders aged 65 and over, and scrap wood that demolition contractors part with for next to nothing. The Take-no-yu ("bamboo hot water") bathhouse is one such survivor, perhaps as old as the <a href="#electricity" onclick="openStoryPanel('electricity'); return false;">Funakoshi-kan</a> — the first cinema in the area, which opened just two blocks down the street in 1908. A <a href="https://www.city.yokosuka.kanagawa.jp/2744/walk_taura/b10020.html" target="_blank" rel="noopener noreferrer">street map from 1933</a> already shows the Take-no-yu standing in this exact spot.</p>
+                          <p style="margin-bottom: 1.5em;">Now, nearly a century later, neighborhood bathhouses like the Take-no-yu are caught in another kind of transition — not toward a circular economy of renewable energy, but away from an older one that was no less circular. As newer, entertainment-oriented bathing facilities — complete with saunas, hot stone spas, restaurants, and massage parlors — become the norm, these smaller establishments are increasingly cast in blogs and online magazines as a kind of museum: a place to sample the atmosphere of an earlier era, tinged with nostalgia.</p>
+                          <p style="margin-bottom: 1.5em;">The disconnect could not be starker between those for whom the bathhouse still serves a living purpose — burning scrap wood salvaged from old, demolished yato houses to heat the water where elders keep alive a public of <em>hadaka no tsukiai</em> — "naked communication" — and a generation of digital natives for whom that kind of intimacy has grown unfamiliar. Where the Showa-era bathhouse forged its public through bodies bared side by side in the steam, today's Gen-Z public gathers bodiless, behind screens, its intimacies conducted at a remove no scrap-wood fire could ever warm.</p>`,
+            location: {
+                center: [139.67129, 35.27201],
+                zoom: 16,
+                pitch: 50,
+                bearing: 10
+            },
         },    
     ]
 };
