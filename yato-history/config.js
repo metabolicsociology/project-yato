@@ -320,7 +320,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                 bearing: 10
             },
             {
-            id: 'coast',
+            id: 'naked-public',
             alignment: 'left',
             hidden: false,
             title: 'A Surviving Naked Public',
