@@ -329,7 +329,7 @@ description: `<p style="margin-bottom: 1.5em;">The yato valleys of Yokosuka hold
                           <p style="margin-bottom: 1.5em;">Now, nearly a century later, neighborhood bathhouses like the Take-no-yu are caught in another kind of transition — not toward a circular economy of renewable energy, but away from an older one that was no less circular. As newer, entertainment-oriented bathing facilities — complete with saunas, hot stone spas, restaurants, and massage parlors — become the norm, these smaller establishments are increasingly cast in blogs and online magazines as a kind of museum: a place to sample the atmosphere of an earlier era, tinged with nostalgia.</p>
                           <p style="margin-bottom: 1.5em;">The disconnect could not be starker between those for whom the bathhouse still serves a living purpose — burning scrap wood salvaged from old, demolished yato houses to heat the water where elders keep alive a public of <em>hadaka no tsukiai</em> — "naked communication" — and a generation of digital natives for whom that kind of intimacy has grown unfamiliar. Where the Showa-era bathhouse forged its public through bodies bared side by side in the steam, today's Gen-Z public gathers bodiless, behind screens, its intimacies conducted at a remove no scrap-wood fire could ever warm.</p>`,
             location: {
-                center: [139.67129, 35.27201],
+                center: [139.62811, 35.3004],
                 zoom: 16,
                 pitch: 50,
                 bearing: 10
