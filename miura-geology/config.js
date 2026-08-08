@@ -8,7 +8,7 @@ var REFS = [
   { id: "eto1998",    text: "Etoh, T., Yazaki K., Urabe, A. & Ishobe, I. 1998. <em>Geology of the Yokosuka Area.</em> Geological Survey of Japan, AIST (former Geological Survey Office)." },
   { id: "umeda2017",    text: "Umeda, Y. 2017. <em>A Study of the Forming Process of Kannon-Jodo-Teien in Kamakura: Its Characteristic Location, Spatial Construction and Philosophical Background.</em> [Doctoral Dissertation, Kyoto University of the Arts]." },
   { id: "yoko-bod1985",    text: "Yokosuka Board of Education. 1985. <em>Yokosuka no Chishitsu (Geology of Yokosuka).</em> Yokosuka Cultural Property Series No.2. Yokosuka: Yokosuka Board of Education." },
-  { id: "kanie1996",    text: "Kanie, Yasumitsu. 1996. \u201CPaleoenvironmental study on the chemosynthetic fossil assemblages of the Hayama Formation and the related Late Cenozoic assemblages from the Miura−Boso area, south−central Japan. 1996.\u201D <em>Fossils</em> 60: 53-58\u201317." }
+  { id: "kanie1996",    text: "Kanie, Yasumitsu. 1996. \u201CPaleoenvironmental study on the chemosynthetic fossil assemblages of the Hayama Formation and the related Late Cenozoic assemblages from the Miura−Boso area, south−central Japan. 1996.\u201D <em>Fossils</em> 60: 53\u201358." }
 ];
 
 var config = {
