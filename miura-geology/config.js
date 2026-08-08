@@ -7,7 +7,8 @@ var REFS = [
   { id: "aist1976",    text: "Geological Survey of Japan, AIST. 1976. <a href='https://www.gsj.jp/Map/JP/geology0.html'><em>Distribution Map of Gas and Oil Fields in Japan (including Offshore Areas) (2nd ed.)</em></a>." },
   { id: "eto1998",    text: "Etoh, T., Yazaki K., Urabe, A. & Ishobe, I. 1998. <em>Geology of the Yokosuka Area.</em> Geological Survey of Japan, AIST (former Geological Survey Office)." },
   { id: "umeda2017",    text: "Umeda, Y. 2017. <em>A Study of the Forming Process of Kannon-Jodo-Teien in Kamakura: Its Characteristic Location, Spatial Construction and Philosophical Background.</em> [Doctoral Dissertation, Kyoto University of the Arts]." },
-  { id: "yoko-bod1985",    text: "Yokosuka Board of Education. 1985. <em>Yokosuka no Chishitsu (Geology of Yokosuka).</em> Yokosuka Cultural Property Series No.2. Yokosuka: Yokosuka Board of Education." }
+  { id: "yoko-bod1985",    text: "Yokosuka Board of Education. 1985. <em>Yokosuka no Chishitsu (Geology of Yokosuka).</em> Yokosuka Cultural Property Series No.2. Yokosuka: Yokosuka Board of Education." },
+  { id: "kanie1996",    text: "Paleoenvironmental study on the chemosynthetic fossil assemblages of the Hayama Formation and the related Late Cenozoic assemblages from the Miura−Boso area, south−central Japan. 1996. \u201D <em>Fossils</em> 60: 53-58\u201317." }
 ];
 
 var config = {
@@ -51,115 +52,19 @@ pins: [
             onChapterExit: []
             },
             {
-            id: 'confluence',
+            id: 'oldest-tenant',
             alignment: 'left',
             hidden: false,
-            title: `A Confluence Called Spouse`,
-            markerColor: '#2E86AB',
+            title: `The Peninsula's Oldest Tenant`,
+            markerColor: '#C05A40', 
             pins: [
-              { coordinates: [139.62777, 35.31685], label: 'A Confluence Called Spouse' },
+              { coordinates: [139.70522, 35.23144], label: `Peninsula's Oldest Tenant` },
               ],
-            description: `<p style="margin-bottom: 1.5em;">A bridge already stood at this crossing during the early Meiji period (1868–1912), but the stone bridge spanning the Takatori River today dates to 1933. It takes its name — Meoto-bashi, the "Spouse Bridge" — from the point just upstream where the river's male and female branches join into one current <a href="https://www.sano-k.net/town/town025/" target="_blank" rel="noopener noreferrer">(Sano Kōmuten website)</a>.</p>
-                          <p style="margin-bottom: 1.5em;">A different <a href="#two-bridges" onclick="openStoryPanel('two-bridges'); return false;">Spouse Bridge crosses the Hirasaku River</a> further south, in the Hirasaku district, but the name there marks a different kind of pairing — two bridges built by human hands on either side of a reclamation-era water gate, spanning a single river rather than joining two.</p>
-                          <p style="margin-bottom: 1.5em;">At Hirasaku, it was engineers who paired two bridges over one river. Here, it was the river itself that paired two currents into one — and only afterward did anyone think to build a bridge to mark the joining.</p>`,
+            description: `<p style="margin-bottom: 1.5em;">Millions of years before the Hirasaku River and the West Uraga Road brought people, farming, and commerce to Iketami town that has been in the official record since at least 1260, a giant chemosynthetic bivalve — a deep-sea mollusk that draws its energy not from sunlight but from bacteria metabolizing hydrogen sulfide — had lived at this exact spot. Archaeologist <span class="ref-tooltip" data-ref-id="kanie1996">Kanie (1996)</span> discovered its fossil among other fossils of the Hayama formation, the oldest strata exposed on the Miura Peninsula. Comparing the fossil community against one still active around the Sagami Trough's thermal vents, Kanie found the same cast of characters at both sites: chemosynthetic bacteria, and the molluscs and tube worms that house them in a shared metabolism.</p>
+                          <p style="margin-bottom: 1.5em;">The bivalve was named for the city where it was found — Acharax yokosukaensis. It grew to some 30 centimeters, a giant by the standards of its kin, and it belonged to its moment: chemosynthetic fossil communities also survive in the younger Miura and Kazusa groups, found in locations such as the <a href="#ashes" onclick="openStoryPanel('ashes'); return false;">Ikego and Takatori stone quarries</a>, but the Yokosuka mollusk belongs only to the Hayama formation.</p>
+                          <p style="margin-bottom: 1.5em;">The white fossilized shells on display at the Ikego Artifacts Museum, inside the Ikego Forest Natural Park, that visitors can see today are not Acharax yokosukaensis. They belong to Calyptogena, a related but separate genus of chemosynthetic clam, roughly a third the size of the giant that gave the city its name. Acharax yokosukaensis holds the oldest claim on this ground, though it keeps the hours of an absent tenant, surfacing only on the occasion of a special exhibition.</p>`,
             location: {
-                center: [139.62777, 35.31685],
-                zoom: 16,
-                pitch: 40,
-                bearing: -20
-            },
-            mapAnimation: 'flyTo',
-            rotateAnimation: false,
-            callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
-            },
-            {
-            id: 'two-eras',
-            alignment: 'left',
-            hidden: false,
-            title: `The River That Carried Two Eras`,
-            markerColor: '#2E86AB', 
-            pins: [
-              { coordinates: [139.6023, 35.30615], label: 'The River That Carried Two Eras' },
-              ],
-            description: `<p style="margin-bottom: 1.5em;">Ikego's stone was tuff — a durable, lightweight rock born from compacted volcanic ash and debris hurled out in explosive eruptions. Quarries here, together with the Takatoriyama quarry nearby, supplied cut stone for construction through the late Meiji and early Shōwa eras.</p>
-                          <p style="margin-bottom: 1.5em;">Cut blocks from both sites were floated down the Takatori River to reach Tokyo Bay, where that same tuff went into a project straddling two eras: the three artificial forts built out on the water, their foundations laid with Edo-period stone-masonry technique set alongside newly imported Western engineering — brick, concrete, and diving gear enlisted to hold ground in water too deep for the old methods alone.</p>
-                          <p style="margin-bottom: 1.5em;">Ash that once rained down from a volcano, carried downriver on a current, ended up anchoring fortresses where old craft and new science met.</p>`,
-            location: {
-                center: [139.6023, 35.30615],
-                zoom: 16,
-                pitch: 40,
-                bearing: 10
-            },
-            mapAnimation: 'flyTo',
-            rotateAnimation: false,
-            callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
-            },
-            {
-            id: 'emperor-water',
-            alignment: 'left',
-            hidden: false,
-            title: `The Emperor's Water, the Village's Well`,
-            markerColor: '#2E86AB', 
-            pins: [
-              { coordinates: [139.66136, 35.28082], label: `The Emperor's Water, the Village's Well` },
-              ],
-            description: `<p style="margin-bottom: 1.5em;">No bridge remains here today, but its corner posts still stand as a commemorative marker by the Shioiri station roundabout, framing an inset panel that recounts the history of the Miyuki Bridge. It once spanned the Shioiri River, which ran from the Kappa Mountain area in Sakamoto down to what is now the pumping station inside Verny Park — the point where the river met Tokyo Bay <span class="ref-tooltip" data-ref-id="yokosukawater2019">(Yokosuka Water and Environment Study Group 2019, 21)</span>.</p>
-                          <p style="margin-bottom: 1.5em;">The bridge's name honored a visit by the Meiji Emperor - which he did on several occasions since 1871 <span class="ref-tooltip" data-ref-id="ishii1987a">(Ishii 1987a, 24)</span>. The name is drawn from omiyuki (imperial outing), the general term for his travels beyond the palace. Yet the well is thought to be older than the occasion that named it, having served the local community well before the Meiji era. It may originally have belonged to the Grand Suwa Shrine, situated across the Uraga Road to the east of the hospital, said to have been brought to this site and enshrined for veneration by a descendant of the Miura clan in 1380.</p>
-                          <p style="margin-bottom: 1.5em;">The bridge is gone, and the Emperor's visit survives now only in the corner posts that once framed it. The well, disused and unmarked, still holds the older claim — a village drawing its water long before any emperor ever passed through.</p>`,
-            location: {
-                center: [139.66136, 35.28082],
-                zoom: 16,
-                pitch: 40,
-                bearing: 10
-            },
-            mapAnimation: 'flyTo',
-            rotateAnimation: false,
-            callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
-            },
-            {
-            id: 'seven-names',
-            alignment: 'left',
-            hidden: false,
-            title: `A River Named Seven Times`,
-            markerColor: '#2E86AB', 
-            pins: [
-              { coordinates: [139.6584, 35.25618], label: `A River Named Seven Times` },
-              ],
-            description: `<p style="margin-bottom: 1.5em;">The New Topography of Sagami Province — compiled in 1841, in the closing decades of the Edo period — records that the river now known as the Hirasaku River was, in its own day, no single river at all. At least seven villages along its course gave it seven different names, each drawn from the stretch of land it happened to pass through.</p>
-                          <p style="margin-bottom: 1.5em;">From its headwaters in the foothills of Ōkusu Mountain, near the Abekura Hot Springs, it was called the Yu-no-sawa River. Further inland, it became the Seisui River. In Koyabe — a district straddling both sides of Route 26 — it was known as the Sumata River. North of what is now the JR line, villagers called it the Gotanda River; near JR Kinugasa Station, the Butai River; and further downstream, by Morisaki Shrine and Myōkakuji Temple, the Funa-tsuki River. Where its lower reaches had been reclaimed for rice cultivation, it took the name Uchikawa, after the paddies themselves. By the time it reached Kurihama port and opened into Tokyo Bay, it was the Yawata River <span class="ref-tooltip" data-ref-id="ishii1987b">(Ishii 1987b, 112)</span>.</p>
-                          <p style="margin-bottom: 1.5em;">Today the river answers to a single name, Hirasaku, from source to mouth — but for centuries it was less a river than a chain of rivers, each village claiming the stretch that ran past its own door.</p>`,
-            location: {
-                center: [139.6584, 35.25618],
-                zoom: 16,
-                pitch: 40,
-                bearing: 10
-            },
-            mapAnimation: 'flyTo',
-            rotateAnimation: false,
-            callback: '',
-            onChapterEnter: [],
-            onChapterExit: []
-            },
-            {
-            id: 'two-bridges',
-            alignment: 'left',
-            hidden: false,
-            title: `Two Bridges, No River`,
-            markerColor: '#2E86AB', 
-            pins: [
-              { coordinates: [139.70522, 35.23144], label: `Two Bridges, No River` },
-              ],
-            description: `<p style="margin-bottom: 1.5em;">On the tidal flats where the Hirasaku River meets the Uraga Channel, land reclamation found one of its earliest champions in Sunamura Shinzaemon Masatsugu, a civil engineer whose entrepreneurial instincts matched his technical skill. A rising population, advances in construction methods, and the Shogunate's chronic financial strain — which pushed authorities to encourage private investment in coastal reclamation for rice production — created the conditions for his career. He had already lent his expertise to the Noge Shinden in Yokohama, later renamed the Yoshida Shinden, when he turned his attention to the marshy inlet at Kurihama.</p>
-                          <p style="margin-bottom: 1.5em;">Beginning in 1660, Shinzaemon spent eight arduous years completing what would become the largest reclamation project in present-day Yokosuka: the Uchikawa Shinden. The water gate built to keep seawater from reclaiming the new paddies proved the hardest part of the work, breaking more than once before its completion in 1667 <span class="ref-tooltip" data-ref-id="ishii1987a">(Ishii 1987a, 241)</span>. The gate stood on a small island raised in the middle of the tidal channel, with a bridge reaching out to each bank — and it is this pairing, not any wedding, that gave the crossing its enduring name: Meoto-bashi, the "Spouse Bridge." (<a href="#confluence" onclick="openStoryPanel('confluence'); return false;">A different Meoto-bashi spans the Takatori River to the north</a>; the two are unrelated.)</p>
-                          <p style="margin-bottom: 1.5em;">Shinzaemon later went on to develop the Sunamura Shinden in Edo — land that today gives Tokyo's Kōtō Ward its name — but Uchikawa remained his largest undertaking, and the one for which he is still honored locally: a monument to him stands at the bridge's edge, and a memorial service is held there every December. Where seawater once had to be fought back tide by tide, commuters now cross without a glance —two bridges over a channel that was never a river, the water gate itself long gone, its name alone carrying the crossing's history back to 1667.</p>`,
-            location: {
-                center: [139.70522, 35.23144],
+                center: [139.64297, 35.26316],
                 zoom: 16,
                 pitch: 40,
                 bearing: -30
