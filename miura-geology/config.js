@@ -58,7 +58,7 @@ pins: [
             title: `The Peninsula's Oldest Tenant`,
             markerColor: '#C05A40', 
             pins: [
-              { coordinates: [139.70522, 35.23144], label: `Peninsula's Oldest Tenant` },
+              { coordinates: [139.64297, 35.26316], label: `Peninsula's Oldest Tenant` },
               ],
             description: `<p style="margin-bottom: 1.5em;">Millions of years before the Hirasaku River and the West Uraga Road brought people, farming, and commerce to Iketami town that has been in the official record since at least 1260, a giant chemosynthetic bivalve — a deep-sea mollusk that draws its energy not from sunlight but from bacteria metabolizing hydrogen sulfide — had lived at this exact spot. Archaeologist <span class="ref-tooltip" data-ref-id="kanie1996">Kanie (1996)</span> discovered its fossil among other fossils of the Hayama formation, the oldest strata exposed on the Miura Peninsula. Comparing the fossil community against one still active around the Sagami Trough's thermal vents, Kanie found the same cast of characters at both sites: chemosynthetic bacteria, and the molluscs and tube worms that house them in a shared metabolism.</p>
                           <p style="margin-bottom: 1.5em;">The bivalve was named for the city where it was found — Acharax yokosukaensis. It grew to some 30 centimeters, a giant by the standards of its kin, and it belonged to its moment: chemosynthetic fossil communities also survive in the younger Miura and Kazusa groups, found in locations such as the <a href="#ashes" onclick="openStoryPanel('ashes'); return false;">Ikego and Takatori stone quarries</a>, but the Yokosuka mollusk belongs only to the Hayama formation.</p>
