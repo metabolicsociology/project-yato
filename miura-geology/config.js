@@ -8,7 +8,8 @@ var REFS = [
   { id: "eto1998",    text: "Etoh, T., Yazaki K., Urabe, A. & Ishobe, I. 1998. <em>Geology of the Yokosuka Area.</em> Geological Survey of Japan, AIST (former Geological Survey Office)." },
   { id: "umeda2017",    text: "Umeda, Y. 2017. <em>A Study of the Forming Process of Kannon-Jodo-Teien in Kamakura: Its Characteristic Location, Spatial Construction and Philosophical Background.</em> [Doctoral Dissertation, Kyoto University of the Arts]." },
   { id: "yoko-bod1985",    text: "Yokosuka Board of Education. 1985. <em>Yokosuka no Chishitsu (Geology of Yokosuka).</em> Yokosuka Cultural Property Series No.2. Yokosuka: Yokosuka Board of Education." },
-  { id: "kanie1996",    text: "Kanie, Yasumitsu. 1996. \u201CPaleoenvironmental study on the chemosynthetic fossil assemblages of the Hayama Formation and the related Late Cenozoic assemblages from the Miura−Boso area, south−central Japan. 1996.\u201D <em>Fossils</em> 60: 53\u201358." }
+  { id: "kanie1996",    text: "Kanie, Yasumitsu. 1996. \u201CPaleoenvironmental study on the chemosynthetic fossil assemblages of the Hayama Formation and the related Late Cenozoic assemblages from the Miura−Boso area, south−central Japan. 1996.\u201D <em>Fossils</em> 60: 53\u201358." },
+  { id: "culthistory2022",    text: "Kanagawa Prefectural Museum of Cultural History ed. 2022. <em>Special Exhibition: Excavating Cave Sites—The Archaeology of Sea-Eroded Caves</em>　Yokohama: Kanagawa Prefectural Museum of Cultural History." }
 ];
 
 var config = {
@@ -82,67 +83,75 @@ pins: [
 // These appear as semi-opaque info boxes when their coordinates fall within the visible map viewport
 var envLocations = [
     {
-                id: 'spring-hemi-01',
-                type: 'spring',
-                title: 'Hemi Yato Spring',
-                description: `As one of several natural seeps along the Hemi Yato valley floor, this spring water is funneled via pipe into a covered storage tank at the edge of an open lot. Maintenance of the water source is managed independently by a neighboring resident <span class="ref-tooltip" data-ref-id="yokosukawater2015">(Yokosuka Water and Environment Study Group 2015, 12)</span>.`,
-                coordinates: [139.64836, 35.27655],
-                color: '#4A90D9'
+                id: 'torigasaki',
+                type: 'cave',
+                title: 'Torigasaki Cave Ruins',
+                description: ` <span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.73202, 35.24343],
+                color: '#54595F'
     },
     {
-                id: 'spring-ikegami-01',
-                type: 'spring',
-                title: 'Myōzōji Temple Spring',
-                description: `Originating from the foothills of Mount Ogusu, this natural spring flows through the grounds of a local Nichiren sect temple, where it irrigates the garden and sustains a koi pond. The temple is one of the 32 Nichiren sect temples in Yokosuka city, where the order's founder, Nichiren Shōnin, is said to have stopped during his journey from Chiba to Kamakura.`,
-                coordinates: [139.64490, 35.26280],
-                color: '#4A90D9'
+                id: 'sumiyoshi-shrine',
+                type: 'cave',
+                title: 'Sumiyoshi Shrine Cave Ruins',
+                description: `<span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.71424, 35.21894],
+                color: '#54595F'
     },
     {
-                id: 'spring-kinugasa-01',
-                type: 'spring',
-                title: 'Castle Town Well #2 - Ishii Fudō',
-                description: `Nestled between the ruins of Kinugasa and Gō castles, this natural spring served as a vital community well until the installation of a modern water system around 1960 <span class="ref-tooltip" data-ref-id="yokosukawater2015">(Yokosuka Water and Environment Study Group 2015, 14)</span>. Its waters feed into the Hirasaku River, eventually emptying into Tokyo Bay.`,
-                coordinates: [139.65536, 35.2515],
-                color: '#4A90D9'
+                id: 'sarushima',
+                type: 'cave',
+                title: 'Sarushima Cave Ruins',
+                description: `<span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.69491, 35.28783],
+                color: '#54595F'
     },
     {
-                id: 'spring-hemi-02',
-                type: 'spring',
-                title: 'A Village of Fireflies',
-                description: `This spring water feeds a critical firefly habitat in Yokosuka, which was successfully revived through local ecological restoration efforts. The water source attracts a growing population of fireflies, transforming the site into a prominent seasonal destination where visitors gather during summer nights to observe the insects' bioluminescent displays.`,
-                coordinates: [139.6444, 35.27881],
-                color: '#4A90D9'
+                id: 'makuchi',
+                type: 'cave',
+                title: 'Makuchi Cave Ruins',
+                description: `<span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.67553, 35.14463],
+                color: '#54595F'
     },
     {
-                id: 'spring-kinugasa-02',
-                type: 'spring',
-                title: 'Castle Town Well #1 - Daizen Temple',
-                description: `This historic well served as the primary water supply for Kinugasa Castle, a stronghold constructed in 1062 and occupied by Miura Tamemichi, the founder of the prominent Miura clan. Despite its age, the well remains an active water source today, continuing to yield a modest but steady spring flow.`,
-                coordinates: [139.65548, 35.24461],
-                color: '#4A90D9'
+                id: 'mukougasaki',
+                type: 'cave',
+                title: 'Mukougasaki-B Cave Ruins',
+                description: `<span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.62472, 35.1394],
+                color: '#54595F'
     },
     {
-                id: 'satoyama-01',
-                type: 'satoyama',
-                title: 'Nagasaka Greenspace around Sawayama Pond',
-                description: `Originally constructed by Yokosuka City in 1936 as an agricultural water supply, Sawayama Pond fell into disuse during the postwar period but now serves as the ecological centerpiece of a vital satoyama area. Since 2012, collaborative restoration efforts between the municipality and a local nonprofit organization have revived the surrounding abandoned rice paddies. Today, the pond and its adjacent wetlands support a diverse ecosystem comprising marsh, woodland, and bamboo vegetation, alongside various wildlife species, including grasshoppers, butterflies, dragonflies, owls, falcons, and frogs (<a href="https://yokosuka-satoyama.jp/nagasakaryokuchi.html" target="_blank" rel="noopener noreferrer">Yokosuka City Nagasaka Greenspace Satoyama Liaison Office website</a>).`,
-                coordinates: [139.6337, 35.23751],
-                color: '#4A7C59'
+                id: 'ourayama',
+                type: 'cave',
+                title: 'Ourayama Cave Ruins',
+                description: `<span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.67905, 35.1459],
+                color: '#54595F'
     },
     {
-                id: 'satoyama-edge-02',
-                type: 'satoyama',
-                title: 'Kagamido Yato Greenspace',
-                description: `Situated at the southeastern periphery of Kurihama Flower Park, this green space in Nobi functions as a vital conservation area, earning designation as a Nature Harmony Site by the Ministry of Environment in 2025. This official recognition underscores the site's ecological significance and the successful implementation of local biodiversity restoration initiatives.`,
-                coordinates: [139.70604, 35.21317],
-                color: '#4A7C59'
+                id: 'bishamon',
+                type: 'cave',
+                title: 'Bishamon Cave Ruins',
+                description: `<span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.65489, 35.13969],
+                color: '#54595F'
     },
     {
-                id: 'ironworks-01',
-                type: 'heritage-water',
-                title: 'Former Arsenal Waterway',
-                description: `This natural spring serves as the source of the historic waterway that originally supplied process water to the Yokosuka Naval Arsenal. Originating at the foot of Obaradai Hill—the current site of the National Defense Academy—the water system was planned and engineered by French engineer François Léonce Verny, who directed the construction that successfully delivered water to the Naval Arsenal in 1876. In 1908, the Yokosuka Waterworks integrated this infrastructure into the municipal network to provide public water utility services. Today, while the water undergoes modern filtration and treatment, it remains an active resource available for public consumption.`,
-                coordinates: [139.72311, 35.26279],
-                color: '#8B6914'
+                id: 'amazaki',
+                type: 'cave',
+                title: 'Amazaki Cave Ruins',
+                description: `<span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.67889, 35.15464],
+                color: '#54595F'
+    },
+    {
+                id: 'kaito',
+                type: 'cave',
+                title: 'Kaito-1 Cave Ruins',
+                description: `<span class="ref-tooltip" data-ref-id="culthistory2022">(Kanagawa Prefectural Museum of Cultural History 2022)</span>.`,
+                coordinates: [139.61791, 35.149],
+                color: '#54595F'
     }
     ];
